@@ -1,0 +1,436 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\section{Esercitazioni}
+
+In questa sezione vengono riportate gli esercizi ed i relativi svolgimenti delle esercitazioni svolte in aula durante le lezioni del corso. Ad ogni sottosezione corrisponde una diversa esercitazione. Le esercitazioni sono contrassegnate dalla data di svolgimento e dagli argomenti trattati all'interno di essa. Ogni esercitazione è ulteriormente divisa nel numero di esercizi svolti compresivi di titolo e spiegazione.
+
+\subsection{Esercitazione 1 - 01/10/2025}
+
+In questa prima esercitazione si vanno ad affrontare esercizi di base sulla teoria dei segnali come il calcolo dell'energia e della potenza. Seguono esercizi sulla distanza tra due segnali per terminare con lo sviluppo di un segnale a partire dagli elementi di una base per terminare con gli sviluppi in serie di Fourier.
+
+\subsubsection{Esercizio 1 - Energia di un segnale}
+
+All'interno del primo esercizio si chiede di calcolare l'energia dei seguenti segnali:
+
+\begin{center}
+
+	$ x_1(t) = e^{- \alpha t} p_{2T}(t) \:,\:t  \in \mathbb{R} $ \\ \vspace{0.5cm}
+
+	$x_2(t) = p_1(\frac{t-2}{4}) e^{-2t} \:,\:t  \in \mathbb{R} $ \\ \vspace{0.5cm}
+	
+	$x_3(t) =  A\cos^2(2\pi f_0 t)p_{T_0}(t - \frac{T_0}{2}) \:,\:t  \in \mathbb{R} $ \\  \vspace{0.5cm}
+
+\end{center}
+
+Ricordiamo infine che $\alpha$, $T$, $f_0 = \frac{1}{T_0}$ sono tutte costanti reali positive e che la funzione porta $p_a(t)$ è definita nel modo seguente:
+
+\[ p_a(t) = \begin{cases}
+	1\: -a/2 \leq t \leq a/2\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+Segue la rappresentazione grafica del segnale porta:
+
+% TODO Grafico segnale porta
+
+Fatta questa introduzione andiamo a capire da quali componenti è composto il primo segnale per poterlo analizzare e calcolarne l'energia.
+Possiamo vedere che il segnale $x_1(t)$ è composto da un'esponenziale decrescente (la costante $\alpha$ è positiva) moltiplicato per una porta di ampiezza $2T$ centrata nell'origine. In particolare se la porta ha supporto pari a $2T$ ed essendo centrata in zero i suoi estremi andranno da $-T$ a $T$.
+
+Possiamo subito capire che il segnale $x_1(t)$ non sarà altro che un pezzo del segnale esponenziale dove la porta è uguale ad uno mentre sarà nullo dove la porta ha valore zero. Possiamo andare ad immaginare la porta come un filtro che taglia una parte del segnale a cui è moltiplicata. Intuitivamente si può capire che è così in quanto l'ampiezza della porta è pari ad 1 nel suo supporto mentre è nulla al di fuori.
+
+Capito da che componenti è fatto il nostro segnale li andiamo a rappresentare sul piano e combinare per disegnare il segnale $x_1(t)$ come in figura.
+
+% TODO FIgure es 1.1
+
+Una volta ottenuta l'espressione del segnale possiamo andare a calcolarne l'energia come l'integrale del modulo quadro del segnale.
+Seguono i calcoli di quanto appena detto:
+
+\[ E(x_1) = \int_{-\infty}^{\infty} \big | x(t) \big |^2 dt = \int_{-T}^{T} \big | e^{-\alpha t} \big |^2 dt =\int_{-T}^{T}  e^{-2 \alpha t} dt \]\
+
+Notiamo come gli estremi di integrazione si restringano al supporto del segnale e come l'operazione di modulo si riduca all'operazione di elevazione al quadrato in quanto il segnale è esclusivamente reale come indicato nel testo dell'esercizio.
+Inoltre notiamo che la porta non compare all'interno dell'integrale essa infatti scompare in quanto ci indica quali pezzi del segnale considerare. In altri termini più matematici la porta non compare in quanto la sua ampiezza è unitaria e quindi non viene influisce sul calcolo dell'energia.
+Risolvendo l'integrale si ottiene che:
+
+\[ E(x_1) = \int_{-T}^{T}  e^{-2 \alpha t} dt  = -\frac{1}{2\alpha} e^{-2\alpha t} \bigg |_{-T}^T \]\
+
+\[  E(x_1) = -\frac{1}{2\alpha} e^{-2\alpha T} - \bigg( -\frac{1}{2\alpha} e^{2\alpha T} \bigg) = -\frac{1}{2\alpha} e^{-2\alpha T} + \frac{1}{2\alpha} e^{2\alpha T} = \frac{e^{2\alpha T} - e^{-2\alpha T}}{2\alpha}  \]\
+
+Non avendo alcun valore numerico da inserire all'interno del risultato trovato possiamo fermarci a questo punto ritenendo l'espressione trovata pari all'energia del segnale preso in analisi.\\
+
+Passiamo ora al calcolo dell'energia del segnale $x_2(t)$ il quale notiamo essere composto da un esponenziale decrescente e da una porta di ampiezza unitaria alla quale sono state applicate alcune operazioni.
+Per capire come sia stata traslata e riscalata la porta andiamo a normalizzare la sua espressione nel seguente modo: partiamo dalla sua definizione ed andiamo ad inserire al posto di t il valore che troviamo nell'espressione del segnale, nel nostro caso $\frac{t-2}{4}$, andando poi a normalizzare il secondo membro per ottenere t. Segue quanto appena detto:\\
+
+
+
+\[ p_1(t) = \begin{cases}
+
+	1\:\: -1/2 \leq t \leq 1/2 \\
+	0\:\: \unit{altrove}	
+	
+\end{cases}    \]\
+
+
+\[ p_1(\frac{t-2}{4}) = \begin{cases}
+
+	1\:\: -1/2 \leq \frac{t-2}{4} \leq 1/2\\
+	0\:\: \unit{altrove}	
+	
+\end{cases} \]\
+
+Moltiplicando per 4 il secondo membro otteniamo che:
+
+\[ p_1(\frac{t-2}{4}) = \begin{cases}
+	1\:\: -2 \leq {t-2} \leq 2\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+Infine sommiamo due per ottenere di nuovo $t$:
+
+\[ p_1(\frac{t-2}{4}) = \begin{cases}
+	1\:\: 0 \leq {t} \leq 4\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+Così facendo abbiamo capito che la nostra porta è stata traslata di due unità verso destra ed ha subito un riscalamento pari a 4. Quanto appena detto si poteva capire intuitivamente guardando l'argomento della porta nell'espressione del segnale.
+
+Andiamo ora a rappresentare le componenti separate ed il segnale $x_2(t)$.
+
+Come nel caso precedente andiamo a calcolarne l'integrale.
+
+\[ E(x_2) = \int_{-\infty}^{\infty} \big | x(t) \big |^2 dt = \int_{0}^{4} e^{-4t} dt\]\
+
+\[ E(x_2) = - \frac{1}{4} e^{-4t} \bigg|_0^4 = - \frac{1}{4} e^{-16} + \frac{1}{4} = \frac{1 - e^{-16}}{4} \]\
+
+Come nel caso precedente il modulo si riduce ad un elevamento al quadrato e gli estremi di integrazione si restringono al supporto del segnale mentre la porta non compare all'interno dell'integrale.\\
+
+Passiamo infine al terzo segnale che notiamo essere un segnale sinusoidale moltiplicato anch'esso per una porta di ampiezza $T_0$ a cui sono state fatte delle operazioni.
+Come fatto prima andiamo a normalizzare la porta.
+
+\[ p_{T_0}(t) = \begin{cases}
+	1\:\: -{T_0}/2 \leq t \leq {T_0}/2\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+\[ p_1(t - \frac{T_0}{2}) = \begin{cases}
+	1\:\: -{T_0}/2 \leq t - \frac{T_0}{2} \leq {T_0}/2\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+In questo caso la porta non è stata riscalata, non è moltiplicata per nessuna costante, ma è solamente traslata di un valore pari a $\frac{T_0}{2}$ verso destra.
+Andiamo a sommare $\frac{T_0}{2}$ al secondo membro per normalizzarla, ed otteniamo:
+
+\[ p_1(t - \frac{T_0}{2}) = \begin{cases}
+	1\:\: 0 \leq t \leq {T_0}\\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+In definitiva la nostra porta di ampiezza $T_0$, che ricondiamo essere il periodo, è centrata in $\frac{T_0}{2}$ e si espande dall'origine fino a $T_0$.
+Capita come è stata traslata la nostra porta andiamo a rappresentare la funzione $\cos^2(2\pi f_0 t)$ che altro non è che un periodo di un coseno di ampiezza A.
+Seguono le rappresentazioni delle funzioni e della loro combinazione per formare il segnale.
+
+% TODO Grafico Segnale 1.3
+
+A questo punto non ci resta che calcolare l'energia del segnale.
+
+\[E(x_3) = \int_{-\infty}^{\infty} \big | x(t) \big |^2 dt = \int_{0}^{T_0} A^2 \cos^2(2\pi f_0 t) dt\]\
+
+Utilizziamo una delle due scomposizioni per riscrivere il coseno e seno al quadrato.
+
+\begin{center}
+
+	$\cos^2(\alpha) = \frac{1}{2} \big[ 1 + \cos(2\alpha) \big] $\\
+	$\sin^2(\alpha) = \frac{1}{2} \big[ 1 - \sin(2\alpha) \big] $\\
+
+\end{center}
+
+Otteniamo che:
+
+\[E(x_3) =  A^2 \cdot \int_0^{T_0} \bigg[ \frac{1}{2} \cdot (1 + \cos(4\pi f_0 t)) \bigg]^2 dt\]\
+
+A questo punto moltiplico la costante fuori dall'integrale per $\frac{1}{4}$ con lo scopo di togliere la costante $\frac{1}{2}$ all'interno dell'integrale. Il due diventa quattro in quanto facciamo un'estrazione di potenza.
+
+\[E(x_3) =  \frac{A^2}{4} \cdot \int_0^{T_0} \bigg[ (1 + \cos(4\pi f_0 t)) \bigg]^2 dt\]\
+
+
+Fatto ciò posso procedere a svolgere il quadrato ed integrare i singoli componenti. Notiamo come sia possibile applicare ricorsivamente una delle scomposizioni del seno e coseno per semplificare l'espressione.
+
+
+\[E(x_3) =  \frac{A^2}{4} \cdot \int_0^{T_0} 1 + \cos^2(4\pi f_0 t) + 2 \cos(4\pi f_0 t)\: dt = \]
+\[ = \frac{A^2}{4} \cdot \bigg[ \int_0^{T_0} 1 \:dt + \int_0^{T_0} \cos^2(4\pi f_0 t) \: dt + \int_0^{T_0} 2 \cos(4\pi f_0 t)\: dt \bigg] = \]
+
+\[ = \frac{A^2}{4} \cdot \bigg[ \int_0^{T_0} 1 \:dt \int_0^{T_0} \cos^2(4\pi f_0 t) \: dt + \int_0^{T_0} \frac{1}{2} \big[ 1 + \cos(8\pi f_0 t) \big]\:dt + \int_0^{T_0} 2 \cos(4\pi f_0 t)\: dt \bigg] = \]
+
+\[ = \frac{A^2}{4} \cdot \bigg[ \int_0^{T_0} 1 \:dt \int_0^{T_0} \cos^2(4\pi f_0 t) \: dt +  \frac{1}{2} \int_0^{T_0} 1\: dt + \int_0^{T_0} \cos(8\pi f_0 t) \big]\:dt + \int_0^{T_0} 2 \cos(4\pi f_0 t)\: dt \bigg] = \]
+
+Svolgendo gli integrali, estraendo le costanti e dividendo l'integrale su cui abbiamo operato la trasformazione al passo precedente si ottiene:
+
+\[ E(x_3) = \frac{A^2}{4} T_0 + \frac{A^2}{8} T_0 + \int_0^{T_0} \cos^2(4\pi f_0 t) \: dt + \int_0^{T_0} \cos(8\pi f_0 t) \big]\:dt + \int_0^{T_0} 2 \cos(4\pi f_0 t)\: dt\]\
+
+Possiamo ignorare nei nostri calcoli gli integrali sul periodo - o suoi multipli - di funzioni trigonometriche in quanto essi sono pari a zero. Come possiamo notare tutti gli integrali sono tra zero e $T_0$ ed in particolare i loro periodi sono pari a $\frac{T_0}{2}$, $\frac{T_0}{4}$ e $\frac{T_0}{2}$ che corrispondono a $\frac{1}{2f_0}$, $\frac{1}{4f_0}$ e $\frac{1}{2f_0}$.\\
+
+In totale l'energia del segnale è pari a:
+
+\[ E(x_3) = \frac{A^2}{4} T_0 + \frac{A^2}{8} T_0  = \frac{3}{8} A^2 T_0\]\
+
+\subsubsection{Esercizio 2 - Potenza media di un segnale}
+
+Visto ora il calcolo dell'energia di un segnale passiamo a considerarne la potenza che ricordiamo essere % TODO POTENZA DEF
+
+In particolare è ora richiesto di calcolare la potenza media del seguente segnale:
+
+\[ x(t) = \sum_{n = - \infty}^{+ \infty} \phi(t - 2nT_2) \]
+
+dove
+
+\[ \phi(t) = 2\sin \bigg( \frac{2\pi t}{2T_1} \bigg) p_{T_1} \bigg ( t - \frac{T_1}{2} \bigg)  \]\
+
+e $T_1$ e $T_2$ sono due costanti reali positive eventi $T_1 < 2T_2$.
+
+Letto il testo del problema andiamo ad analizzare il segnale che ci troviamo davanti.
+Come prima cosa dobbiamo notare che il segnale $X(t)$ è dato dalla sommatoria di infiniti pezzi, detti $\phi(t)$.
+Partendo da  $\phi(t)$ notiamo come esso non si altro che un segnale sinusoidale moltiplicato per una porta. Il particolare possiamo ricavare il suo periodo nel seguente modo:
+
+\[ \sin(\omega t) = \sin\bigg(\frac{2\pi t}{2T_1}\bigg) \]\
+
+Nel caso di un segnale standard si ha che $\omega = 2\pi f$ mentre nel nostro caso avremo che $\omega = \frac{\pi}{T_1}$ dopo aver semplificato le costanti. Trovato il valore di omega possiamo ricavare il valore di $f$, ovvero la frequenza, dalla formula appena scritta.
+
+\[ \omega = 2\pi f \Rightarrow \frac{\pi}{T_1} = 2\pi f \]
+
+\[ f = \frac{\pi}{2\pi T_1} = \frac{1}{2T_1}\]\
+
+Inverto la frequenza ed ottengo il periodo.
+
+\[ T = \frac{1}{f} = 2T_1\]\
+
+Trovato il periodo della sinusoide andiamo ad analizzare la porta. Come possiamo vedere non è stato effettuato nessun riscalamento ma soltanto una traslazione verso destra di un valore pari a $\frac{T_1}{2}$. Questa operazione rende dunque la funzione pari ad 1 nell'intervallo compreso tra 0 e $T_1$.
+
+Otteniamo dunque che il segnale $\phi(t)$ altro non è che un la prima mezza parte di una funzione seno con ampiezza pari a 2. Segue lo schema del segnale.
+
+% TODO SCHEMA SEGNALE PHI ES 2
+
+Capito come è fatto il segnale $\phi(t)$ possiamo analizzare il segnale $x(t)$ il quale risulta essere un segnale avente periodo $2T_2$ formato da tante repliche o somme degli infiniti segnali $\phi(t)$ che vengono traslati infinite volte prima e dopo l'origine.
+Volendo rappresentare il risultato otteniamo la seguente figura:
+
+% TODO FIGURA ONDINE
+
+Possiamo anche scrivere il segnale $x(t)$ effettuandone lo sviluppo attorno all'origine:
+
+\[ \dots     \dots\]\
+
+% TODO SVILUPPO SEGNALE
+
+In particolare sappiamo per certezza che le code dell'ennesima $\phi(t)$ non toccheranno la precedente o la successiva in quanto la funzione $x(t)$ ha periodo pari a $2T_2$, mentre le funzioni $\phi(t)$ hanno un periodo pari a $T_1$ che per definizione è strettamente minore del doppio di $T_2$.\\
+
+Andiamo ora a calcolare la potenza media del segnale attraverso due approcci diversi.
+Nel primo caso possiamo andare ad applicare la definizione vista prima ottenendo quanto segue.
+
+\[ P(x) = \lim_{a\rightarrow\infty} \frac{1}{2a} \int_{-a}^a \big|x(t) \big| \: dt = \lim_{a\rightarrow\infty} \frac{1}{2T_2}\int_0^{2T_2} \phi^2(t) \:dt  \]\
+
+% TO DO CAPIRE SERCIZIO 2
+
+
+
+\subsubsection{Esercizio 3 - Distanza Euclidea tra due segnali}
+
+Affrontata la potenza di un segnale andiamo ora a calcolare la distanza Euclidea tra le seguenti coppie di segnali:
+
+\[ x_1(t) = e^{-\alpha t} u(t), \:\:\: \alpha > 0 \]
+\[ x_2(t) = 2u(t)  \]\
+
+\[ x_3(t) = \begin{cases}
+	\big( \frac{t}{T}\big)^2\:\: \unit{se}\:\: 0 \leq t \leq T  \\
+	0\:\: \unit{altrove}	
+\end{cases} \]
+
+\[ x_4(t) = \begin{cases}
+	-\frac{t}{T}\:\: \unit{se}\:\: 0 \leq t \leq T  \\
+	0\:\: \unit{altrove}	
+\end{cases} \]\
+
+Ricordiamo infine la definizione di distanza Euclidea:
+
+\[ d(x_1,x_2) = \sqrt{\int_{-\infty}^\infty \big| x_1(t) - x_2(t)\big|^2 dt} \]
+
+\[ d^2(x_1,x_2) = \int_{-\infty}^\infty \big| x_1(t) - x_2(t)\big|^2 dt \]\
+
+Partiamo ora dalla prima coppia di segnali. In primo segnale è dato da un'esponenziale decrescente moltiplicato per una funzione gradino $u(t)$ che filtra, per modo di dire, l'esponenziale facendo comparire solo la sua parte positiva.
+
+Il secondo segnale invece è definito da una funzione gradino moltiplicata per una costante.
+Seguono i grafici dei due segnali $x_1(t)$ e di $x_2(t)$.
+
+% TODO GRAFICI SEGNALI
+
+Procediamo ora con il calcolo della distanza Euclidea.
+
+\[d^2(x_1, x_2) = \int_{-\infty}^{+\infty} \big| x_1(t) - x_2(t)\big|^2 dt = \int_{0}^{+\infty} \big( e^{-\alpha t} - 2\big)^2 dt = \]
+
+\[ = \int_0^{+\infty} e^{-2\alpha t} dt\: + \int_0^{+\infty} 4\: dt\: + \int_0^{+\infty} 4 e^{-\alpha t} \:dt = + \infty\]\
+
+Come possiamo vedere da quanto appena ricavato l'integrale di 4 tra 0 ed infinito è divergente facendo divergere anche la somma degli integrali e dunque la distanza Euclidea tra i due segnali.
+
+Si poteva inoltre intuitivamente capire il risultato in due modi diversi: guardando il grafico dei segnali e notando che la differenza di area sottese ai due segnali tendesse all'infinito con lo scorrere del tempo oppure notato che il limite verso infinito delle due funzioni fossero finiti ma aventi valori diversi.\\
+
+Passiamo ora alla seconda coppia di segnali. Prima di tutto dobbiamo andare a riscrivere i segnali non più sotto forma di sistema ma utilizzando una funzione porta moltiplicata al segnale.
+In particolare il primo segnale dovrà assumere il suo valore tra 0 e $T$, dunque verrà moltiplicato per una porta di ampiezza $T$ traslata di $\frac{T}{2}$ verso destra. Procediamo in modo analogo per il secondo segnale ottenendo i seguenti risultati.
+
+\[x_3(t) = \bigg( \frac{t}{T}\bigg)^2 \cdot \: p_T \bigg(t - \frac{T}{2}\bigg)\]
+\[x_4(t) = - \frac{t}{T} \cdot p_T \bigg(t - \frac{T}{2}\bigg) \]\
+
+In definitiva possiamo tracciare un grafico dei segnali ottenuti.
+
+% TODO GRAFICO SEGNALI ES 3 3-4
+
+Ora non ci resta che calcolare la distanza Euclidea tra i segnali ottenuti.
+
+\[ d^2(x_3,x_4) = \int_{-\infty}^{+\infty}\big| x_3(t) - x_4(t)\big|^2 dt = \int_{0}^T\bigg[ \frac{t^2}{T^2} + \frac{t}{T} \bigg]^2 dt = \]
+\[ = \int_0^T \frac{t^4}{T^4} dt\: + \int_0^T \frac{t^2}{T^2} dt\: + 2 \int_0^T \frac{t^3}{T^3} dt\: =  \]
+
+\[ \frac{t^5}{5T^4} \bigg|_0^T + \frac{t^3}{3T^2} \bigg|_0^T + 2 \frac{t^4}{4T^3} \bigg|_0^T =  \]
+
+\[ = \frac{T}{5} + \frac{T}{3} + \frac{T}{2} = \frac{31}{30}T  \]\
+
+In definitiva si avrà che la distanza Euclidea sarà pari a $\sqrt{\frac{31}{30}T}$.
+
+
+\subsubsection{Esercizio 4 - Sviluppo di un segnale dalla base}
+
+% TODO Da fare troppo lungo
+
+Dati i segnali ortonormali riportati di seguito si sviluppi la funzione $z(t)$:
+
+\[z(t) = \frac{1}{2} + \cos\bigg(\frac{t\pi}{4}\bigg) + \sin(\pi t) \]\
+
+% TODO FIGURE SEGNALI BASE
+
+Come abbiamo visto in precedenza sviluppare una funzione $z(t)$ su una base ortonormale ($w_1(t)$, $w_2(t)$, \dots, $w_n(t)$ significa scrivere $z(t)$ come combinazione lineare dei segnali che compongono la base come:
+
+\[z(t) = \sum_{i = 1}^n \alpha_i w_i(t) = \alpha_1 w_1(t) + \alpha_2 w_2(t) + \alpha_3 w_3(t) \]\
+
+In particolare i coefficienti si ottengono tramite l’operazione di prodotto scalare così definito:
+
+\[ \alpha_i = \langle z, w_i \rangle \:\: \unit{con} \;\; i = 1, \;\dots,\;n \]\ 
+
+Infine prima di iniziare a fare i calcoli possiamo notare come la funzione $z(t)$ sia scomponibile come somma di tre pezzi diversi. Andremo dunque - essendo il prodotto scalare dotato di proprietà di linearità - a calcolare il prodotto scalare di ogni elemento della base per ognuno delle tre funzioni che compongono $z(t)$.
+
+Prima di iniziare andiamo a rappresentare le tre funzioni che sommate ci danno $z(t)$.
+
+\[ z_1(t) = \frac{1}{2} \hspace{20pt} z_2(t) = \cos\bigg(\frac{t \pi}{4} \bigg) \hspace{20pt} z_3(t) = \sin(\pi t) \]\ 
+
+Procediamo ora svolgendo i prodotti scalari così definiti secondo la proprietà di linearità:
+
+\[ \langle z, w_1 \rangle = \langle z_1, w_1 \rangle + \langle z_2, w_1  \rangle + \langle z_3, w_1 \rangle \]
+\[ \langle z, w_2 \rangle = \langle z_1, w_2 \rangle + \langle z_2, w_2  \rangle + \langle z_3, w_2 \rangle \]
+\[ \langle z, w_3 \rangle = \langle z_1, w_3 \rangle + \langle z_2, w_3  \rangle + \langle z_3, w_3 \rangle \]\
+
+Seguono i calcoli di tutti i prodotti scalari sopra riportati.
+Si noti come per alcuni di essi è stato adottato un approccio grafico andando a moltiplicare una delle parti della funzione $z(t)$ con uno degli elementi della base.
+
+Iniziamo con l'elemento di base $w_1$.
+
+
+\[ \langle z_1, w_1 \rangle = \int_0^4 z_1(t) w_1(t) \; dt = 0\]\
+
+In particolare analizzando il grafico del segnale prodotto dentro il segno di integrale notiamo essere dispari rispetto la centro dell'intervallo di integrazione dunque il suo valore è nullo.
+
+
+\[ \langle z_2, w_1 \rangle = 2 \int_0^2 \frac{1}{2} \cos\bigg( \frac{t \pi}{4}\bigg)\; dt = \frac{4}{\pi} \sin \bigg( \bigg) \]\
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Esercizio 5 - Sviluppo in serie di Fourier I}
+
+Dato il segnale a energia finita $x(t) = p_\tau(t)$ con $\tau < T$. Se ne calcoli lo sviluppo in serie di Fourier nell'intervallo $(-T, T)$, ossia:
+
+\[x(t) = \sum_{n = -\infty^\infty} \mu_n e^{j \frac{2 \pi}{2T}nt} \:\:\unit{con} \:\: \mu_n = \frac{1}{2T} \int_{-T}^T x(t) e^{j \frac{2 \pi}{2T}nt}  dt\]\
+
+Iniziamo subito andando andando a vedere che il segnale $x(t)$ è una porta di ampiezza unitaria e larghezza pari a $\tau$ che si espande da $-\frac{\tau}{2}$ a $\frac{\tau}{2}$.
+
+Capito che segnale stiamo trattando andiamo subito a calcolare il valore di $\mu_n$ ovvero il valore dei coefficienti.
+
+\[ \mu_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} x(t) e^{-j\frac{2\pi}{T}nt}\: dt =  \frac{1}{T} \int_{-\frac{\tau}{2}}^{\frac{\tau}{2}} e^{-j\frac{2\pi}{T}nt}\: dt = \]
+
+\[ =  \frac{1}{T} \frac{T}{-j2\pi n} e^{-j\frac{2\pi}{T}nt} \bigg|_{-\frac{\tau}{2}}^{\frac{\tau}{2}} = \frac{1}{-j 2 \pi n} \big[ e^{-j\frac{2\pi}{T}n\frac{\tau}{2}} - e ^{j\frac{2\pi}{T}n\frac{\tau}{2}} \big]  \]\
+
+Possiamo riscrivere il risultato ricordando che:
+
+\[ \begin{cases}
+	$$ \cos(\alpha) = \frac{e^{j\alpha} + e^{-j\alpha}}{2} $$ \\
+	$$ \sin(\alpha) = \frac{e^{j\alpha} - e^{-j\alpha}}{2j} $$ 
+\end{cases}	 \]
+
+Otteniamo dunque che:
+
+\[ \frac{1}{-j 2 \pi n} \big[ -2j\sin(n\pi \frac{\tau}{T}) \big] \]\
+
+Semplificando le costanti abbiamo che:
+
+\[ \frac{\sin(n\pi \frac{\tau}{T})}{\pi n} \]\
+
+Moltiplico numeratore e denominatore entrambi per $\frac{\tau}{T}$
+
+
+\[ \frac{\tau}{T}\frac{\sin(n\pi \frac{\tau}{T})}{\pi n \frac{\tau}{T}} \]\
+
+Ricordiamo ora la definizione della funzione sinc($x$) nel modo seguente:
+
+\[\unit{sinc}(x) \triangleq \frac{\sin(\pi x)}{\pi x} \]\
+
+Si ottiene dunque che:
+
+\[ \frac{\tau}{T}\frac{\sin(n\pi \frac{\tau}{T})}{\pi n \frac{\tau}{T}} = \frac{\tau}{T}\unit{sinc}(n\frac{\tau}{T}) \]\
+
+In definitiva, calcolati ora i coefficienti $\mu_n$ possiamo scrivere lo sviluppo in serie di Fourier:
+
+\[ x(t) = \sum_n = \unit{sinc}(n\frac{\tau}{T}) \cdot e^{-j\frac{2\pi}{T}nt} \]\
+
+Notiamo infine come si sia alleggerita la notazione sulla sommatoria dove scriveremo solo $n$ con lo scopo di intendere la sommatoria di tutti gli $n$ da $-\infty$ a $+ \infty$.
+
+
+\subsubsection{Esercizio 6 - Sviluppo in serie di Fourier II}
+
+Arriviamo ora all'ultimo esercizio dove dato il segnale $f(t)$ ad energia finita riportato nella figura sottostante viene chiesto di calcolarne lo sviluppo in serie di Fourier.
+È inoltre noto che il segnale è definito sull'intervallo $(-3T, +3T)$ ed assume ampiezza pari a $2A$ nella porta centrata nell'origine mentre assume ampiezza pari ad $A$ sulle due porte centrate in $-2T$ e $+2T$. Sappiamo infine che le porte anno tutte supporto pari a $\tau$.\\
+
+% TODO FIGURA ESERCIZIO 6 - 3 PORTE
+
+
+Prima di cominciare a fare calcoli andiamo a fare delle considerazioni che potrebbero aiutarci nella risoluzione dell'esercizio.
+In particolare notiamo come ci sia possibile sviluppare in serie di Fourier la funzione $p_\tau(x)$ - opportunamente traslata e riscalata - per poi inserire lo sviluppo calcolato nell'espressione di $f(t)$.\\
+
+Possiamo dunque riscrivere la funzione $f(t)$ - ovvero come la somma delle tre porte - nel modo seguente:
+
+\[f(t) = A [2p_\tau(t) + p_\tau(t-2T) + p_\tau(t+2T)] \]\
+
+% TODO FINIRE ESERCIZIO 6 E CAPIRE
+
+
+
+
+
+
+
+
+
+
+ 
+
+\end{document}
