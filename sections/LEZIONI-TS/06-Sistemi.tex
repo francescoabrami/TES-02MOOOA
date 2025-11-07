@@ -1,0 +1,100 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\section{Sistemi}
+
+Viste le sezioni precedente ed introdotte le proprietà della trasformata di Fourier possiamo ora affrontare il prossimo argomento ovvero i sistemi lineari (LS - Linear Systems) di cui elencheremo definizione, proprietà e caratteristiche. Come vedremo più avanti la nostra attenzione ricadrà per la maggiorparte su una sottocategoria dei sistemi detti sistemi lineare tempo-invarianti.
+
+\subsection{Introduzione ai sistemi}
+
+Vista la parte precedente possiamo ora dare la definizione di sistema. In particolare un sistema nell'ambito della teoria dei segnali è un qualsiasi elemento che trasforma un segnale dato in ingresso in un'altro segnale che verrà prodotto in uscita.
+
+Di seguito possiamo vedere una possibile rappresentazione di un sistema attraverso una rappresentazione dove il sistema è un singolo blocco. In particolare il sistema applica una generica trasformazione $T$ al segnale in ingresso generandone un'altro in uscita.
+
+
+
+
+
+
+
+Data la definizione di sistema possiamo ora elencarne alcuni per fornire degli esempi pratici legati al mondo reale.
+Sono un'esempi di sistema elementi come:
+
+\begin{enumerate}
+	\item[\textbf{-}] \textbf{Amplificatori Elettronici:} Questi dispositivi sono in grado di moltiplicare il segnale in ingresso per un certo valore riproducendo in uscita lo stesso segnale ora amplificato di un certo valore.
+	\item[\textbf{-}] \textbf{Filtri Analogici:} Questi dispositivi sono in grado di filtrare alcune frequenze di un segnale andando a riprodurre in uscita solo una porzione delle spettro in frequenza del segnale posto in ingresso. 
+	\item[\textbf{-}] \textbf{Sistemi di trasmissione su lunga distanza:} Anche le trasmissioni a lunghe distanze introducono delle alterazioni sui segnali che quindi possono essere modellati come delle particolari tipologie di sistema.
+	\item[\textbf{-}] \textbf{Trasduttori Fisici:} Sono dispositivi in grado di generare, solitamente una tensione o corrente, in base all'ingresso (temperatura, pressione etc...) che viene applicata ad essi.  
+	\item[\textbf{-}] \textbf{Sistemi di registrazione e successiva riproduzione:} Anche la registrazione di un'immagine o di un suono passano attraverso un sistema che le memorizzi per poi essere riprodotte dopo un certo periodo di tempo.
+\end{enumerate}
+
+Concludiamo ora questa prima sottosezione andando a fornire una classificazione delle varie tipologie di sistemi che potremo incontrare:
+
+\begin{enumerate}
+	\item[\textbf{-}] \textbf{Lineari e non Lineari}: Con questa tipologia di sistemi facciamo riferimento ad un sistema che rispetta i principi di sovrapposizione e omogeneità ovvero che applicano una trasformazione di tipo lineare come somma, sottrazione etc. Sono esclusi da questa categoria tutti i sistemi che non rispettano tali regole. Per esempio un sistema che produce il quadrato del segnale in ingresso non è detto lineare.
+	
+	\item[\textbf{-}] \textbf{Senza memoria e con memoria}: I sistemi senza memoria (m
+	emoryless) sono rappresentati dall'insieme di tutti quei sistemi dove l'uscita dipende solo dal valore istantaneo del segnale in ingresso e non conta la storia passata del segnale. Nei sistemi con memoria l'uscita dipende dal valore passato del segnale e non da quello istantaneamente assunto in quel momento.
+	
+	\item[\textbf{-}] \textbf{Tempo varianti e tempo invarianti}: Queste tipologie di sistemi sono tali che le caratteristiche dello stesso non cambino nel tempo. Per esempio se un sistema applica un ritardo costante al segnale in ingresso è tempo invariante non lo è un sistema dove le sue caratteristiche (per esempio il valore di amplificazione) cambiano in funzione del tempo.
+
+	\item[\textbf{-}] \textbf{Causali e non causali}: Sono sistemi che rispettano il principio di causa effetto. In questi sistemi l'uscita dipende solo dal presente o dal passato del segnale e mai dal futuro. Per i sistemi non causali questa condizione non viene rispettata. Vediamo subito che tutti i sistemi fisici sono esclusivamente causali.
+	
+	\item[\textbf{-}] \textbf{Reali e non reali}: Questa tipologia di sistemi lavora con grandezze reali come tensioni e correnti. Un sistema non reale utilizza valori complessi composti da una parte reale ed una immaginaria.
+	
+	\item[\textbf{-}] \textbf{Stabili e non stabili}: Questi sistemi seguono il principio BIBO (Bounded Input Bounded Output) ovvero che ad un ingresso limitato in ampiezza, energia e potenza equivale un'uscita anch'essa limitata. I sistemi non stabili non rispettano questa regola portando alla produzione di segnali in uscita con oscillazioni infinite. 
+		
+\end{enumerate}
+
+\subsection{Classificazione di sistemi}
+
+Introdotte le principali classificazioni dei sistemi possiamo ora andare a vedere nel dettaglio alcune di esse.
+
+\subsubsection{Sistemi lineari}
+\subsubsection{Sistemi tempo invarianti}
+\subsubsection{Sistemi senza memoria}
+\subsubsection{Sistemi senza memoria e tempo invarianti}
+
+
+\subsection{Prodotto di convoluzione}
+\subsubsection{Costruzione grafica}
+\subsubsection{Convoluzione di due porte}
+\subsubsection{Proprietà del prodotto di convoluzione}
+
+\section{Sistemi LTI}
+
+\subsection{Risposta all'impulso}
+\subsection{Funzione di trasferimento}
+
+\subsection{Tipologie di filtri realizzabili}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
