@@ -1,0 +1,292 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\subsection{Esercitazione 5 - 28/10/2025}
+
+In questa esercitazione si andranno ad affrontare problemi relativi ai segnali periodici nel tempo studiandone il comportamento attraverso filtri e sistemi LTI.
+
+
+\subsubsection{Esercizio 1 - Segnale periodico filtrato da un passabasso I}
+
+Dato il segnale:
+
+\[y(t) = \sum_{i = -\infty}^{+\infty} x(t - 2iT)\]\
+
+dove
+
+\[ x(t) = \begin{cases}
+	
+	1 - \tfrac{3|t|}{4T} \hspace{10pt} \unit{per} \hspace{10pt}  |t| < 2T/3 \\
+	1/2 \hspace{26pt} \unit{per} \hspace{15pt} 2T/3 < |t| < T   \\
+	0  	\hspace{30pt} \unit{altrove}
+	
+\end{cases} \]\
+
+Il segnale $y(t)$ viene successivamente filtrato con un filtro passabasso ideale la cui funzione di trasferimento vale 1 per $|f| < B = \tfrac{3}{4T}$ e 0 altrove. Calcolare l'espressione del segnale $z(t)$ in uscita dal filtro.
+
+
+\subsubsection{Esercizio 2 - Segnale periodico filtrato da un passabasso II}
+
+\subsubsection{Esercizio 3 - Potenza di un segnale periodico attraverso un sistema LTI}
+
+\subsubsection{Esercizio 4 - Segnale periodico attraverso un filtro passabanda}
+
+In questo esercizio ci viene dato il segnale
+
+\[x(t) = \sum_{k = -\infty}^\infty  \Pi(\tfrac{2t}{T} - 2k) \]\
+
+dove $\Pi(t) = 1$ se $t \in [-\tfrac{1}{2}, \tfrac{1}{2}] $ e zero altrove. Il segnale viene posto in ingresso ad un filtro passabanda  ideale con frequenza centrale $f_c = L/T$, L intero positivo e banda $\frac{1}{2T}$. Viene richiesto di scrivere l'espressione $y(t)$ del segnale d'uscita.\\
+
+Letta la descrizione del problema passiamo ora a vedere una possibile soluzione dapprima andando a riscrivere l'espressione del segnale $x(t)$ per vederlo in un'altra forma.
+
+\[x(t) = \sum_{k = -\infty}^{+\infty} \Pi(\tfrac{2t}{T} - 2k) = \sum_{k = -\infty}^{+\infty} \Pi(\tfrac{2}{T} (t - kT) ) \]\
+
+In questo caso abbiamo riscritto il segnale in una forma più simile a quella dei segnali periodici a cui siamo abituati solitamente.
+Infine possiamo anche definire funzione $s(t)$ per andare a scrivere il segnale nel modo seguente:\\
+
+\[x(t) = \sum_{k} s(t - kT) \]\
+
+In particolare si avrebbe $s(t)$ definita nel seguente modo:\\
+
+\[s(t) = \Pi\bigg(\frac{2t}{T}\bigg) =  \Pi\bigg(  \frac{t}{T/2}\bigg) = p_{T/2}(T) \]\
+
+Nello specifico abbiamo riscritto il 
+
+
+
+
+
+\subsubsection{Esercizio 5 - Segnale periodico e trasformazione LTI}
+
+In questo esercizio dato il segnale
+
+\[x(t) = \sum_{i = -\infty}^{+\infty} (-1)^i p_T(t - iT) \]\
+
+dove $p_T(t)$ vale 1 per $|t| < T/2$ e 0 altrove. Il segnale subisce una trasformazione LTI caratterizzata da $H(f) = 1 $ per $|f| < B $ e 0 altrove. Nel caso in cui $BT = 1/3 $ quanto vale il segnale $y(t)$ ottenuto in uscita?\\
+
+Letta la descrizione del problema passiamo ora a vedere una possibile soluzione del problema. 
+Iniziamo andando ad analizzare il nostro segnale $x(t)$ che a prima vista può sembrare periodico composto dalla sommatoria di più parti, ma guardano meglio, ci rendiamo conto essere il prodotto di due segnali diversi. In particolare ci troviamo davanti ad un segnale periodico di periodo $T$ che è moltiplicato per 1 o -1 in base all'indice della sommatoria che lo compone. Segue quanto appena detto.
+
+\[ (-1)^i = \begin{cases}
+
+\;\:\; 1 \hspace{10pt} $se $ i\;\;$è pari$\\
+-1 \hspace{10pt} $se $ i\;\;$è dispari$\\
+	
+\end{cases} \]\
+
+
+Nel nostro caso, essendo il segnale una costante di valore unitario moltiplicata per una costante unitaria che varia solo di segno, otteniamo una sequenza di porte di supporto T e di altezza 1 centrate in multipli pari di T intervallate da una sequenza di porte identiche alle precedenti ma aventi altezza pari a -1.
+Ci è quindi possibile vedere il segnale sia come una successione di porte ma anche come una onda quadra avente periodo pari a $2T$.
+Segue una rappresentazione di quanto appena detto.
+
+% TODO Grafico onda quadra esercitazione 5.5
+
+Possiamo inoltre notare come fosse anche possibile vedere il segnale $x(t)$ come la differenza tra due segnali. Ci è possibile riscrivere il segnale come differenza tra $z(t)$ e $z(t - T)$. In particolare scrivendo $z(t)$ come:
+
+\[z(t) = \sum_i p_T(t - 2iT) \]\
+
+In altre parole stiamo considerando il segnale $x(t)$ come la differenza tra tante porte traslate alla quale vengono tolte, per modo di dire, altrettante porte in modo intermittente al fine di ottenere l'onda quadra rappresentata prima.
+Vedremo nel prossimo esercizio come ci sarà possibile utilizzare questa scrittura per risolvere il problema in modo alternativo rispetto a quanto faremo ora.\\
+
+Proseguendo con la risoluzione del problema notiamo come l'onda quadra che abbiamo generato non è più periodica su un periodo pari a $T$ ma lo è su un'intervallo di valori pari a $2T$.
+In particolare considerando ora il segnale $2T$-periodico possiamo scriverlo come sommatoria su $i$ di un dato segnale $q(t)$ opportunamente traslato:
+
+\[x(t) = \sum_i q(t - 2iT) \]\
+
+in particolare sappiamo che $q(t)$ è dato da una porta di supporto $T$ seguita da una seconda porta con lo stesso supporto traslata e moltiplicata per un valore negativo. In altri termini stiamo descrivendo la salita e la discesa della nostra onda quadra limitata al suo primo "ciclo". In termini matematici otteniamo che:
+
+\[q(t) = p_T(t) - p_T(t - T) \]\
+
+Ottenuto ora il segnale possiamo passare nello spazio delle frequenze per risolvere il problema in quanto nello spazio dei tempi si incontrerebbero delle convoluzioni per delle funzioni $sinc(t)$ che risulterebbero molto difficili da trattare.
+Procediamo con la formula seguente che utilizzeremo sempre per questa forma di esercizio:
+
+\[X(f) = \frac{1}{T} \; \sum_i Q \big(\tfrac{i}{T}\big) \cdot \delta\bigg(f - \frac{i}{T}\bigg)    \]\
+
+In particolare con questa formula stiamo andando a moltiplicare la trasformata di Fourier del nostro segnale iniziale con una delta traslata nella frequenza ottenendo così lo spettro del segnale che essendo periodico nel tempo produrrà uno spettro discreto in frequenza.
+Notiamo infine che il valore di $T$ dovrà essere poi sostituito con il periodo trattato prima ovvero $2T$.\\
+
+Proseguiamo ora effettuando come prima cosa la trasformata del segnale limitato ad un suo singolo periodo, otteniamo dunque:
+
+\[ q(t) = p_T(t) - p_T(t - T)  \mathcal{F}\]
+\[ \mathcal{F}(q(t)) = Q(f) = T\unit{sinc}(fT) - T\unit{sinc}(fT) \cdot e^{-j2\pi fT} = T\unit{sinc}(fT) \cdot [1 - e^{-j2\pi fT}] \]\
+
+Effettuando la trasformata delle due porte che compongono il singolo periodo della nostra onda quadra otteniamo due funzioni $sinc()$ moltiplicate per un valore $T$ ed opportunamente traslata in frequenza come accade per la seconda porta. Ricordiamo che la traslazione nel tempo diventa una moltiplicazione per un'esponenziale in frequenza.
+Fatto ciò andiamo a riprendere la formula generale e sostituiamo opportunamente i valori di $T$ e di $Q(f)$.
+
+\[X(f) = \frac{1}{T} \; \sum_i Q \big(\tfrac{i}{T}\big) \cdot \delta\bigg(f - \frac{i}{T}\bigg)\]\
+
+Sostituendo $T$ con $2T$ ottengo che:
+
+\[X(f) = \frac{1}{2T} \; \sum_i Q \big(\tfrac{i}{2T}\big) \cdot \delta\bigg(f - \frac{i}{2T}\bigg)    \]\
+
+Sostituisco la funzione $Q(f)$ appena trovata all'interno dell'espressione ottenendo:
+
+\[ X(f) = \frac{1}{2T} \; \sum_i T\unit{sinc}\bigg(\frac{i}{2T} \cdot T \bigg) \cdot (1 - e^{-j2\pi \frac{i}{2T} T}) \cdot \delta\bigg(f - \frac{i}{2T}\bigg)  \]\
+
+Semplificando alcuni termini arriviamo ad ottenere che:
+
+\[ X(f) = \frac{1}{2} \; \sum_i \unit{sinc}\bigg(\frac{i}{2}\bigg) \cdot (1 - e^{-j i \pi }) \cdot \delta\bigg(f - \frac{i}{2T}\bigg)  \]\
+
+Notiamo come prima abbiamo sostituito $T$ con $2T$, abbiamo poi sostituito $Q(f)$ con la funzione trovata andando anche a sostituire $f$ all'interno di quest'ultima in base al valore trovato nell'espressione generale. Possiamo da subito notare come questi passaggi vadano fatti in un certo ordine per evitare confusione ed errori.
+
+Arrivati a questo punto notiamo che il termine $e^{-ji \pi}$ non si altro che un numero complesso avente parte immaginaria nulla e parte reale variabile in base all'esponente $i$. Ci è possibile dire ciò ricordando che $e^{-j\pi} = -1$ ottenuto dalla formula di Eulero.
+In particolare assieme all'altro termine all'interno della parentesi il valore dell'espressione assume e i valori seguenti:
+
+
+\[ 1 - (-1)^i = \begin{cases}
+
+0 \hspace{10pt} $se $ i\;\;$è pari$\\
+2 \hspace{10pt} $se $ i\;\;$è dispari$\\
+	
+\end{cases} \]\
+
+Come possiamo notare quando $i$ è dispari annulla la componente in frequenza motivo per cui possiamo riscrivere la nostra sommatoria. Utilizzeremo ora una sommatoria di soli numeri dispari $k$ definiti in questo modo $i = 2k + 1$.
+Otteniamo dunque che:
+
+\[ X(f) = \sum_k \unit{sinc}\bigg(\frac{2k + 1}{2}\bigg) \cdot 2 \cdot \delta\bigg( f - \frac{2k + 1}{2T}\bigg) \]\
+
+Possiamo infine scomporre la funzione $sinc()$ ed ottenere un'espressione semplificata:
+
+\[ X(f) = \sum_k \frac{\sin\big( \frac{2k+1}{2} \cdot \pi\big) }{ \big(\frac{2k + 1}{2} \cdot \pi\big)}  \cdot 2\delta \bigg( f - \frac{2k + 1}{2T}\bigg)  \]\
+
+Ci è possibile riscrivere il seno al numeratore nel modo seguente:
+
+\[  \sin\bigg( \frac{2k+1}{2} \cdot \pi\bigg) =  \sin\big( \frac{\pi}{2} + k\pi  \big) = (-1)^k \]\
+
+
+Otteniamo dunque questa espressione:
+
+\[ \frac{2}{\pi} \sum_k  \frac{(-1)^k}{2k + 1} \cdot \delta\bigg( f - \frac{2k+1}{2T} \bigg)  \]\
+
+Arrivati a questo punto possiamo interpretate il segnale in questo modo.
+Dato che il segnale preso in esempio è periodico nel tempo sappiamo che avremo uno spettro di frequenza discreto. In particolare ogni delta - ovvero componente in frequenza - sarà moltiplicata per una costante $\tfrac{2}{\pi}$ posta prima della sommatoria che contiene tutte le componenti spaziate di $\tfrac{T}{2}$ e centrate in tutti i punti $\tfrac{\pm i}{2T}$ dove il termine $i$ è ottenuto dalla sommatoria vista in precedenza. 
+In definitiva otteniamo il seguente grafico:
+
+% TODO GRAFICO 5.5
+
+In definitiva possiamo notare come la trasformazione LTI - ovvero un filtro passabasso ideale - avente una banda bilatera pari a $B = \tfrac{1}{3T}$ sia troppo stretta per permettere il passaggio di qualsiasi componente in frequenza. Notiamo come l'unica componete che potrebbe essere filtrata sarebbe quella continua ma in questo caso è moltiplicata per zero.
+
+In definitiva in temrini matematici otteniamo che:
+
+\[Y(f) = X(f) \cdot H(f) = 0 \]\
+
+In modo immediato otteniamo che se il segnale il uscita è nullo nelle frequenze lo sarà anche nel tempo, avremo dunque che $y(t) = 0$.
+  
+
+\subsubsection{Esercizio 6 - Spettro di ampiezza di un segnale}
+
+Affrontiamo ora l'ultimo problema di questa esercitazione dove dato un segnale
+
+\[x(t) = \sum_{i = -\infty}^{+\infty} (-1)^i r(t - iT) \]\
+
+
+dove la funzione $r(t)$ ha la seguente espressione
+
+\[r(t) = e^{-\alpha t}u(t) \]
+
+ci viene chiesto di calcolarne lo spettro in ampiezza. Si richiede di dire se sia possibile ottenere dal segnale $x(t)$ un segnale sinusoidale di frequenza $f_0$ operando opportune operazioni di filtraggio.
+Infine motivare la risposta escludendo il caso elementare in cui $f_0 = 0$, qual è il minimo valore di $f_0$ ottenibile?\\
+
+Iniziamo andando a capire come è composto il singolo elemento di $x(t)$ ovvero $r(t)$. Il segnale $r(t)$ è composto da un'esponenziale decrescente (si suppone che $x \in \mathbb{R^+}$) moltiplicato per una funzione gradino pari ad 1 per $x \geq 0$ e pari a zero per $x < 0$.
+Si ottiene il seguente grafico:
+
+% TODO GRAFICO 5.6
+
+Possiamo inoltre andare subito ad effettuarne la trasformata di Fourier in quanto è una funzione a noi nota. Otteniamo dunque che:
+
+\[ \mathcal{F} \big(r(t)\big) = R(f) = \frac{1}{\alpha + i2\pi f} \]\
+
+Fatto ciò passiamo ora ad analizzare il segnale $x(t)$ composto, come visto in precedenza, da due segnali moltiplicati tra di loro. Possiamo notare come il segnale sia composto da una serie di esponenziali decrescenti - come quelli di $r(t)$ - traslati, sommati o sottratti in modo alternato per un valore pari a $1$ o $-1$ in base all'indice $i$ della sommatoria che lo genera.
+
+Compresa questa situazione possiamo andare a scrivere il nostro segnale come sommatoria di esponenziali positivi a cui viene sottratta una sommatoria degli altri segnali che risultano essere negativi.
+Riscrivendo l'espressione del segnale utilizzando due sommatorie separate su un valore $n$ e sostituendo al valore di $i$ l'espressione $2n$ in una e $2n + 1$.
+
+\[ x(t) = \sum_i (-1)^i  \cdot r(t - iT) = \sum_n (-1)^{2n} \cdot r(t - 2nT) +  \sum_n  (-1)^{2n+1} \cdot r\big(t - (2n+1)T\big) \]\
+
+Semplifichiamo i valori ottenuti dagli esponenziali si ottiene che:
+
+\[x(t) = \sum_n r(t - 2nT) - \sum_n r(t - 2nT - T) \]\
+
+Semplifichiamo infine la nostra espressione andando a scriverla in questo modo:
+
+\[x(t) = y(t) - y(t - T) \hspace{10pt} \unit{dove} \hspace{10pt} y(t) = \sum_n r(t - 2nT)\]\
+
+A questo punto ci rimane estremamente semplice trasformare il segnale $x(t)$ nello spazio delle frequenze con Fourier:
+
+\[ \mathcal{F}\big(x(t)\big) = X(f) = Y(f) - Y(f) \cdot e^{-j2\pi fT}  \]\
+
+Otteniamo dunque la differenza tra le due trasformate con la traslazione nello spazio dei tempi che diventa una moltiplicazione per l'esponenziale complesso in frequenza.
+
+Ora come per ogni problema riguardante i segnali periodici andiamo ad applicare la formula seguente facendo i solito accorgimenti sul periodo:
+
+\[Y(f) = \frac{1}{2T} \sum_n R\bigg(\frac{n}{2T}\bigg) \cdot \delta\bigg( f - \frac{n}{2T} \bigg)  \]\
+
+Semplificando e sostituendo si ottiene che:
+
+\[ Y(f) = \frac{1}{2T} \sum_n \frac{1}{\alpha + j2\pi \tfrac{n}{2T}}  \cdot \delta\bigg( f - \frac{n}{2T} \bigg)  \]\
+
+Andiamo ora a calcolare il segnale $Y(f)$ in uscita ricordando l'espressione vista in precedenza dove $X(f) = Y(f) \cdot [1 - e^{-j2\pi fT}]$. Scrivendo l'espressione otteniamo che:
+
+\[ Y(f) = \frac{1}{2T} \sum_n \frac{1}{\alpha + \tfrac{j\pi n}{T}}  \cdot \delta\bigg( f - \frac{n}{2T} \bigg) \cdot \big[ 1 - e^{-j\pi n}  \big] \]\
+
+Notiamo come il termine tra le parentesi quadre può assumere due valori in base all'indice della sommatoria. In particolare:
+
+\[ 1 - e^{-j\pi n} = \begin{cases}
+
+0 \hspace{10pt} $se $ n\;\;$è pari$\\
+2 \hspace{10pt} $se $ n\;\;$è dispari$\\
+	
+\end{cases} \]\
+
+Dato che le componenti in frequenza quando $n$ è pari risultano essere nulle in quanto moltiplicate per zero andiamo a riscrivere la sommatoria con un'indice $k$ sostituendo $n$ all'interno con $2k + 1$ otteniamo che:
+
+\[X(f) = \frac{1}{2T} \sum_k \frac{1}{\alpha + j\pi \frac{2k+1}{T}} \cdot 2 \cdot \delta\bigg( f - \frac{2k+1}{2T} \bigg)   \]\
+
+Semplificando otteniamo che:
+
+
+\[X(f) = \frac{1}{T} \sum_k \frac{1}{\alpha + j\pi \frac{2k+1}{T}} \cdot \delta\bigg( f - \frac{2k+1}{2T} \bigg)   \]\
+
+A questo punto possiamo andare ad interpretare il nostro spettro attraverso un grafico.
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

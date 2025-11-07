@@ -1,0 +1,171 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\subsection{Esercitazione 6 - 29/10/2025}
+
+
+In questa esercitazione si andranno ad affrontare problemi relativi ai segnali periodici nel tempo studiandone il comportamento attraverso filtri e sistemi LTI facendo ora attenzione agli spettri ed alle funzioni di correlazione. 
+
+\subsubsection{Esercizio 1 - Segnale ad energia finita e funzione di autocorrelazione}
+
+Iniziamo con il primo esercizio dove dato un segnale $x(t)$ ad energia finita si chiede di indicare quale tra le seguenti $R_x(\tau)$ non può rappresentare una sua funzione di autocorrelazione:
+
+
+\begin{enumerate}
+	\item[\textbf{a)}] $R_x(\tau) = \unit{sinc}(\tau / T) $
+	\item[\textbf{b)}] $R_x(\tau) = e^{-|\tau|}$
+	\item[\textbf{c)}] $R_x(\tau) = 1 - \frac{|\tau|}{T}$ per $|\tau| < T$
+	\item[\textbf{d)}] $R_x(\tau) = \cos(2\pi \tau / T ) p_{T/2}(\tau)$
+\end{enumerate}
+
+Per risolvere questo esercizio dobbiamo prima di tutti ricordare i criteri per cui un segnale $R_x(\tau)$ può essere una funzione di autocorrelazione di un dato segnale per poi andare ad analizzare ogni opzione possibile.
+Ricordiamo subito quali sono le proprietà che devono essere rispettate:
+
+\begin{enumerate}
+	\item[\textbf{-}] $R_x(\tau)$ deve essere pari
+	\item[\textbf{-}] $R_x(\tau)$ deve ammettere un massimo nell'origine
+	\item[\textbf{-}] I valori assunti da $S_x(f)$ devono essere maggiori o uguali da zero. Ricordiamo che $S_x(f)$ altro non è che ma trasformata di Fourier di $R_x(\tau)$.
+\end{enumerate}
+
+Iniziamo andando ad analizzare il primo segnale $\textbf{a}$.
+Sappiamo che la funzione sinc$(t)$ è composta da un $\sin(\pi t)$ al numeratore fratto una funzione $t$. Essendo entrambe dispari possiamo dire che la funzione risultante, ovvero la sinc$(t)$ è pari sodisfando così il primo punto.
+
+Sappiamo inoltre che la sinc$(t)$ ha un massimo nell'origine sodisfando il secondo punto.
+Infine dalle tavole sappiamo che la trasformata è rappresentata da una porta che è sempre maggiore o uguale a zero sodisfando così anche la terza condizione.\\
+
+Passano all'opzione $\textbf{b}$ possiamo dire che ci troviamo davanti a due rami di esponenziale decrescente.
+In particolare la funzione $R_x(\tau)$ risulta essere simmetrica in quanto all'esponente è presente un valore assoluto il quale unito al segno negativo porta la funzione ad assumere il suo valore massimo nell'origine sodisfando le prime due condizioni.
+Effettuiamo ora la trasformata di Fourier del segnale $R_x(t)$:
+
+\[ \mathcal{F}(R_x(\tau)) = \frac{2}{1 + 4\pi^2 f^2}  \]\ 
+
+Notiamo in modo immediato come la funzione sia data dal rapporto tra due quantità che sono sempre positive dunque risulta essere sodisfatta anche la terza condizione.\\
+
+Passiamo ad analizzare il terzo segnale $\textbf{c}$. 
+Prendendo in analisi il terzo caso possiamo subito vedere che il segnale è composto da due parti.
+La prima parte tra $-T$ e zero è una retta di equazione $\tau + 1$ mentre la seconda parte tra 0 e $T$ è definita da una retta di equazione $-\tau + 1$. Unendo le due parti notiamo che il nostro segnale è equivalente ad un segnale triangolare che possiamo scrivere così:
+
+\[ R_x(\tau) = \unit{tri}\bigg( \frac{\tau}{T}\bigg) \]\
+
+Possiamo dunque dire immediatamente che $R_x(\tau)$ rispetta le prime due condizioni in quanto è pari ed ha massimo nell'origine.
+Possiamo infine analizzare il terzo punto andando a fare al trasformata di Fourier del segnale ottenendo il seguente risultato:
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = T \unit{sinc}^2(fT) \]\
+
+Notiamo fin da subito che la funzione che assume solo valori positivi ed uguali a zero è moltiplicata per una costante positiva che ci porta a confermare anche la terza condizione.
+
+Passiamo infine ad analizzare l'ultima opzione ovvero l'opzione $\textbf{d}$. 
+
+Iniziamo analizzando il segnale dato notando che esso si compone di una sinusoide moltiplicata per una porta di supporto $\tfrac{T}{4}$, in particolare il segnale $R_x(\tau)$ sarà dato dalla parte centrale di un coseno di periodo $T$ ma della quale consideriamo solo i primi $\tfrac{T}{4}$ prima e dopo dell'origine.
+Analizzando quanto appena detto possiamo dire che le prime due condizioni risultano vere in quanto la funzione coseno è pari quindi una sua sezione attorno all'origine rimane pari ed ammette massimo nell'origine.
+Fatto ciò passiamo ad effettuare l'ultima condizione trasformando $R_x(\tau)$ secondo Fourier. 
+Come abbiamo detto il segnale è composto da una sinusoide $(R_{x1}(\tau))$ e da una porta $(R_{x2}(\tau))$ moltiplicate tra di loro.
+Sapendo la trasformata di $R_{x2}(\tau)$ e riscrivendo il coseno nella forma esponenziale:
+
+\[ \mathcal{F}\big( R_{x2}(\tau)  \big) =  \frac{T}{2} \unit{sinc}\bigg(f \cdot \frac{T}{2}\bigg)\]
+
+\[  R_{x1}(\tau)  \big) = \frac{1}{2} \big(e^{j2\pi \tau / T} + e^{-j2\pi \tau / T}\big) \]\
+
+Applico ora la proprietà della modulazione sapendo che $X(f)$ è la trasformata di Fourier di $x(t)$ ottengo che $x(t) \cdot e^{j2\pi f_0 t}$ risulta essere uguale a $X(f - f_0)$.
+Possiamo anche vedere la modulazione in questo modo più affine al nostro caso:
+
+\[ x(t) \cdot \cos(2\pi f_0t) \xrightarrow{\mathcal{F}} \frac{1}{2} [X(f - f_0) + X(f + f_0)]\]\
+
+Applico quanto detto al caso in esempio:
+
+\[ \mathcal{F} \big( R_x(\tau)\big) = \frac{1}{2} \cdot \frac{T}{2} \bigg[ \unit{sinc} \bigg( \bigg(f - \dfrac{1}{T}\bigg) \cdot \frac{T}{2}  \bigg) + \unit{sinc} \bigg( \bigg(f + \dfrac{1}{T}\bigg) \cdot \frac{T}{2}  \bigg)    \bigg]  \]\
+
+Possiamo semplificare nel modo seguente:
+
+\[\mathcal{F} \big( R_x(\tau)\big) = \frac{T}{4} \bigg[  \unit{sinc}\bigg( \frac{fT}{2} - \frac{1}{2} \bigg)  + \unit{sinc}\bigg( \frac{fT}{2} + \frac{1}{2} \bigg)\bigg]     \]\
+
+Per semplicità sostituisco $\tfrac{fT}{2}$ con la variabile $x_1$ ed ottengo:
+
+\[ \frac{T}{4} \big[  \unit{sinc}\big( x_1 - \frac{1}{2} \big)  + \unit{sinc}\big( x_1+ \frac{1}{2} \big)\big]     \]\
+
+Ricordando la scrittura della sinc($x_1$) come $\frac{\sin(\pi x_1)}{\pi x_1}$ riscrivo quanto trovato sopra:
+
+\[ \frac{T}{4} \bigg[  \frac{\sin\big( \pi (x_1 - \tfrac{1}{2})\big)}{x_1 - \tfrac{1}{2}}  + \frac{\sin(x_1 + \tfrac{1}{2})}{x_1 + \tfrac{1}{2}}\bigg] \]\
+
+Possiamo ora sviluppare ai numeratori usando la seguente formula di somma e differenza:
+
+\[ \sin(\alpha \pm \beta) = \sin \alpha \cos \beta \pm \cos \alpha \sin \beta \]\ 
+
+Ponendo $\alpha = \pi \alpha $ e $\beta = \pi/2$ otteniamo che:
+
+\[ \sin[\pi (x - \tfrac{1}{2})] = \sin(\pi x) \cos(\pi/2) - \cos(\pi x) \sin(\pi/2) = 0 - \cos(\pi x)  \]
+
+\[ \sin[\pi (x + \tfrac{1}{2})] = \sin(\pi x) \cos(\pi/2) + \cos(\pi x) \sin(\pi/2) = 0 + \cos(\pi x) \]\
+
+Sostituendo ottengo che:
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = \frac{T}{4 \pi} \bigg[  \frac{-\cos(\pi x)}{x_1 - \tfrac{1}{2}}  + \frac{\cos(\pi x)}{x_1 + \tfrac{1}{2}} \bigg]  \]\
+
+Fattorizzo $\unit{cos}(\pi x)$:
+
+\[\mathcal{F}\big(R_x(\tau)\big) = \frac{T \cos(\pi x)}{4 \pi} \bigg[  \frac{-1}{x_1 - \tfrac{1}{2}}  + \frac{1}{x_1 + \tfrac{1}{2}} \bigg]  \]\
+
+Sommo ora le frazioni tra parentesi e moltiplico:
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = \frac{T \cos(\pi x)}{4 \pi} \cdot \frac{1}{\tfrac{1}{4} - x^2} \]\
+
+Semplificando la costante $4$ e semplificando ottengo che:
+
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = \frac{T \cos(\pi x)}{\pi (1 - 4\pi x^2) } \]\
+
+Ricordando la sostituzione fatta in precedenza otteniamo che $x-1 = \tfrac{fT}{2}$:
+
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = \frac{T \cos(\pi \tfrac{fT}{2})}{\pi \big(1 - 4\pi \big(\tfrac{fT}{2}\big)^2\big) } \]\
+
+Effettuando i calcoli si ottiene il risultato finale pari a:
+
+
+\[ \mathcal{F}\big(R_x(\tau)\big) = S_x(f)  = \frac{\pi}{4} \cdot \frac{\cos(\pi fT / 2)}{ 1 - (fT)^2 } \]\
+
+Possiamo notare come per alcuni valori la funzione assuma valori negativi in quanto il numeratore potrebbe assumere valori negativi ed anche il numeratore dato che il coseno ritorna valori compresi tra $[-1; +1]$.
+In definitiva possiamo dire che il segnale non rispetta l'ultima condizione in quanto la sua trasformata assume valori negativi per alcune frequenze.
+
+\subsubsection{Esercizio 2 - Spettro di energia e banda -10dB}
+
+Passiamo ora al secondo esercizio dove dato il segnale
+
+\[x(t) = \frac{1}{K_1} \cdot e^{\big| \frac{t - t_0}{K_2} \big|} \]\
+
+si chiede di calcolare lo spettro di energia di $S_x(f)$.
+Viene inoltre chiesto di calcolare la banda a -10dB del segnale $x(t)$, definita come frequenza $B_{10\unit{dB}}$ tale per cui $S_x(B_{10\unit{dB}}) = \tfrac{1}{10} \cdot S_{x,\unit{max}}$ dove $S_{,\unit{max}}$ è il massimo valore assunto da $S_x(f)$.
+
+\subsubsection{Esercizio 3 - Funzione di autocorrelazione e sistema LTI}
+
+
+
+
+
+\subsubsection{Esercizio 4 - Potenza energia e relativi spettri di un sistema}
+
+\subsubsection{Esercizio 5 - Segnale periodico filtrato da un sistema LTI}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

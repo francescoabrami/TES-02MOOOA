@@ -1,0 +1,211 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\subsection{Esercitazione 7 - 4/11/2025}
+
+Con questa esercitazione andiamo a concludere la parte di corso relativa ai segnali analogici a tempo continuo avvicinandoci, seppur di poco, alla trattazione dei segnali numerici/digitali.
+In particolare all'interno della seguente esercitazione ci si focalizzerà su argomenti quali: la frequenza di Nyquist, filtraggio e campionamento di un segnale per concludere trattando problemi riguardanti la quantizzazione.
+
+\subsubsection{Esercizio 1 - Frequenza di Nyquist}
+
+Iniziamo con il primo esercizio dove con il termine frequenza di Nyquist si indica la minima frequenza di campionamento necessaria per la ricostruzione di un segnale analogico senza aliasing. Calcolare la frequenza di Nyquist $f_N$ dei seguenti segnali analogici:
+
+\begin{enumerate}
+	\item[\textbf{a)}] $x_a(t) = 1 + \cos(2000\pi t) + \sin(4000 \pi t) $
+	\item[\textbf{b)}] $x_b(t) =  \frac{\sin(4000 \pi t )}{\pi t}$
+	\item[\textbf{c)}] $x_c(t) =  \big[ \frac{\sin(4000\pi t)}{\pi t} \big]^2 $
+	\end{enumerate}
+	
+Iniziamo analizzando il segnale \textbf{a} ricordando la scrittura di un segnale sinusoidale è $x_i(t) = \sin(2\pi ft)$
+In questo caso le frequenze dei due segnali sinusoidali saranno pari a 1000 e a 2000.
+Ora non ci basta altro che trasformare il segnale con Fourier, calcolarne la massima componente in frequenza ed ottenere la frequenza di Nyquist.
+Essendo sinusoidi - dunque periodiche nel tempo - otteniamo uno spettro discreto in frequenza. In particolare lo costante unitaria rappresenterà la componente continua con una delta centrata in zero. Le due sinusoidi trasformate saranno delle delta centrate in $\pm 1000$ e $\pm 2000$.
+Dato che la frequenza massima del nostro segnale è $f_{\unit{max}} = 2000 \unit{Hz}$ otteniamo che: 
+
+\[f_N = f_{\unit{max}}\]
+\[f_{\unit{s, min}} \geq 2 \cdot f_{N} \Rightarrow f_{\unit{s, min}} \geq 4000 \unit{Hz}\]\
+
+Ricordiamo che $f_{\unit{s, min}}$ indica la minima frequenza di campionamento (sampling) di un segnale al fine di non essere affetto da aliasing.\\
+
+Passiamo ora al caso \textbf{b} dove analizzeremo il segnale $x_b(t)$.
+
+Notiamo come il segnale $x_b(t)$ possa anche essere visto come una funzione sinc$(Bt)$ dove il valore di $B$ è $4000\pi$.
+In particolare ricordiamo la relazione seguente per effettuare la trasformata di Fourier:
+
+\[ \unit{sinc}(Bt) \xrightarrow{\mathcal{F}} \frac{1}{|B|} \cdot \unit{rect}\bigg(\frac{f}{B} \bigg) \]\
+
+Applicando la formula al segnale $x_b(t) = 4000 \cdot \unit{sinc}(4000 \pi t)$ si ottiene che:
+
+% TODO Spiegare come mai l'espressione diventa sinc per la costante 4000.
+
+\[ X(f) = 4000 \cdot \frac{1}{|4000|} \cdot \unit{rect} \bigg( \frac{1}{4000} \bigg) = \unit{rect} \bigg( \frac{1}{4000} \bigg) \]\
+
+Come possiamo vedere abbiamo una porta di supporto 2000 Hz. Questo significa che come prima la \unit{f_{max}} è pari a 2000 Hz. In definitiva si ottiene che:
+
+\[f_N = f_{\unit{max}}\]
+\[f_{\unit{s, min}} \geq 2 \cdot f_{N} \Rightarrow f_{\unit{s, min}} \geq 4000 \unit{Hz}\]\
+
+Passiamo ora al caso \textbf{c}.
+Come abbiamo appena visto il segnale $x_c(t)$ è identico al segnale del caso \textbf{b} se non per il fatto che è elevato al quadrato.
+Sapendo che l'operazione di elevazione al quadrato corrisponde alla moltiplicazione del segnale per se stesso possiamo dedurre che la trasformata del segnale, dato dalla moltiplicazione di due segnali nel tempo, sarà ottenuta dalla convoluzione delle trasformate in frequenza.
+Dato che la trasformata di un segnale sinc($t$) è una porta la convoluzione delle due porte sarà data da uno spettro triangolare.
+In particolare dato che la porta ha supporto pari a 2000 Hz la loro convoluzione avrà un supporto pari alla somma dei supporti ovvero 4000 Hz che sarà pari al valore massimo ovvero $f_{\unit{max}}$.
+
+Utilizzando la relazione vista prima otteniamo che:
+
+
+\[f_N = f_{\unit{max}}\]
+\[f_{\unit{s, min}} \geq 2 \cdot f_{N} \Rightarrow f_{\unit{s, min}} \geq 8000 \unit{Hz}\]\
+
+ 
+\subsubsection{Esercizio 2 - Minima frequenza di campionamento}
+
+Andiamo ora ad affrontare il secondo esercizio dove considerato $x(t)$ un segnale reale e pari, con banda $ B =1 $ kHz. Si costruisca il segnale $y(t) = 2x(t) \cos^2(2 \pi f_x t)$, dove $fx$ = 5 kHz. Qual'è la minima frequenza di campionamento necessaria per campionare $y(t)$? Si supponga di campionare $y(t)$ con una frequenza di campionamento uguale a 8 kHz e di ricostruire un segnale analogico con la nota operazione di filtraggio, utilizzando un filtro ideale con funzione di trasferimento $H(f)$ = 1,  per $|f| < 4$ kHz e nulla altrove. Valutare il segnale ricostruito $z(t)$ in funzione del tempo, mettendone in evidenza la dipendenza da $x(t)$.
+
+\subsubsection{Esercizio 3 - Segnale campionato e filtrato}
+
+Passando ora al terzo esercizio dato il segnale 
+
+\[x(t) = 2f_0\unit{sinc}^2(f_0t) \cdot \cos(6\pi f_0 t) \]\
+
+il quale viene campionato idealmente con passo di campionamento $T_c = \frac{1}{4f_0}$, e viene successivamente filtrato con un filtro passabasso ideale avente banda $[−2f_0; +2f_0]$. Calcolare l’espressione analitica del segnale in uscita dal filtro.
+
+\subsubsection{Esercizio 4 - Firts-Order Sampling FOS}
+
+In questo esercizio andiamo ora ad affrontare un problema legato al campionamento reale in quanto il segnale che useremo per campionare non sarà più dato da un treno di delta ideale ma da un segnale periodico triangolare.
+
+In particolare dato il segnale $x(t)$, avente banda $B_x$, viene campionato ogni $T_s$ secondi ed il seguente segnale:
+
+\[ x_p(t) = \sum_{n = -\infty}^{+ \infty} x(nT_s)\cdot \unit{tri}(t - nT_s ) \]
+
+è generato dove:
+
+\[ \unit{tri}\big(\tfrac{t}{T_s}\big) =  \begin{cases}
+
+1 - \dfrac{|t|}{T_s} \hspace{10pt} $per $ |t|\;\;\leq T_s\\
+0 \hspace{37pt} $altrimenti$\\
+	
+\end{cases} \]\
+
+Questo tipo di campionamento è detto \textit{First-Oder Sampling} (FOS).
+Si richiede di:
+
+\begin{enumerate}
+	\item[\textbf{-}] Trovare la trasformata di Fourier di $x_p(t)$.
+	\item[\textbf{-}] Sotto quali condizioni è possibile ricostruire il segnale analogico $x(t)$ a partire da $x_p(t)$?
+	\item[\textbf{-}] Trovare il filtro che consenta la ricostruzione perfetta del segnale $x(t)$ a partire da $x_p(t)$.
+\end{enumerate}
+
+Iniziamo la soluzione dell'esercizio andando come prima cosa a capire da che componenti è composto il nostro segnale $x_p(t)$. Come possiamo notare il segnale è composto da una prima parte $x(nT_s)$ moltiplicata per una funzione triangolare tri$(t - nT_s)$ che grazie alla sommatoria genera un segnale triangolare periodico di supporto $2T_s$. Possiamo ora per semplicità rinominare questa ultima parte come $q(t)$ in quanto ci tornerà utile per calcolare la trasformata di Fourier del segnale $x_p(t)$.
+
+Andiamo ora a calcolare la trasformata del segnale $x_p(t)$ come nella formula seguente. Ricordiamo che la trasformata di un segnale triangolare $tri(t)$ è una funzione $sinc^2(t)$.
+
+\[ \mathcal{F}\big( x_p(t) \big) = X_p(f) = \frac{1}{T_s} \sum_n Q(f) \cdot X\bigg(f - \frac{n}{T_s}\bigg)  \]\
+
+Sostituendo la trasformata di $q(t)$ ottengo che:
+
+
+\[ X_p(f) = \frac{1}{T_s} \cdot T_s \unit{sinc}^2(fT_s) \cdot X\bigg(f - \frac{n}{T_s}\bigg)  \]\
+
+Semplificando ottengo infine che:
+
+\[ X_p(f) = \unit{sinc}^2(fT_s) \cdot X\bigg(f - \frac{n}{T_s}\bigg)  \]\
+
+Trovata ora la trasformata del segnale campionato possiamo andare a creare un grafico per capire la situazione in cui ci troviamo.
+Ricordiamo che stiamo trattando lo spettro del segnale $x_p(t)$ ovvero quello campionato dunque conoscendo solo la banda $B_x$ del segnale originale andremo a disegnare delle \textit{"coppette"} nello spettro di $x_p(t)$.
+
+In particolare possiamo notare come lo spettro ottenuto sia composto da una \textit{"coppetta"} con supporto $[-B_x; +B_x]$ centrata in zero con le sue relative repliche traslate di un periodo e centrate in tutti i valori pari a $\pm \tfrac{n}{T_s}$. Infine possiamo andare ad aggiungere al nostro grafico la funzione sinc$^2(f\:T_s)$ ovvero una funzione $sinc(t)$ che si annullerà, assumendo valore pari a zero, in ogni punto in cui è centrata una delle \textit{"coppette"} replicate.
+Illustrando tutto con un grafico otteniamo il seguente risultato:
+
+% TODO Grafico coppette.
+
+  
+Possiamo infine, come illustrato nel grafico precedente, andare a moltiplicare le \textit{"coppette"} per la funzione $sinc(t)$. Otterremo una funzione nulla al di fuori delle repliche mentre al loro interno otterremo due \textit{"gobbe"} in quanto sono moltiplicate per una funzione, ovvero la $sinc(t)$ che va a zero in quel punto. Per quanto riguarda la parte di spettro centrata rispetto all'origine rimarrà leggermente attenuata in quanto moltiplicata per una funzione che assume valori minori di uno.\\
+
+Compresa la situazione possiamo andare a rispondere alle ultime due domande. In particolare sappiamo che per poter ricostruire il segnale non dobbiamo avere sovrapposizione delle repliche dunque il lato sinistro della prima replica $\tfrac{1}{T_s} - B_x$ deve essere più grande del lato destro dello spettro centrale $B_x$. Si ottiene dunque che:
+
+\[ \frac{1}{T_s} - B_x \geq B_x  \hspace{20pt} \Longrightarrow  \hspace{20pt} \frac{1}{T_s} \geq 2 \cdot B_x   \]\
+
+Infine calcoliamo l'espressione del filtro ricostruttore per ricostruire il segnale di partenza in modo da ottenere $x(t)$ dal segnale campionato $x_p(t)$.
+Per ricostruire in modo perfetto il segnale $x(t)$ dal segnale campionato $x_p(t)$ dobbiamo andare a filtrare con un filtro passabasso lo spettro centrale del segnale campionato senza includere nessuna delle repliche. Notiamo come il problema dell'aliasing non si pone in quanto abbiamo supposto che le repliche siano opportunamente distanziate.
+Possiamo quindi considerare un filtro passabasso con supporto $[-\tfrac{1}{2T_s};\tfrac{1}{2T_s}]$ che non sarà ideale, ovvero piatto, ma dovrà compensare, equalizzando opportunamente il segnale, per correggerlo dalla moltiplicazione con la funzione $sinc(t)$.
+
+Otteniamo dunque questa espressione:
+
+\[ H(f) = \begin{cases}
+	
+	\dfrac{1}{\unit{sinc}^2(f\:T_s)} \hspace{10pt} \unit{per} \hspace{10pt}|f| \leq \frac{1}{T_s}\\
+	0 \hspace{15pt} \unit{altrove}
+	
+\end{cases} \]\ 
+
+Si riporta per completezza il grafico completo comprensivo di tutti i segnali sopra descritti.
+
+% TODO GRAFICO COPPETTE COMPLETO
+
+\subsubsection{Esercizio 5 - Trasformata e ricostruzione di un segnale campionato}
+
+Il segnale $x(t)$ avente banda $B_x$ viene campionato alla frequenza di Nyquist di $1/T_s$. In seguito si genera il seguente segnale:
+
+\[ x_p(t) = (-1)^n x(nT_s)\delta(t - nT_s) \]\
+
+Si richiede di:
+
+\begin{enumerate}
+	\item[\textbf{-}] Trovare la trasformata di Fourier di $x_p(t)$
+	\item[\textbf{-}] Dire se è possibile ricostruire $x(t)$ da $x_p(t)$, utilizzando un sistema LTI.
+\end{enumerate}
+
+
+\subsubsection{Esercizio 6 - Valore di un segnale campionato dopo un intervallo di tempo}
+
+Si consideri il segnale $s(t)$ di tipo passabasso con banda $B = 50$Hz; tale segnale viene campionato senza perdita alla minima frequenza di campionamento $f_{\unit{c,min}}$, dando luogo ad una serie di campioni:
+
+\[ s(nT_c)=  \begin{cases}
+
+-1 \hspace{10pt} n = -2,-1 \\
+\hspace{9pt} 1  \hspace{10pt} n = +2,+1 \\
+\hspace{9pt} 0  \hspace{10pt} $altrove$
+	
+\end{cases} \]\
+
+
+Si chiede di determinare il valore del segnale nell’istante $t= 0.005$s.
+
+
+\subsubsection{Esercizio 7 - Campionamento e quantizzazione}
+
+Concludiamo con l'ultimo esercizio dove il segnale sinusoidale $x(t) = 2 \sin(2\pi f_0 t)$ con $f_0 = 3$ kHz viene campionato senza perdite e quantizzato usando un quantizzatore uniforme a 256 livelli, seguito da un codificatore alla cui uscita è presente un flusso di bit. Quale è la minima velocità  $R_{\unit{b,min}}$ di generazione dei bit?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
