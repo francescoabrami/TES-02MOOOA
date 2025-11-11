@@ -22,6 +22,43 @@
 \usepackage{textcomp} 
 \usepackage{enumitem}
 \usepackage{blindtext}
+\usepackage{xcolor}
+
+%% SECTION FOR CUSTOM CODE STYLES DISPLAY %%
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,1,1} % BACKCOLOUR WHITE
+
+\lstdefinestyle{matstyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    upquote=true, % NEW LINE
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=matstyle} % STYLE FRO MATLAB CODE
+
+%% THEOREM STYLE SECTION %%
+
+\newtheorem*{theorem*}{Teorema}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{corollary}{Corollario}
+\newtheorem*{prop*}{Proprietà}
 
 %% SECTION FOR CUSTOM COMMAND %%
 
@@ -43,7 +80,7 @@
 
 \title{\textbf{Teoria ed Elaborazione dei Segnali \\  02MOOOA \\ Prof.ssa Gabriella Bosco \\ Prof. Fabio Dovis}}
 \author{Francesco Abrami - s310570}
-\date{A.A. 2025 - 2026 \\ \vspace{10pt} \small {Versione: 1.11.2 - 07/11/2025}}
+\date{A.A. 2025 - 2026 \\ \vspace{10pt} \small {Versione: 1.12.0 - 07/11/2025}}
 
 %% DISPLAY TITLE %%
 
@@ -66,34 +103,36 @@
 
 %% WRITING AND SUBFILE CALL SECTION %%
 
-\subfile{sections/00-Generale.tex} % DONE
-\subfile{sections/01-Domande.tex} % FUTURE USE
+%\subfile{sections/00-Generale.tex} % DONE
+%\subfile{sections/01-Domande.tex} % FUTURE USE
 
-\subfile{sections/LEZIONI-TS/01-ALG.tex}
-\subfile{sections/LEZIONI-TS/02-Segnali.tex}
-\subfile{sections/LEZIONI-TS/03-Analogici.tex}
-\subfile{sections/LEZIONI-TS/04-Vettori.tex}
-\subfile{sections/LEZIONI-TS/05-Fourier.tex}
-\subfile{sections/LEZIONI-TS/06-Sistemi.tex}
-\subfile{sections/LEZIONI-TS/07-Blocchi.tex}
-\subfile{sections/LEZIONI-TS/08-Periodici.tex}
-\subfile{sections/LEZIONI-TS/09-Correlazione.tex}
-\subfile{sections/LEZIONI-TS/10-Spettro.tex}
-\subfile{sections/LEZIONI-TS/11-DAC.tex}
+%\subfile{sections/LEZIONI-TS/01-ALG.tex}
+%\subfile{sections/LEZIONI-TS/02-Segnali.tex}
+%\subfile{sections/LEZIONI-TS/03-Analogici.tex}
+%\subfile{sections/LEZIONI-TS/04-Vettori.tex}
+%\subfile{sections/LEZIONI-TS/05-Fourier.tex}
+%\subfile{sections/LEZIONI-TS/06-Sistemi.tex}
+%\subfile{sections/LEZIONI-TS/07-Blocchi.tex}
+%\subfile{sections/LEZIONI-TS/08-Periodici.tex}
+%\subfile{sections/LEZIONI-TS/09-Correlazione.tex}
+%\subfile{sections/LEZIONI-TS/10-Spettro.tex}
+%\subfile{sections/LEZIONI-TS/11-DAC.tex}
 
-\subfile{sections/LEZIONI-EN/12-Numerici.tex} % FUTURE USE
+\subfile{sections/LEZIONI-EN/12-Numerici.tex} 
 \subfile{sections/LEZIONI-EN/13-Sequenze.tex} % FUTURE USE
+\subfile{sections/LEZIONI-EN/14-ConvLin.tex}  % FUTURE USE
+\subfile{sections/LEZIONI-EN/15-Frequenza.tex} % FUTURE USE
 
-\subfile{sections/Esercitazioni-TS/Esercitazione-1.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-2.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-3.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-4.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-5.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-6.tex}
-\subfile{sections/Esercitazioni-TS/Esercitazione-7.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-1.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-2.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-3.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-4.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-5.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-6.tex}
+%\subfile{sections/Esercitazioni-TS/Esercitazione-7.tex}
 
-\subfile{sections/Esercitazioni-EN/Esercitazione-8.tex} % FUTURE USE
-\subfile{sections/Esercitazioni-EN/Esercitazione-9.tex} % FUTURE USE
+%\subfile{sections/Esercitazioni-EN/Esercitazione-8.tex} % FUTURE USE
+%\subfile{sections/Esercitazioni-EN/Esercitazione-9.tex} % FUTURE USE
 
 
 
