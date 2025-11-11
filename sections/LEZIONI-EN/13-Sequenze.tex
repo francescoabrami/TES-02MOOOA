@@ -9,7 +9,117 @@
 
 %% BEGIN WRITING %%
 
-\section{Sequenze fondametali}
+\section{Sequenze fondamentali}
+
+Vista la sezione precedente dove abbiamo introdotto i segnali a tempo discreto andiamo ora a vedere delle sequenze, ovvero dei segnali a tempo discreto, che troveremo ed utilizzeremo spesso all'interno di questi prossimi capitoli.
+In particolare, come potremo osservare, queste sequenze fondamentali non sono altro che il risultato ottenuto dalla trasformazione a tempo discreto degli stessi segnali a tempo continuo visti in precedenza. Ricordiamo infine come l'operazione appena descritta non sia affatto un'operazione matematica ma piuttosto un modo di pensare questi segnali: vedremo come ci saranno opportune regole ed accorgimenti da apportare al ragionamento proposto.
+
+\subsection{Sequenza gradino unitario}
+
+Introdotto il ragionamento generale possiamo ora passare a vedere la prima sequenza rappresentata dal gradino unitario.
+In particolare il segnale si definisce in tempo discreto nel seguente modo:
+
+\[ u(n) = \begin{cases}
+	0, \hspace{10pt} n < 0\\
+	1, \hspace{10pt} n \geq 0
+\end{cases} \]\
+
+Riportiamo ora il grafico del segnale generato con MATLAB:
+
+% TODO GRAFICO GRADINO UNITARIO MATLAB
+
+Visto che il grafico è generato attraverso del codice riteniamo opportuno riportare, almeno per questa sezione di corso, anche il codice che produce i grafici riportati all'interno di questo documento.
+Segue ora il codice MATLAB utilizzato per la generazione del segnale gradino unitario:\\
+
+\lstinputlisting[language=Matlab, firstline = 3, lastline = 12]{code/TES-GRAPHS.m}
+
+
+\subsection{Delta di Kroenecher}
+
+Passiamo oltre ed andiamo a vedere come il segnale delta di Dirac viene interpretato in tempo discreto. Prima di tutto, per non confonderci con le due tipologie, utilizzeremo il termine delta per indicare quello a tempo continuo mentre useremo delta di Kroenecher per indicare il segnale a tempo discreto.
+Questa tipologia di delta è rappresentata da un impulso unitario, centrato nell'origine, non più di ampiezza infinita ma avente ampiezza pari ad uno.
+
+Possiamo scrivere quanto appena descritto nel seguente modo:
+
+\[ u(n) = \begin{cases}
+ 0, \hspace{10pt} n \neq 0 \\
+ 1, \hspace{10pt} n = 0
+\end{cases}
+\]\
+
+Ricordiamo infine che la definizione della delta di Dirac $\delta(t)$ è analoga a quella appena vista ma su un supporto continuo dove la funzione assume un valore infinito nell'origine.
+
+\[ \delta(t) = \begin{cases}
+ 0, \hspace{15pt} t \neq 0 \\
+ \infty, \hspace{10pt} t = 0
+\end{cases}
+\]\
+
+Segue ora il grafico del segnale:
+
+% TODO GRAFICO DELTA UNITARIO MATLAB
+
+Come nel caso precedente riportiamo anche il codice MATLAB utilizzato per la generazione del segnale delta di Kroenecher:\\
+
+\lstinputlisting[language=Matlab, firstline = 16, lastline = 25]{code/TES-GRAPHS.m}
+
+Infine prima di passare oltre possiamo notare come, a differenza dei segnali a tempo continuo, il gradino unitario e la delta di Kroenecher non creino alcuna criticità caratteristica dei corrispondenti segnali a tempo continuo.\\
+
+Riportiamo infine una proprietà della delta di Kroenecher.
+
+\begin{prop*}[\textbf{Segnale come somma di impulsi}]\
+
+\[x(n) = \sum_{i\;=\;-\infty}^{+\infty} x(i) \delta(n-1)\]\
+	
+\end{prop*}
+
+Questa proprietà fondamentale della delta numerica indica la possibilità di esprimere ogni segnale $x(n)$ come somma di impulsi secondo la relazione vista sopra dove il termine $\delta(n-i)$ è la delta di Kroenecher centrata nell’istante di tempo $i$.
+Ci è possibile verificare che:
+
+\[ x(n) \delta(n) = x(0)\delta(n) \]
+\[ x(n) \delta(n-i) = x(i)\delta(n-1) \]\
+
+Infine possiamo andare ad esplicitare la relazione tra la delta numerica ed il gradino unitario. Ci è infatti possibile scrivere $\delta(n)$ come differenza tra due gradini traslati nel seguente modo:
+
+\[ u(n) = \sum_{i = 0}^{+\infty} \delta(n-i) = \delta(n) + \delta(n+1) + \delta(n+2) \dots \]
+\[ \delta(n) = u(n) - u(n-1) \]\
+
+Possiamo notare infine attraverso la differenza di sequenze gradino, aventi diversi supporti, ci è possible creare delle funzioni porta nel dominio discreto.
+
+\subsection{Sequenza sinc}
+
+Proseguendo il nostro percorso incontriamo la sequenza sinc($n$) che andiamo a definire nel seguente modo dove $N$ è un numero intero positivo:
+
+\[ \unit{sinc}\bigg(\frac{n}{N}\bigg) =  \frac{\sin\big(\pi \frac{n}{N}\big)}{\pi \frac{n}{N}}\]\
+
+Vista ora la definizione della sequenza andiamo a riportarne il grafico.
+
+% TODO GRAFICO SINC
+
+Come per gli esempi fatti in precedenza segue ora il codice MATLAB utilizzato per generare il grafico riportato sopra:
+
+\lstinputlisting[language=Matlab, firstline = 29, lastline = 37]{code/TES-GRAPHS.m}
+
+
+
+
+
+\subsection{Sequenza porta}
+\subsection{Sequenza triangolo}
+\subsection{Sequenza esponenziale}
+
+\subsubsection{Sinusoidi ed esponenziali a tempo discreto}
+
+\subsubsection{Esempi}
+\subsubsection{Proprietà}
+
+\subsection{Energia e potenza media}
+
+
+
+
+
+
 
 
 \end{document}
