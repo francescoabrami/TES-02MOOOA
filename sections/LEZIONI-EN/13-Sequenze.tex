@@ -31,7 +31,7 @@ Riportiamo ora il grafico del segnale generato con MATLAB:
 Visto che il grafico è generato attraverso del codice riteniamo opportuno riportare, almeno per questa sezione di corso, anche il codice che produce i grafici riportati all'interno di questo documento.
 Segue ora il codice MATLAB utilizzato per la generazione del segnale gradino unitario:\\
 
-\lstinputlisting[language=Matlab, firstline = 3, lastline = 12]{code/TES-GRAPHS.m}
+\lstinputlisting[language=Matlab, firstline = 3, lastline = 12]{code/TESGRAPHS.m}
 
 
 \subsection{Delta di Kroenecher}
@@ -61,7 +61,7 @@ Segue ora il grafico del segnale:
 
 Come nel caso precedente riportiamo anche il codice MATLAB utilizzato per la generazione del segnale delta di Kroenecher:\\
 
-\lstinputlisting[language=Matlab, firstline = 16, lastline = 25]{code/TES-GRAPHS.m}
+\lstinputlisting[language=Matlab, firstline = 16, lastline = 25]{code/TESGRAPHS.m}
 
 Infine prima di passare oltre possiamo notare come, a differenza dei segnali a tempo continuo, il gradino unitario e la delta di Kroenecher non creino alcuna criticità caratteristica dei corrispondenti segnali a tempo continuo.\\
 
@@ -79,7 +79,7 @@ Ci è possibile verificare che:
 \[ x(n) \delta(n) = x(0)\delta(n) \]
 \[ x(n) \delta(n-i) = x(i)\delta(n-1) \]\
 
-Infine possiamo andare ad esplicitare la relazione tra la delta numerica ed il gradino unitario. Ci è infatti possibile scrivere $\delta(n)$ come differenza tra due gradini traslati nel seguente modo:
+Infine possiamo andare ad esplicitare la relazione tra la delta numerica ed il gradino unitario. Ci è infatti possibile scrivere $\delta(n)$ come la differenza tra due gradini traslati nel seguente modo:
 
 \[ u(n) = \sum_{i = 0}^{+\infty} \delta(n-i) = \delta(n) + \delta(n+1) + \delta(n+2) \dots \]
 \[ \delta(n) = u(n) - u(n-1) \]\
@@ -96,22 +96,107 @@ Vista ora la definizione della sequenza andiamo a riportarne il grafico.
 
 % TODO GRAFICO SINC
 
-Come per gli esempi fatti in precedenza segue ora il codice MATLAB utilizzato per generare il grafico riportato sopra:
+Come per gli esempi fatti in precedenza segue ora il codice MATLAB utilizzato per generare il grafico riportato sopra, dove abbiamo utilizzato un valore $y$ pari a $n/3$:
 
-\lstinputlisting[language=Matlab, firstline = 29, lastline = 37]{code/TES-GRAPHS.m}
+\lstinputlisting[language=Matlab, firstline = 29, lastline = 37]{code/TESGRAPHS.m}
 
+Infine, per quanto riguarda la sequenza $sinc$() riportiamo anche alcuni altri grafici ottenuti andando a cambiare il valore di $y$ prima con $n/2$ e successivamente con $n$. 
 
+% TODO GRAFICI SINC(n)
 
-
+Come possiamo notare i grafici differiscono molto l'uno dall'altro nonostante si stia utilizzando sempre la stessa funzione per generarli. Capiremo in un esempio più avanti che cosa stia causando questo problema e cosa fare per evitarlo.
 
 \subsection{Sequenza porta}
+
+Proseguiamo ora andando ad analizzare la sequenza porta che indichiamo nel seguente modo:
+
+\[ p_{2k+1}[n] = \begin{cases}
+	1 \hspace{10pt} |n| \leq k \\
+	0 \hspace{10pt} |n| > k 
+\end{cases} \]\
+
+La definizione appena vista indica una porta di supporto pari a $2k + 1$ centrata in un punto. Notiamo come il supporto sia dato da $2k + 1$ in quanto dobbiamo considerare il punto in cui è centrata la porta più un numero pari di $k$ punti da una parte e dall'altra per ottenere la porta. Ricordiamo che nel dominio del tempo discreto il supporto di una sequenza è dato dal numero di punti tra gli estremi composti da punti non nulli. In altre parole è dato dall'intervallo più grande che si possa ottenere considerando come estremi punti non nulli con la possibilità di avere punti nulli al suo interno.\\
+
+Come fatto in precedenza andiamo a rivedere la definizione di porta nel dominio continuo del tempo:
+
+
+\[ p_{T}(t) = \begin{cases}
+	1 \hspace{10pt} t \in [-\tfrac{T}{2}, + \tfrac{T}{2}]\\
+	0 \hspace{10pt} \unit{altrove}
+\end{cases} \]\
+
+Ora vista la sua definizione andiamo a riportarne un grafico ottenuto in MATLAB.
+In questo caso si è scelto di rappresentare una porta di supporto % TODO SUPPORTO
+
+% TODO GRAFICO PORTA
+
+Come per gli altri esempi si riporta di seguito il codice utilizzato per la generazione del grafico appena visto:
+
+\lstinputlisting[language=Matlab, firstline = 41, lastline = 50]{code/TESGRAPHS.m}
+
 \subsection{Sequenza triangolo}
+
+Passiamo ora invece ad analizzare la sequenza triangolare dandone fin da subito una definizione:
+
+\[ \unit{tri}(n) = \begin{cases}
+	1 - \tfrac{|n|}{N}, \hspace{10pt} |n| \geq N \\
+	0\;, \hspace{10pt} |n| < N
+ \end{cases} \]\
+
+In particolare in base al valore scelto di $N$, che ricordiamo essere un numero intero positivo, si otterrà una sequenza triangolare avente supporto pari a $2N+1$.
+Come per i casi precedenti ricordiamo anche qui la definizione del corrispondente segnale a tempo continuo:
+
+\[ \unit{tri}(t) = \begin{cases}
+	1 - \tfrac{|t|}{T}, \hspace{10pt} |t| \geq T \\
+	0\;, \hspace{10pt} |t| < T	
+\end{cases} \]\
+
+Ricordiamo che in questo caso $t$, ovvero la variabile tempo è continua e non discreta come succede per $n$.
+
+Riportiamo di seguito il grafico della sequenza triangolare ottenuta in MATLAB:
+
+% TODO GRAFICO MATLAB
+
+Riportiamo anche di seguito il codice utilizzato per generare il grafico appena visto:
+
+\lstinputlisting[language=Matlab, firstline = 54, lastline = 63]{code/TESGRAPHS.m}
+
 \subsection{Sequenza esponenziale}
+
+Concludiamo ora la lista delle sequenze fondamentali andando a prendere in analisi la sequenza esponenziale decrescente.
+Andiamo a definire la sequenza attraverso questa formula:
+
+\[ x(n) = a^n \cdot u(n) \]\
+
+Dove, in generale, si assume che $a$ sia un numero complesso e che se $a$ è reale la funzione risulta avere segno costante nel caso in cui il valore di $a$ sia strettamente maggiore di zero. Nel caso opposto la sequenza risulta essere a segni alterni.
+
+Anche in questo caso riportiamo la definizione del segnale corrispondente a questa sequenza nel dominio discreto del tempo:
+
+\[ x(t) = e^{-\alpha t} \cdot u(t) \]\
+
+Ricordiamo che in questo caso stiamo considerando funzioni esponenziali decrescenti come anche succede per quelle a tempo discreto. Nel caso a tempo continuo si assume che il valore dell'esponente sia strettamente minore di zero ovvero $\alpha$ deve assumere un valore strettamente positivo. Per quanto riguarda il dominio del tempo discreto si assume che la base dell'esponenziale, ovvero $a$ sia compresa tra zero ed uno dove entrambi gli estremi sono esclusi.\\
+
+Riportiamo ora una coppia di grafici in cui le sequenze rappresentate hanno lo stesso valore assoluto di $a$ ma diverso segno.
+% TODO COPPIA EXP SEQ.
+
+Infine riportiamo anche il codice utilizzato per generare il grafico della sequenza sempre positiva; per ottenere quella con segno alterno basta cambiare segno al valore di $a$ alla seconda riga.
+
+\lstinputlisting[language=Matlab, firstline = 67, lastline = 76]{code/TESGRAPHS.m}
+
+Concludiamo questa parte sulle sequenze esponenziali andando ad analizzare il caso in cui si utilizzi un $a$ avente valore complesso.
+Nel caso in cui $a$ assuma un valore complesso, ovvero sia pari a $Ae^{j\theta}$ si otterrà che:
+
+\[x(n) = \big( Ae^{j\theta} \big) \cdot u(n) = A^n \cdot e^{jn \theta} \cdot u(n) \]\
+
 
 \subsubsection{Sinusoidi ed esponenziali a tempo discreto}
 
+Vista ora la
+
 \subsubsection{Esempi}
 \subsubsection{Proprietà}
+
+
 
 \subsection{Energia e potenza media}
 
