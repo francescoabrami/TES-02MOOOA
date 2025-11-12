@@ -1,0 +1,153 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\section{Esercitazioni - ENS}
+
+Affrontare ora tutte le esercitazioni della prima parte relativa alla teoria dei segnali (TS) andiamo ad affrontare le esercitazioni relative alla sezione di elaborazione numerica dei segnali (ENS). 
+
+\subsection{Esercitazione 1 - 12/11/2025}
+
+Iniziamo ora andando ad affrontare la prima esercitazione della seconda parte di corso in cui andremo a risolvere esercizi riguardo la rappresentazione dei segnali a tempo discreto e la loro energia e potenza.
+In particolare ci saranno molto utili i grafici con cui rappresentare i segnali trattati. 
+
+Ci sarà inoltre utile verificare, attraverso l'utilizzo di MATLAB, il corretto svolgimento degli esercizi tanto quanto la possibilità di effettuare elaborazioni su segnali a tempo discreto i quali non limitano il proprio supporto a pochi punti. 
+
+Si ricorda che come al solito tutti i codici utilizzati saranno riportati all'interno di questa sezione.
+
+\subsubsection{Esercizio 1 - Rappresentazione grafica dei segnali}
+
+In questo primo esercizio dato il segnale a tempo discreto:
+
+\[ x[n] = \begin{cases}
+	0 \hspace{10pt} n < 0\\
+	n \hspace{10pt} 0 \leq n \leq 10\\
+	0 \hspace{10pt} n > 10
+\end{cases} \]\
+
+Si chiede di rappresentare graficamente i seguenti segnali:
+
+\begin{enumerate}
+	\item[\textbf{a)}] $y[n] = x[n+5]$
+	\item[\textbf{b)}] $y[n] = x[-n+5]$
+	\item[\textbf{c)}] $y[n] = x[2n]$
+	\item[\textbf{d)}] $y[n] = x[n+10] + x[-n+10] - 10\delta[n]$
+	\item[\textbf{e)}] Scomporre $x[n]$ nella somma di un segnale pari e uno dispari e rappresentare graficamente i due segnali.
+\end{enumerate}
+
+Cominciamo prima di tutto andando a rappresentare il segnale di partenza $x[n]$. Come possiamo vedere il segnale è nullo per valori negativi o maggiori di dieci. Possiamo dunque dedurre che il segnale abbia un supporto pari a 11, ottenuto contato il numero di valori per cui non è nullo ovvero tutti i punti tra zero e dieci includendo anche gli estremi.
+
+Capito questo ci rimane molto semplice disegnare il segnale che sarà dato da una sequenza (questo il termine corretto per i segnali a tempo discreto) crescente di valori. In particolare in zero avrà valore nullo, in uno varrà uno, in due due e così via fino ad arrivare a dieci.
+
+Riportiamo di seguito il grafico del segnale ottenuto in MATLAB:
+
+% TODO GRAFIO ENS 1
+
+Come al solito segue anche il codice utilizzato per la generazione del grafico appena visto:
+
+\lstinputlisting[language=Matlab, firstline = 6, lastline = 13]{code/ENS-1.m}
+
+
+Capito come è fatto il segnale di partenza $x[n]$ possiamo ora analizzare il caso \textbf{a} che altro non è che una traslazione della nostra sequenza verso sinistra di fatto anticipandola.
+Al fine di evitare confusione per capire se una sequenza viene anticipata o ritardata, dunque traslata verso destra o sinistra, possiamo ragionare nel seguente modo. In questo caso prendiamo la scrittura del nostro nuovo segnale:
+
+\[ y[n] = x[n+5] \]
+
+Andiamo a sostituire un valore di $n$, per esempio lo zero, ed otteniamo che:
+
+\[ y[0] = x[0+5] = x[5] \]
+
+Ovvero che il segnale traslato in zero, $y[0]$ dovrà valere quanto vale il segnale originale, $x[5]$ in cinque.
+Anche senza andare a calcolare un secondo punto possiamo vedere come il nostro segnale si sia "spostato indietro" ottenendo di fatto il segnale riportato di seguito:
+
+% TODO SEGNALE y+5
+
+Il codice ottenuto per generare il grafico è il seguente:
+
+\lstinputlisting[language=Matlab, firstline = 17, lastline = 28]{code/ENS-1.m}
+
+Passiamo ora al punto \textbf{b} dove abbiamo lo stesso segnale di partenza che viene anticipato di cinque campioni effettuando però un rilbaltamento della sequenza in quanto la variabile $n$ appare con il segno negativo.
+Di fatto per ottenere il grafico richiesto in questo punto possiamo andare a prendere il grafico già traslato del punto \textbf{a} e ribaltarlo ottenedo il risultato seguente:
+
+% TODO GRAFICO y-5
+
+Come di consueto segue anche il codice MATLAB per generare il grafico:
+
+
+\lstinputlisting[language=Matlab, firstline = 32, lastline = 43]{code/ENS-1.m}
+
+Come possiamo notare il codice utilizzato è identico a quello precedente ma con una sola differenza ovvero quella di aver cambiato il segno della variabile $k$ nella seconda parte della quinta riga.\\
+
+
+Passando oltre raggiungiamo ora il caso \textbf{c} in cui possiamo notare come sia stata effettuata un'operazione di sottocampionamento. In altri termini, allo scorrere di $n$, stiamo solo selezionando i valori dei campioni pari del segnale di partenza $x[n]$. Dovessimo costruire il segnale $y[n]$ pezzo per pezzo possiamo fare come fatto in precedenza ed andare a sostituire:
+
+\[y[n] = x[2n] \rightarrow y[0] = x[2 \cdot 0] = x[0] \]
+\[y[n] = x[2n] \rightarrow y[1] = x[2 \cdot 1] = x[2] \]
+\[ \dots \]
+\[y[n] = x[2n] \rightarrow y[5] = x[2 \cdot 5] = x[10] \]
+
+Come possiamo vedere il supporto della sequenza risultante sarà dimezzato in quanto abbiamo sottocampionato la sequenza di partenza prendendo solo alcuni campioni.
+In particolare otteniamo in grafico seguente:
+
+% TODO GRFICO
+
+Come di consueto segue anche il codice MATLAB usato per generare il grafico:
+
+\lstinputlisting[language=Matlab, firstline = 47, lastline = 58]{code/ENS-1.m}
+
+Proseguiamo ancora ad affrontiamo ora il punto \textbf{d} dove il nostro segnale è ora composto da tre parti distinte e sommate tra di loro.
+Come possiamo subito vedere, ricordando i casi \textbf{a} e \textbf{b}, le prime due componenti corrispondono rispettivamente ad una traslazione di dieci campioni del segnale $x[n]$ verso sinistra ed a un successivo ribaltamento.
+
+Di seguito sono riportati, in pannelli separati, i grafici delle prime due sequenze:
+
+% GRAFICI SEQUENZE
+
+Il codice utilizzato per ottenere i grafici appena visti è idenico a quello visto nei casi \textbf{a} e \textbf{b} dove invece di traslare di un numero di campioni pari a cinque di trasla di dieci.
+Ora che abbiamo visto come sono composte le prime due sequenze andiamo ad analizzare la terza. La terza sequenza non è altro che una delta, centrata in zero, moltiplicata per una costante pari a dieci con l'effetto di amplificarla in ampiezza.
+
+Compresa anche questa ultima parte possiamo andare a mettere tutto assieme ottenendo il seguente grafico:
+
+% GRAFICO TUTTO UNITO
+
+Come al solito segue anche il codice MATLAB utilizzato:
+
+\lstinputlisting[language=Matlab, firstline = 62, lastline = 85]{code/ENS-1.m}
+
+Volendo essere precisi notiamo che nell'origine le tre sequenze si sovrappongono, andiamo dunque a semplificare una delle due delta positive con quella negativa (è sottratta) ed otteniamo il seguente risultato:
+
+% GRAFICO FINITO
+
+Per ottenere tale risultato in MATLAB si è omessa la scrittura della delta e si è rimosso un campione di una delle due sequenze positive.
+
+Concludiamo ora l'esercizio andado ad analizzare il punto \textbf{e}
+
+
+\subsubsection{Esercizio 2 - Convoluzione di segnali a tempo discreto}
+\subsubsection{Esercizio 3 - Determinazione e calcolo di potenza ed energia finite}
+\subsubsection{Esercizio 4 - Sistema di riconoscimento vocale}
+\subsubsection{Esercizio 5 - Periodo di un segnale a tempo discreto}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
