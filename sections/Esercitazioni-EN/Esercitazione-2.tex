@@ -11,11 +11,61 @@
 
 \subsection{Esercitazione 2 - 19/11/2025}
 
+
+
 \subsubsection{Esercizio 1 - DTFT di un segnale}
+
+Si calcoli la DTFT del segnale:
+
+\[ x[n] = u[n] - u[n-10] + n \cdot e^{-n}u[n]   \]\
+
 \subsubsection{Esercizio 2 - Costruzione di una sequenza e calcolo DTFT}
+
+Si consideri una sequenza $x[n]$ con DTFT pari a $X(e^{j2\pif})$. Si costruisca una sequenza $y[n]$ a partire da $x[n]$ con la regola:
+
+\[ y[2n] = x[n] \]
+\[ y[2n+1] = -x[n] \]\
+
+Si calcoli ora la DTFT di $y[n]$.
+ 
 \subsubsection{Esercizio 3 - Analisi FFT su un segnale limitato nel tempo}
+
+Un segnale praticamente limitato nel tempo per $0 \leq t \leq T_1$ con $T_1$ = 1s e limitato in banda per $|f| \leq B_x$ con $B_x$ = 32 Hz viene campionato alla
+frequenza di Nyquist $\tfrac{1}{T_0} = 2B_x$. \\ I campioni $x_n = x(nT_0)$, dove $T_0$ è il periodo di campionamento, vengono usati per valutare numericamente lo spettro del segnale mediante una FFT a radice due. Si richiede una risoluzione in
+frequenza $\Delta f$ = 0.5 Hz. Dire quale delle seguente affermazioni è corretta:
+
+\begin{enumerate}
+	\item[\textbf{1)}] Per conseguire la risoluzione in frequenza richiesta è necessario elaborare almeno $N$ = 128 campioni e può essere necessario estendere il segnale nel tempo con campioni nulli.
+	\item[\textbf{2)}] Non è possibile in alcun modo conseguire la risoluzione in frequenza richiesta.
+	\item[\textbf{3)}] Non è possibile conseguire la risoluzione in frequenza richiesta se non campionando il segnale ad una frequenza superiore alla frequenza di Nyqvist.
+	\item[\textbf{4)}] Nessuna delle altre risposte è corretta
+\end{enumerate}
+
 \subsubsection{Esercizio 4 - Sequenza campionata e DFT}
+
+Si consideri la sequenza $x[n]$ di $N = 10$ campioni che vale 1 per $n = 0,2,8$
+e zero altrove. Si calcoli $X[k] = \unit{DFT}\{x[n]\}$.
+
 \subsubsection{Esercizio 5 - Spettro e campionamento di un segnale attraverso FFT}
+
+Si consideri un segnale $x(t)$ il cui spettro $X(f)$ è nullo per $|f| > f_x$, con $f_x = 10$ Hz. Si costruisca il segnale $y(t) = x(t) \cdot \cos(2\pi f_y t)$ con $f_y = 50$ Hz. Si vuole valutare lo spettro $Y(f)$ a partire da opportuni campioni di $y(t)$, usando una FFT a radice 2. Volendo ottenere una risoluzione in frequenza di 3 Hz, si valuti il passo di campionamento da scegliere per $y(t)$, il numero di campioni $N$ e la risoluzione finale ottenuta.
+
 \subsubsection{Esercizio 6 - Costruzione di una sequenza e DFT}
+
+A partire dal segnale analogico $x(t) = A_1 \cdot \cos(2\pi f_0 t) + A_2 \sin(2\pi f_0 t)$ (con $A_1$ e $A_2$ costanti positive) si costruisce la sequenza $x[n] = x(nT_c)$ con $T_c = 1/(2f_0)$. Si considerino $N$ = 10 campioni di $x[n]$ nell’intervallo $0 \leq n \leq 9$ e la sequenza $X[k] = \unit{DFT}\{x[n]\}$. Dire quale delle seguenti affermazioni è falsa:
+
+\begin{enumerate}
+	\item[\textbf{1)}] La sequenza campionata vale $x[n] = A_1e^{j\pi n}$
+	\item[\textbf{2)}] $X[k]$ = 0 per $0 \leq k \leq 5$
+	\item[\textbf{3)}] $X[k]$ = 0 per $0 \leq k < 5$
+	\item[\textbf{4)}] $X[k]$ = $10 \cdot A_1$ per $k = 5$
+\end{enumerate}
+
+
+
+
+
+
+
 
 \end{document}
