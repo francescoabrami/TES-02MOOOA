@@ -87,7 +87,14 @@ ylabel('$y_4[n]$ ','Interpreter','latex','Fontsize',20)
 %% E 1.e
 
 
+%% E 2
 
+n = [-6:6];
 
+x_1 = [zeros(1,3),1,2,1,zeros(1,1)];
+x_2 = [zeros(1,3),3,2,1,zeros(1,1)];
 
+z = conv(x_1, x_2);
+
+stem(n,z,'LineWidth',2)
 
