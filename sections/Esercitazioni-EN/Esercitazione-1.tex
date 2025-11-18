@@ -21,7 +21,6 @@ In particolare ci saranno molto utili i grafici con cui rappresentare i segnali 
 Ci sarà inoltre utile verificare, attraverso l'utilizzo di MATLAB, il corretto svolgimento degli esercizi tanto quanto la possibilità di effettuare elaborazioni su segnali a tempo discreto i quali non limitano il proprio supporto a pochi punti. 
 
 Si ricorda che come al solito tutti i codici utilizzati saranno riportati all'interno di questa sezione.
-
 \subsubsection{Esercizio 1 - Rappresentazione grafica dei segnali}
 
 In questo primo esercizio dato il segnale a tempo discreto:
@@ -126,11 +125,155 @@ Volendo essere precisi notiamo che nell'origine le tre sequenze si sovrappongono
 
 Per ottenere tale risultato in MATLAB si è omessa la scrittura della delta e si è rimosso un campione di una delle due sequenze positive.
 
-Concludiamo ora l'esercizio andado ad analizzare il punto \textbf{e}
+Concludiamo ora l'esercizio andando ad analizzare il punto \textbf{e}.
+Per riuscire a scomporre il segnale $x[n]$ in due segnali, uno pari e l'altro dispari, dobbiamo operare nel seguente modo.
+Prima di tutto i due segnali che indicheremo come $x_p[x]$ e $x_d[x]$ dovranno essere ottenuti tramite una qualche trasformazione di $x[n]$ moltiplicata per $\tfrac{1}{2}$ in quanto entrambi dovranno contribuire per metà alla creazione del segnale.
+In particolare possiamo ottenere il segnale pari andando a ribaltare $x[n]$ ottenendo:
+
+\[x_p[n] = \frac{1}{2}\big(x[n] + x[-n]\big)\]\
+
+Dato che per ora il segnale ottenuto non è nullo prima dello zero ed è solo pari alla metà dall'ampiezza desiderata dobbiamo andare a sommare ancora un pezzo di sequenza alla parte positiva togliendo la sequenza negativa per ottenere il segnale $x[n]$, si ottiene che:
+
+\[x_d[n] = \frac{1}{2}\big( x[n] - x[-n] \big) \]\
+
+Seguono i grafici dei due segnali appena descritti:
+
+% TODO GRAFICI SEGNALI +-
+
+Infine come nostro solito riportiamo il codice MATLAB utilizzato per generare i grafici riportati sopra
+
+% TODO CODICE MATLAB SEGNALI +-
 
 
 \subsubsection{Esercizio 2 - Convoluzione di segnali a tempo discreto}
+
+Si considerino le seguenti sequenze e si calcoli la convoluzione lineare discreta:
+
+\begin{enumerate}
+	\item[\textbf{-}] $ x_1[n] = \delta[n] + 2\delta[n-1] + \delta[n-2] $
+	\item[\textbf{-}] $ x_2[n] = 3\delta[n] + 2\delta[n-1] + \delta[n-2] $
+\end{enumerate}
+
+Verificare il risultato ottenuto attraverso un codice MATLAB utilizzando la
+funzione \texttt{conv(a,b)}.\\
+
+
+Prima di cominciare con i calcoli andiamo a rappresentare graficamente queste due sequenze. Come possibile intuire si ottengono i seguenti grafici:
+
+% TODO GRAFICI CONV
+
+Segue anche il codice MATLAB utilizzato per crearli.
+
+Adesso che abbiamo i due operandi possiamo andare a scrivere l'operazione di convoluzione seguendo la definizione, si ottiene che:
+
+\[ z[n] = x_1[n] \ast x_2[n] = \sum_{k = -\infty}^{+\infty} x_1[k] \cdot x_2[n - k] \]\
+
+Come possiamo vedere la convoluzione tra queste due sequenze risulta essere il prodotto tra la prima sequenza $x_1[n]$ e la seconda ribaltata e traslata ovvero $x_2[n - k]$.
+Adesso possiamo procedere in due modi diversi: facendo il prodotto attraverso operazioni grafiche oppure attraverso il calcolo vettoriale.
+
+Per semplicità svolgeremo il calcolo con la notazione vettoriale e riporteremo solo uno schema dello svolgimento grafico. Ricordiamo che l'algoritmo che viene eseguito è lo stesso e che non cambia assolutamente nulla tra un metodo e l'altro. In particolare il metodo vettoriale risulta più comodo e veloce ma forse meno intuitivo.
+
+Prima di tutto andiamo a scrivere i nostri vettori di partenza. Come sappiamo, dovendo far scorrere un vettore lungo l'altro, abbiamo bisogno di inserire degli zeri ai lati dei nostri vettori che facciamo scorrere per evitare che siano troppo corti. Nel nostro caso essendo entrambi i vettori di lunghezza tre, e volendo rappresentare come primo ed ultimo scenario il caso in cui si ha una sola sovrapposizione, dobbiamo andare ad aggiungere, ad ogni lato, un numero pari di zeri alla lunghezza del vettore più corto togliendo uno. Il secondo vettori si ottiene aggiungendo un numero di zeri opportuno. Ricordiamo che questo ragionamento vale quando a scorrere è il vettore di lunghezza minore.
+Fatti i passaggi appena elencati otteniamo dunque che:
+
+
+\begin{center}
+$x_1[n] = $
+$\begin{pmatrix}
+	0&0&1&2&1&0&0
+\end{pmatrix}$	\\
+$x_2[n] = $
+$\begin{pmatrix}
+	1&2&3&0&0&0&0
+\end{pmatrix}$	
+\end{center}
+
+Adesso non ci basta altro che moltiplicare i due vettori e sommare le singole componenti.
+Seguono ora tutti i casi andando ad esplicitare la definizione di convoluzione sottolineando i numeri che si sovrappongono. Ricordando che il prodotto per zero è nullo i valori che si sovrappongono con degli zeri vengono ignorati.
+
+\begin{center}
+$\hspace{19pt} x_1[k] = $ 
+$\begin{pmatrix}
+	0&0&1&2&1&0&0
+\end{pmatrix}$	
+\end{center}
+
+\begin{center}
+$x_2[0-k] = $
+$\begin{pmatrix}
+	1&2&\underline{3}&0&0&0&0
+\end{pmatrix}$	\\
+$x_2[1-k] = $
+$\begin{pmatrix}
+	0&1&\underline{2}&\underline{3}&0&0&0
+\end{pmatrix}$	\\
+$x_2[2-k] = $
+$\begin{pmatrix}
+	0&0&\underline{1}&\underline{2}&\underline{3}&0&0
+\end{pmatrix}$	\\
+$x_2[3-k] = $
+$\begin{pmatrix}
+	0&0&0&\underline{1}&\underline{2}&3&0
+\end{pmatrix}$	\\
+$x_2[4-k] = $
+$\begin{pmatrix}
+	0&0&0&0&\underline{1}&2&3
+\end{pmatrix}$	
+
+\end{center}
+
+Andiamo ora a fare le moltiplicazioni tra i termini in sovrapposizione:
+
+\begin{center}
+	$z[0] = \sum_k^{\infty} = x_1[k] \cdot x_2[0-k] =  3 \cdot 1 = 3$\\
+	$z[1] = \sum_k^{\infty} = x_1[k] \cdot x_2[1-k] =  2 \cdot 1 + 3 \cdot 2 = 8$\\
+	$z[2] = \sum_k^{\infty} = x_1[k] \cdot x_2[2-k] =  1 \cdot 1 + 2 \cdot 2 + 3 \cdot 1 = 8$\\
+	$z[3] = \sum_k^{\infty} = x_1[k] \cdot x_2[3-k] =  1 \cdot 2 + 2 \cdot 1 = 4$\\
+	$z[4] = \sum_k^{\infty} = x_1[k] \cdot x_2[4-k] =  1 \cdot 1 = 1$
+	
+\end{center}
+
+Ottenuti ora i valori del vettore $z[n]$ abbiamo che:
+\[ z[n] = \begin{pmatrix}
+	3&8&8&4&1
+\end{pmatrix} \]
+
+Possiamo anche riscrivere la sequenza ottenuta così:
+
+\[ z[n] = x_1[n] \ast x_2[n] = 3\delta[n] + 8\delta[n-1] + 8\delta[n-2] + 4\delta[n-3] + \delta[n-4] \]\
+
+Verifichiamo ora il risultato ottenuto attraverso MATLAB.
+Per verificare il risultato andiamo ad utilizzare il seguente codice:
+
+% TOTO CODICE CONV.
+
+Il risultato che otteniamo è identico a quello calcolato in precedenza il che conferma l'esattezza del calcolo.
+Infine possiamo andare ad eseguire un plot della sequenza $z[n]$ ottenendo il seguente risultato:
+
+
+% TODO CODE MATLAB E.2
+
+Infine riportiamo uno schema che riassume quanto appena fatto ma operando graficamente:
+
+% TODO METODO GRAFICO
+
+
 \subsubsection{Esercizio 3 - Determinazione e calcolo di potenza ed energia finite}
+
+Passiamo ora all'esercizio successivo dove ci è chiesto di determinare se le seguenti sequenze sono a energia finita o a potenza finita e calcolarne energia e potenza. 
+
+\begin{enumerate}
+	\item [\textbf{a)}]  $ x[n] = \begin{cases} e^{-n} \hspace{10pt} n \geq 0 \\ 0 \hspace{22pt} n < 0 \end{cases}$
+	\item [\textbf{b)}] $x[n] = A$
+	\item [\textbf{c)}] $x[n] = Ae^{-j2\pi \tfrac{n}{N}}$
+	\item [\textbf{d)}] $ x[n] = \begin{cases} A\hspace{10pt} n \geq 0 \\ 0 \hspace{12pt} n < 0 \end{cases}$
+	\item [\textbf{e)}] $ x[n] = \begin{cases} A \hspace{10pt} n \geq 0 \\ 0 \hspace{22pt} n < 0 \end{cases}$
+
+
+
+
+\end{enumerate}
+
 \subsubsection{Esercizio 4 - Sistema di riconoscimento vocale}
 \subsubsection{Esercizio 5 - Periodo di un segnale a tempo discreto}
 
