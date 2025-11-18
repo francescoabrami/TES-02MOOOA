@@ -16,6 +16,14 @@ In the repository you will find the main.tex file with all the settings, layouts
 - 💾 **code:** contains the MATLAB code used for: laboratories, generating graphs to display as images and display the code for the user to understand.
 - 🚀 **TES.pdf:** contains the latest available version of the compiled .pdf file.
 
-**⛔️ IMPORTANT NOTE ⛔️** The TES.pdf file might not be the latest compiled version respect to the LaTex code available in the repository but just a recent version compiled for accessibility purposes.
+**⛔️ IMPORTANT NOTES ⛔️** 
+- The TES.pdf file might not be the latest compiled version respect to the LaTex code available in the repository but just a recent version compiled for accessibility purposes.
+- Inside the file the following command (and exaple is used here) is used to display the MATLAB code used to generate graphs or to solve problems. 
+
+```LaTex
+\lstinputlisting[language = Matlab, firstline = X, lastline = Y]{code/ENS-1.m}
+```
+
+- For readability purposes all the code for a section will be included in one single file (.m) and divided in different section using the "%%" string as provided by the MATLAB language. As noted in the command displayed before to show code we use the command by passing the first and last line we want to display. This is not ideal for large scale projects (need to rewrite every line when you change the .m file) but is used here instead of using single files for every command display or graph.
 
 Last but not least the whole project is based off this template called [TexPlate.](https://www.github.com/francescoabrami/TexPlate)
