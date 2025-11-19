@@ -11,23 +11,89 @@
 
 \subsection{Esercitazione 2 - 19/11/2025}
 
-
+In questa seconda esercitazione si % TODO FINIRE DESCIRIZONE
 
 \subsubsection{Esercizio 1 - DTFT di un segnale}
 
 Si calcoli la DTFT del segnale:
 
-\[ x[n] = u[n] - u[n-10] + n \cdot e^{-n}u[n]   \]\
+\[ x[n] = u[n] - u[n-10] + n \cdot e^{-n}u[n] \]\
+
+Cominciamo con la risoluzione dell'esercizio andando, come prima cosa, a disegnare il segnale $x[n]$ formato da tre parti che tratteremo in modo separato in quanto vale la proprietà di linearità. 
+In particolare i tre pezzi che compongono $x[n]$ sono un gradino $u[n]$, un gradino ritardato di dieci campioni ed infine una sequenza esponenziale decrescente non nulla solo per valori positivi e moltiplicata a sua volta per un valore $n$.
+La differenza delle prime due sequenze genera, come abbiamo già visto, una porta definita tra l'origine ed $n = 9$.\\
+
+Possiamo ora, per linearità, andare a trasformare i singoli pezzi per poi ricomporli più tardi.
+In particolare denominando con $x_1[n]$ la porta definita dalla prime due sequenze e $x_2[n]$ la restante parte otteniamo che:
+
+\[ X_1(e^{j2 \pi f}) = \sum_{n = -\infty}^{+\infty} x_1[n] \cdot e ^{-j2 \pi f n}  \]
+
+Posso riscrivere l'espressione appena vista come:
+
+\[ \sum_{n = 0}^9 e^{-j2\pi n f} = \frac{1 - e^{-j2\pi f \cdot 10}}{1 - e^{-j2\pi f}}\]\
+
+Arrivati a questo punto possiamo trasformare il secondo pezzo denominato $x_2[n]$.
+In particolare scrivendo $x_2[n]$ come:
+
+\[ x_2[n] = n \cdot z[n] \hspace{15 pt} \unit{con} \hspace{15 pt} z[n] = e^{-n} \cdot u[n]  \]
+
+Possiamo ottenere il risultato appena visto in quanto a lezione % TODO PARTE CHE MANCA
+
+Passando alla seconda parte, ovvero $x_2[n]$, possiamo andare ad applicare la proprietà della derivazione in frequenza secondo la seguente formula dove:
+
+\[ n \cdot x[n] \rightarrow \frac{j}{2\pi} \cdot \diff{}{f} X(e^{j2\pi f})} \]\
+
+Possiamo quindi calcolare la trasformata del termine $e^{-n} \cdot u[n]$ parte ottenendo:
+
+\[ \sum_{n = -\infty}^{+\infty}  e^{-n} \cdot u[n] \cdot e^{-j2\pi fn} \]\
+
+Sapendo che moltiplico il tutto per un gradino unitario limito la mia sommatoria ad indici positivi:
+
+\[ \sum_{n = 0}^{+\infty}  e^{-n} \cdot e^{-j2\pi fn} \]\
+
+utilizzando le proprietà degli esponenti ottengo che:
+
+
+\[ \sum_{n = 0}^{+\infty}  e^{-n} \cdot e^{-j2\pi fn}  = \sum_{n = 0}^{+\infty}  e ^{-n \cdot (2j\pi f + 1)}\]\
+
+In definitiva arriviamo al risultato seguente attraverso % TODO CAPIRE COSA FATTO, SERIE?
+
+
+\[ \sum_{n = 0}^{+\infty}  e ^{-n \cdot (2j\pi   + 1)} = \frac{1}{1 - e ^{-(2j\pi f + 1)} }\]\
+
+Ora scomponendo l'esponenziale al denominatore ed applicando la proprietà sopracitata si ottiene che:
+
+\[ \frac{j}{2\pi} \cdot \diff{}{f} X(e^{j2\pi f}) = \frac{j}{2\pi} \cdot \diff{}{f} \frac{1}{1 - e^{-1} e^{-2j\pi f}}\]\
+
+Ora non ci basta che calcolare la derivata come indicato di seguito, utilizzando le opportune tecniche di derivazione, in questo caso si utilizza la regola di derivazione di un rapporto.
+
+\[ \diff{}{x} \frac{f(x)}{g(x)} \rightarrow \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{\big( g(x) \big)^2} \]\
+
+Segue lo svolgimento del calcolo:
+
+\[ \frac{j}{2\pi} \diff{}{f} \frac{1}{1 - e^{-1} e^{-2j\pi f}} = \frac{j}{2\pi} \frac{e^{-1} \cdot e^{-j2\pi f} \cdot (-j2\pi)}{(1 - e^{-1} e^{-2j\pi f})^2} \]\
+
+A questo punto il denominatore resta invariato, se non per la semplificazione di $2\pi$ con il numeratore, mentre al numeratore avviene la semplificazione di $-j \cdot j$ ad 1.
+Otteniamo in definitiva il seguente risultato:
+
+\[ \frac{e^{-1} \cdot e^{-j2\pi f}}{(1 - e^{-1} e^{-2j\pi f})^2} \]\
+
+Arrivati a questo risultato il risultato atteso, ovvero la trasformata di $x[n]$, è stato raggiunto concludendo di fatto l'esercizio.
 
 \subsubsection{Esercizio 2 - Costruzione di una sequenza e calcolo DTFT}
 
-Si consideri una sequenza $x[n]$ con DTFT pari a $X(e^{j2\pif})$. Si costruisca una sequenza $y[n]$ a partire da $x[n]$ con la regola:
+Si consideri una sequenza $x[n]$ con DTFT pari a $X(e^{j2 \pi f})$. Si costruisca una sequenza $y[n]$ a partire da $x[n]$ con la regola:
 
 \[ y[2n] = x[n] \]
 \[ y[2n+1] = -x[n] \]\
 
-Si calcoli ora la DTFT di $y[n]$.
- 
+Si calcoli ora la DTFT di $y[n]$.\\
+
+Iniziamo la risoluzione dell'esercizio notando come la regola descritta sopra opera su una sequenza qualsiasi $x[n]$ ritornando il valore assunto della sequenza nel caso in cui il campione sia pari mentre il valore cambiato di segno nel caso in cui il campione sia dispari.
+Compreso ora come opera la nostra regola possiamo andare avanti considerando la generica sequenza $x[n]$ come la sommatoria di due sequenze, una a termini pari ed una a termini dispari, separate tra di loro.\\
+
+
+
 \subsubsection{Esercizio 3 - Analisi FFT su un segnale limitato nel tempo}
 
 Un segnale praticamente limitato nel tempo per $0 \leq t \leq T_1$ con $T_1$ = 1s e limitato in banda per $|f| \leq B_x$ con $B_x$ = 32 Hz viene campionato alla
@@ -38,8 +104,14 @@ frequenza $\Delta f$ = 0.5 Hz. Dire quale delle seguente affermazioni è corrett
 	\item[\textbf{1)}] Per conseguire la risoluzione in frequenza richiesta è necessario elaborare almeno $N$ = 128 campioni e può essere necessario estendere il segnale nel tempo con campioni nulli.
 	\item[\textbf{2)}] Non è possibile in alcun modo conseguire la risoluzione in frequenza richiesta.
 	\item[\textbf{3)}] Non è possibile conseguire la risoluzione in frequenza richiesta se non campionando il segnale ad una frequenza superiore alla frequenza di Nyqvist.
-	\item[\textbf{4)}] Nessuna delle altre risposte è corretta
+	\item[\textbf{4)}] Nessuna delle altre risposte è corretta.
 \end{enumerate}
+
+
+
+
+
+
 
 \subsubsection{Esercizio 4 - Sequenza campionata e DFT}
 
