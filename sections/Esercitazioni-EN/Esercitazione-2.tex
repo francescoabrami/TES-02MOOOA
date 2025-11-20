@@ -4,14 +4,13 @@
 
 \newpage
 
-
 \begin{document}
 
 %% BEGIN WRITING %%
 
 \subsection{Esercitazione 2 - 19/11/2025}
 
-In questa seconda esercitazione si % TODO FINIRE DESCIRIZONE
+In questa seconda esercitazione si continueranno ad affrontare problemi riguardo l'elaborazione di segnali discreti. In particolare all'interno di questa esercitazione ci concentreremo sulle operazioni di convoluzione lineare, DTFT di un segnale, FFT di un segnale e DTF di un segnale andando ad analizzarne i particolari.
 
 \subsubsection{Esercizio 1 - DTFT di un segnale}
 
@@ -92,11 +91,41 @@ Si calcoli ora la DTFT di $y[n]$.\\
 Iniziamo la risoluzione dell'esercizio notando come la regola descritta sopra opera su una sequenza qualsiasi $x[n]$ ritornando il valore assunto della sequenza nel caso in cui il campione sia pari mentre il valore cambiato di segno nel caso in cui il campione sia dispari.
 Compreso ora come opera la nostra regola possiamo andare avanti considerando la generica sequenza $x[n]$ come la sommatoria di due sequenze, una a termini pari ed una a termini dispari, separate tra di loro.\\
 
+Otteniamo dunque che la DTFT della sequenza $y[t]$ é:
+
+\[  Y(e^{j2\pi f}) = \sum_{n = -\infty}^{+\infty} y[n] \cdot e^{-j2\pi f n} \]\
+
+Scrivendo la sequenza $y[t]$ come combinazione di due sommatoria, una pari l'altra dispari, di $x[t]$ ottengo che:
+
+\[ Y(e^{j2\pi f}) = \sum_{n = \unit{pari}}^{+\infty}  y[n] \cdot e^{-j2\pi f n} \;+  \sum_{n = \unit{dispari}}^{+\infty} y[n] \cdot e^{-j2\pi f n}  \]\
+
+Esplicitiamo ora la dicitura pari e dispari andando a riscrivere le sommatorie in modo opportuno utilizzando sempre la variabile $n$. Ottengo che:
+
+\[ Y(e^{j2\pi f}) = \sum_{n = -\infty}^{+\infty}  y[2n] \cdot e^{-j2\pi f 2n} \;+  \sum_{n = -\infty}^{+\infty}  y[2n+1] \cdot e^{-j2\pi f (2n + 1)}  \]\
+
+Arrivati a questo punto possiamo andare a sostituire le sequenze $y[2n]$ e $y[2n + 1]$ con $x[n]$ e $-x[n]$, ottenendo che:
+
+\[ Y(e^{j2\pi f}) = \sum_{n = -\infty}^{+\infty} x[n] \cdot e^{-j2\pi f 2n} \;-  \sum_{n = -\infty}^{+\infty}  x[n] \cdot e^{-j2\pi f (2n + 1)}  \]\
+
+Possiamo a questo punto unire tutto sotto un'unico simbolo di sommatoria e distribuendo l'argomento del secondo esponenziale, ottenendo che:
+
+\[ Y(e^{j2\pi f}) = \sum_{n = -\infty}^{+\infty}  x[n] \cdot \big( e^{-j2\pi f 2n} - e^{-j2\pi f 2n} \cdot  e^{-j2\pi f} \big) \]\ 
+
+Effettuo ora un raccoglimento:
+
+\[ Y(e^{j2\pi f}) = \sum_{n = -\infty}^{+\infty}  x[n] \cdot  e^{-j2\pi f 2n} (1 - e^{-j2\pi f} )\]\
+
+Arrivati a questo punto notiamo come 
+
+
+
+
+
 
 
 \subsubsection{Esercizio 3 - Analisi FFT su un segnale limitato nel tempo}
 
-Un segnale praticamente limitato nel tempo per $0 \leq t \leq T_1$ con $T_1$ = 1s e limitato in banda per $|f| \leq B_x$ con $B_x$ = 32 Hz viene campionato alla
+Un segnale praticamente limitato nel tempo per $0 \leq t \leq T_1$ con $T_1$ = 1 s e limitato in banda per $|f| \leq B_x$ con $B_x$ = 32 Hz viene campionato alla
 frequenza di Nyquist $\tfrac{1}{T_0} = 2B_x$. \\ I campioni $x_n = x(nT_0)$, dove $T_0$ è il periodo di campionamento, vengono usati per valutare numericamente lo spettro del segnale mediante una FFT a radice due. Si richiede una risoluzione in
 frequenza $\Delta f$ = 0.5 Hz. Dire quale delle seguente affermazioni è corretta:
 
@@ -116,28 +145,201 @@ frequenza $\Delta f$ = 0.5 Hz. Dire quale delle seguente affermazioni è corrett
 \subsubsection{Esercizio 4 - Sequenza campionata e DFT}
 
 Si consideri la sequenza $x[n]$ di $N = 10$ campioni che vale 1 per $n = 0,2,8$
-e zero altrove. Si calcoli $X[k] = \unit{DFT}\{x[n]\}$.
+e zero altrove. Si calcoli $X[k] = \unit{DFT}\{x[n]\}$.\\
+
+Iniziamo con la risoluzione dell'esercizio andando a rappresentare la sequenza data in analisi.
+Segue il grafico della sequenza:
+
+% TODO GRAFICO SEQ.
+
+Come nostro solito riportiamo anche il codice MATLAB utilizzato per generarla:
+
+% TODO MATLAB CODE
+
+Arrivati a questo punto possiamo andare a calcolare la DFT della sequenza secondo la formula seguente:
+
+\[X[k] = \sum_{n = 0}^{N-1} x[n] \cdot e^{-j2\pi n \frac{k}{N}}  = \sum_{n = 0}^{9} x[n] \cdot e^{-j2\pi n \frac{k}{10}}  \]\
+
+In particolare notiamo come $x[n]$ assuma valori non nulli solo in tre punti (0,2,8) potendo dunque esplicitare i singoli valori della sommatoria nel modo seguente:
+
+\begin{center}
+	$ n = 0 \rightarrow 1 \cdot e^{-j2\pi 0 \frac{k}{10}} = 1 \cdot 1 = 1$\\
+	$ n = 2 \rightarrow 1 \cdot e^{-j2\pi \frac{2k}{10}}  $\\
+	$ n = 8 \rightarrow 1 \cdot e^{-j2\pi  \frac{8k}{10}} $\\
+\end{center}
+
+Sommando i termini ottengo che:
+
+\[X[k] = 1 + e^{-j2\pi \frac{2k}{10}}  + e^{-j2\pi  \frac{8k}{10}} \]\
+
+Ora possiamo sommare o sottratte un valore di $k$ intero all'ultimo esponenziale per ottenere un'argomento pari a quello di quello precedente in modulo ma non in segno. % TODO COME MAI? 
+Ottengo che:
+
+\[X[k] = 1 + e^{-j2\pi \frac{2k}{10}}  + e^{-j2\pi  \frac{8k}{10} - \frac{10k}{10}} = 1 + e^{-j2\pi \frac{2k}{10}}  + e^{j2\pi  \frac{2k}{10}} \]\
+
+A questo punto, utilizzando la notazione dei numeri complessi, riscrivere $X[k]$ come:
+
+\[X[k] = 1 + 2 \cdot \cos\bigg(\frac{4\pi k}{10}\bigg)\]\
+
+In particolare notiamo come il segnale ottenuto sia una sinusoide traslata di 1 verso l'alto.
+Segue un grafico di $X[k]$ con evidenziati i 10 campioni ottenuti sostituendo a $k$ un valore dell'intervallo $[0,9].$
+
+% TODO RAFICO 10 CAMPIONI
+
+Segue anche il codice MATLAB utilizzato per generarlo:
+
+% TODO CODICE MATLAB
+
 
 \subsubsection{Esercizio 5 - Spettro e campionamento di un segnale attraverso FFT}
 
-Si consideri un segnale $x(t)$ il cui spettro $X(f)$ è nullo per $|f| > f_x$, con $f_x = 10$ Hz. Si costruisca il segnale $y(t) = x(t) \cdot \cos(2\pi f_y t)$ con $f_y = 50$ Hz. Si vuole valutare lo spettro $Y(f)$ a partire da opportuni campioni di $y(t)$, usando una FFT a radice 2. Volendo ottenere una risoluzione in frequenza di 3 Hz, si valuti il passo di campionamento da scegliere per $y(t)$, il numero di campioni $N$ e la risoluzione finale ottenuta.
+Si consideri un segnale $x(t)$ il cui spettro $X(f)$ è nullo per $|f| > f_x$, con $f_x = 10$ Hz. Si costruisca il segnale $y(t) = x(t) \cdot \cos(2\pi f_y t)$ con $f_y = 50$ Hz. Si vuole valutare lo spettro $Y(f)$ a partire da opportuni campioni di $y(t)$, usando una FFT a radice 2. Volendo ottenere una risoluzione in frequenza di 3 Hz, si valuti il passo di campionamento da scegliere per $y(t)$, il numero di campioni $N$ e la risoluzione finale ottenuta.\\
+
+Iniziamo a risolvere questo esercizio andando a considerare un segnale analogico $x(t)$ generico in modo tale da avere qualcosa su cui poter visualizzare le operazioni che faremo.
+Inoltre sapendo che lo spettro di tale è finito andiamo a rappresentare la sua porzione di banda avente un supporto pari all'intervallo $(-f_x;f_x)$ ovvero tra $-10$ e $10$ Hz.
+Segue il grafico della regione di banda del segnale.
+
+Ora possiamo andare a costruire il segnale $y(t)$ come indicato dal testo del problema. In particolare dato un generico $x(t)$ e sfruttando la modulazione si ottiene che:
+
+\[ Y(f) = \frac{1}{2} \bigg[ X(f - f_y) + X(f + f_y) \bigg]  \]\
+
+Quindi, come ormai dovremmo sapere, lo spettro di $x(t)$ viene traslato attorno a $\pm f_y$ e dimezzato in ampiezza. Se prima aveva un'ampiezza arbitraria pari ad $A$ ora le due repliche traslate hanno ampiezza $\tfrac{A}{2}$.
+
+Iniziamo ora analizzando il primo punto dove ci viene chiesto di valutare passo di campionamento del segnale $y(t)$ appena generato. 
+Come ci viene detto se $\Delta f \leq 3$ Hz si avrà che:
+
+\[ \Delta f = \frac{1}{T}  \leq 3 \unit{Hz} \rightarrow T \geq \frac{1}{3} \unit{s} \]\
+
+Si ottiene dunque che il passo di campionamento usato deve essere pari a circa 0.33 s
+
+Procediamo oltre trovando la massima componente in frequenza pari a $f_{max} = f_y + f_x$ con la quale possiamo andare a calcolare, secondo Nyquist, la frequenza di campionamento opportuna al fine di evitare aliasing.
+In particolare otteniamo che:
+
+\[ f_s \ge 2 \cdot f_{max} \rightarrow f_s = 2 \cdot (f_y + f_x) = 2 \cdot (50 + 10) = 120 \unit{Hz} \]\
+
+Ora non ci basta che calcolare il numero di punti, ovvero campioni, necessari affinché siano sufficienti per una corretta analisi.
+In particolare sapendo che la risoluzione di una FFT è:
+
+\[ \Delta f = \frac{f_s}{N} \]\
+
+Possiamo ora calcolare il numero di punti necessari al fine di ottenere una risoluzione minore di $\delta f = 3$ Hz.
+In particolare si ha che:
+
+\[ N \geq \frac{f_s}{\Delta f} \rightarrow  N \geq \frac{120 \unit{Hz}}{3\unit{Hz}} \rightarrow N \geq  40 \]\
+
+Ricordiamo ora che il testo richiedeva l'utilizzo di una FFT a radice 2 il che comporta l'utilizzo do un numero di campioni pari ad una potenza di due.
+Arrotondiamo quindi il risultato ottenuto alla potenza di due più vicina. Ricordiamo che la potenza di due più vicina deve essere maggiore del valore di $N$ trovato; nel caso in cui non lo sia non staremo più rispettando i parametri di risoluzione richiesti.
+In definitiva andiamo a considerare $N = 64$.
+
+Infine calcoliamo la corrispettiva risoluzione in frequenza pari a:
+
+\[ \Delta f = \frac{f_s}{N} = \frac{120 \unit{Hz}}{64} = 1.875 \unit{Hz} \]\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsubsection{Esercizio 6 - Costruzione di una sequenza e DFT}
 
-A partire dal segnale analogico $x(t) = A_1 \cdot \cos(2\pi f_0 t) + A_2 \sin(2\pi f_0 t)$ (con $A_1$ e $A_2$ costanti positive) si costruisce la sequenza $x[n] = x(nT_c)$ con $T_c = 1/(2f_0)$. Si considerino $N$ = 10 campioni di $x[n]$ nell’intervallo $0 \leq n \leq 9$ e la sequenza $X[k] = \unit{DFT}\{x[n]\}$. Dire quale delle seguenti affermazioni è falsa:
+A partire dal segnale analogico $x(t) = A_1 \cdot \cos(2\pi f_0 t) + A_2 \cdot \sin(2\pi f_0 t)$ (con $A_1$ e $A_2$ costanti positive) si costruisce la sequenza $x[n] = x(nT_c)$ con $T_c = 1/(2f_0)$. Si considerino $N$ = 10 campioni di $x[n]$ nell’intervallo $0 \leq n \leq 9$ e la sequenza $X[k] = \unit{DFT}\{x[n]\}$. Dire quale delle seguenti affermazioni è falsa:
 
 \begin{enumerate}
 	\item[\textbf{1)}] La sequenza campionata vale $x[n] = A_1e^{j\pi n}$
 	\item[\textbf{2)}] $X[k]$ = 0 per $0 \leq k \leq 5$
 	\item[\textbf{3)}] $X[k]$ = 0 per $0 \leq k < 5$
-	\item[\textbf{4)}] $X[k]$ = $10 \cdot A_1$ per $k = 5$
+	\item[\textbf{4)}] $X[k]$ = $10 \cdot A_1$ per $k = 5$\\
 \end{enumerate}
 
+Andiamo ora a ad analizzare il problema e tentare una soluzione.
+Come prima andiamo ad analizzare il nostro segnale analogico $x(t)$. Il segnale dato in esame è composto dalla somma di due sinusoidi, aventi stessa frequenza, moltiplicate per due costanti che ne modificano l'ampiezza.
+Ora che abbiamo capito come è composto il nostro segnale dobbiamo andare ad ottenere la sequenza $x[n]$ tramite un campionamento dove consideriamo i primi 10 campioni.
+In particolare esplicitando l'operazione di campionamento si ottiene:
+
+\[ x[n] = x(nT_c) = A_1 \cdot \cos(2\pi f_0 nT_c) + A_2 \cdot \sin(2\pi f_0 nT_c) \]\
+
+Sapendo che il valore di $T_c$ è pari a $\tfrac{1}{2f_0}$ andiamo a sostituire tale valore nell'espressione appena trovata:
+
+\[ x[n] = x(nT_c) = x\big(\frac{n}{2f_0}\big)  =   A_1 \cdot \cos(2\pi f_0 \frac{n}{2f_0}) + A_2 \cdot \sin(2\pi f_0 \frac{n}{2f_0}) \]\
+
+Andiamo ora a semplificare, ottenendo:
+
+\[ x[n] =  A_1 \cdot \cos(\pi n) + A_2 \cdot \sin(\pi n) \]\
+
+A questo punto essendo $n$ un numero intero possiamo riscrivere il coseno ed il seno nel modo seguente in quanto il coseno di $n\pi$ è sempre pari a -1 o +1 mentre il seno è sempre nullo. Otteniamo dunque:
+
+\[ x[n] = A_1 \cdot (-1)^n\]\
+
+Ci è infine possibile riscrivere $x[n]$ utilizzando un'esponenziale complesso, otteniamo infine che:
+
+\[ x[n] = A_1  \cdot e^{j\pi n}\]\
+
+Arrivati a questo punto possiamo dire che l'opzione \textbf{1)} risulta essere corretta motivo per cui dobbiamo controllare quelle successive.
+Come possiamo vedere le restanti tre opzioni fanno riferimento a $X[k]$ che altro non è che la DTF di $x[n]$ motivo per cui ora la calcoleremo.
+Seguono i passaggi effettuati:
+
+\[X[k] = \unit{DFT}\{x[n]\} \hspace{10pt} \unit{con} \hspace{10pt} x[n] = A_1  \cdot e^{j\pi n} \]
+
+\[X[k] = \sum_{n=0}^9 x[n] \cdot e^{-j2\pi n \frac{k}{N}}\]\
+
+Sostituisco i valori di $N$ e di $x[n]$, ottengo che:
+
+\[X[k] = \sum_{n=0}^9 A_1  \cdot e^{j\pi n} \cdot e^{-j2\pi n \frac{k}{10}}\]\
+
+Porto ora fuori la costante $A_1$ e raccolgo $n$ all'esponente:
 
 
+\[X[k] = A_1 \cdot \sum_{n=0}^9 ( e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}})^n\]\
+
+A questo punto possiamo verificare il punto \textbf{4)} in quanto, essendo una sommatoria, basta che il valore elevato ad $n$ sia pari ad 1 per il valore di $k = 5$ così da ottenere una sommatoria di 10 volte uno.
+Segue la verifica di quanto appena detto:
+
+\[ e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}} = 1 \hspace{10pt} \unit{con} \hspace{10pt} k = 5\]
+
+\[ e^{j\pi} \cdot e^{-j2\pi \frac{5}{10}} = e^{j\pi} \cdot e^{-j\pi}  \]\
+
+Entrambi gli esponenziali complessi sono pari ad uno per l'identità di Eulero. Si verifica quindi quanto detto prima.\\
 
 
+Arrivati a questo punto dobbiamo solo verificare i valori assunti al variare di $k$.
+In particolare, come fatto anche in precedenza, possiamo riscrivere la sommatoria utilizzando la serie geometrica troncata di cui riportiamo la formula:
+
+\[ \sum_{n = 0}^{N-1} r^n = \frac{1 - r^N}{1 - r}\]\
+
+Sostituendo $r$ con $e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}}$ ed $N$ con 10 ottengo che:
+
+\[ A_1 \cdot \sum_{n = 0}^{9} ( e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}})^n =A_1 \cdot  \frac{1 - \big(e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}}\big)^{10}}{1 - e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}}}\]\
 
 
+A questo punto possiamo verificare le opzioni rimanenti semplicemente andando a variare il valore di $k$.
+Iniziamo cercando di capire quale delle due opzioni rimanente è vera. 
+
+Possiamo riscrivere la sommatoria nel modo sguente:
+
+\[ A_1 \cdot \sum_{n = 0}^{9} ( e^{j\pi} \cdot e^{-j2\pi \frac{k}{10}})^n  = A_1 \cdot \sum_{n = 0}^{9} e^{j2\pi n (\frac{1}{2} - \frac{k}{10})} \]\
+
+Sapendo che la ragione della sommatoria è $r = e^{j2\pi n (\frac{1}{2} - \frac{k}{10})}$ ci troviamo nei due casi seguenti.
+
+Nel caso in cui $r \neq 1$ ottengo il risultato seguente:
+
+\[ X{n} = A_1 \cdot \sum_{n = 0}^{9} r^n = A_1 \cdot \frac{1 - r^{10}}{1 - r}  \]\
+
+Essendo $r^{10}$ pari a $e^{j2\cdot10\pi n (\frac{1}{2} - \frac{k}{10})}$ ovvero pari a $e^{j2\pi (5 - k)}$ dato che $5-k$ risulta essere intero la sommatoria assume sempre un valore nullo in quanto al numeratore compare il valore $1 - 1$.
+Nel caso in cui $r = 1$ tutti i termini della sommatoria sono 1 ed otteniamo un valore pari a 10.
+In particolare l'uguaglianza $r = 1$ si verifica quando $\frac{1}{2} - \frac{k}{10}$ è un numero relativo in quanto porta l'esponenziale complesso, scrivibile come somma di funzioni trigonometriche, ad un valore nullo.
+La condizione citata sopra è soddisfatta per tutti i valori di $k$ pari a $5+m10$ dove $m$ assume un qualsiasi valore relativo.
+
+In alternativa al calcolo appena fatto si poteva ragionare nel modo seguente. Sapendo dall'opzione \textbf{4)} che $x[k]$ assumeva un valore non nullo, in quanto $A_1$ è positiva per definizione si poteva dedurre che l'opzione \textbf{2)} fosse falsa in quanto in contraddizione sul valore assunto a $k =5$.
 
 \end{document}
