@@ -64,12 +64,6 @@
 \newtheorem*{corollary}{Corollario}
 \newtheorem*{prop*}{Proprietà}
 
-%% SECTION FOR CUSTOM COMMAND %%
-
-\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
-\def\version{1.14.2}
-\renewcommand{\dateseparator}{-}
-
 %% SECTION FOR CUSTOM PATHS %%
 
 \graphicspath{ {./images/} }
@@ -81,6 +75,12 @@
 \topmargin -0.75 cm
 \oddsidemargin 0.5 cm
 \linespread{1.1}
+
+%% SECTION FOR CUSTOM COMMAND %%
+
+\newcommand{\unit}[1]{\ensuremath{\, \mathrm{#1}}}
+\def\version{1.15.0}
+\renewcommand{\dateseparator}{-}
 
 %% TITLE INFORMATION AND VERSIONING %%
 
@@ -113,7 +113,6 @@
 \subfile{sections/001-Domande.tex} % FUTURE USE
 \subfile{sections/002-Concetti.tex}
 
-\subfile{sections/LEZIONI-TS/01-ALG.tex}
 \subfile{sections/LEZIONI-TS/02-Segnali.tex}
 \subfile{sections/LEZIONI-TS/03-Analogici.tex}
 \subfile{sections/LEZIONI-TS/04-Vettori.tex}
