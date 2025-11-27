@@ -1,4 +1,4 @@
-name: Build LaTeX
+name: Build LaTeX document
 
 # NEW STRUCT
 
@@ -40,46 +40,50 @@ jobs:
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
+      # d. Remove old file versions
+      - name: Delete old PDF versions
+        run: |
+          rm -f TES\ -\ *.pdf || true
+          git rm -f TES\ -\ *.pdf || true
+        continue-on-error: true 
+
       # 2. Run LaTeX using Docker
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
+          
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
         with:
           name: PDF
           path: main.pdf
 
-      # 3. Rename output PDF
-      - name: Rename PDF
-        run: |
-          if [ -f "main.pdf" ]; then
-            mv main.pdf TES.pdf
-          else
-            echo "TES.pdf not found!"
-            exit 1
-          fi
-
-      # 4. Extract version from \def\version{1.2.3}
-      - name: Extract version 
+      # 3. Extract version and rename output PDF 
+      - name: Extract version and rename PDF
         id: get_version
         run: |
           VERSION=$(grep -oP '\\def\\version\{\K[^\}]+' main.tex || true)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version = $VERSION" >> $GITHUB_OUTPUT
 
-      # 5. Commit and push
+          rm -f "TES - "*.pdf || true
 
-      - name: Commit PDF to repo
-        run: |
+          if [ -f "main.pdf" ]; then
+            mv "main.pdf" "TES - ${VERSION}.pdf"
+          else
+            echo "main.pdf not found!"
+            exit 1
+          fi
+
           git config user.name "francescoabrami"
           git config user.email "francesco.abrami03@gmail.com"
 
-          git add TES.pdf
+          git add "TES - ${VERSION}.pdf"
 
-          git commit -m "AUTO: add TES.pdf (version: $VERSION)" || exit 0
+          git commit -m "AUTO: updated PDF (version: $VERSION)" || exit 0
           git verify-commit $( git rev-parse HEAD )
           git push   
+          
         env:
           VERSION: ${{ steps.get_version.outputs.version }}
           GPG_KEY_PASSPHRASE: ${{ secrets.GPG_KEY_PASSPHRASE }}
@@ -87,12 +91,3 @@ jobs:
           GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
           GIT_AUTHOR_NAME: francescoabrami
           GIT_AUTHOR_EMAIL: francesco.abrami03@gmail.com  
-        
-
-      # 2. Run LaTeX using prebuilt Docker (fast + no installation)
-      # - name: Compile PDF using Docker
-      #   run: |
-      #     docker run --rm \
-      #       -v ${{ github.workspace }}:/workdir \
-      #       texlive/texlive:latest \
-      #       sh -c "cd /workdir && latexmk -pdf -interaction=nonstopmode -f main.tex"
