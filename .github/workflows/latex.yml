@@ -78,7 +78,7 @@ jobs:
           git config user.name "francescoabrami"
           git config user.email "francesco.abrami03@gmail.com"
 
-          git add "TES - ${VERSION}.pdf"
+          git add -f "TES - ${VERSION}.pdf"
 
           git commit -m "AUTO: updated PDF (version: $VERSION)" || exit 0
           git verify-commit $( git rev-parse HEAD )
