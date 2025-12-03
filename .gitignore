@@ -24,9 +24,6 @@
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
 
-## Ignore all .pdf files since the repo will commit the latest version available:
-*.pdf
-
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bbl-SAVE-ERROR
