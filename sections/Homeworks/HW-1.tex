@@ -3,14 +3,97 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
-
 \newpage
 
 %% BEGIN SUBFILE %%
 
-\section{Homework 1 - Analisi in frequenza FFT e DTF}
+\section{Homework - 1}
+
+All'interno di questa sezione viene presentato un possibile svolgimento del primo homework presentato durante le lezioni dell'anno accademico 2025/2026.
+
+\subsection{Procedimento}
+
+Per l'esecuzione dell' esercitazione è stato adottato il seguente procedimento.
+Come prima cosa sono stati scelti due brani di generi differenti sui cui poter effettuare l'elaborazione richiesta. In particolare è stato scelto un brano di genere hard-techno e uno di musica classica.\\
+
+Il primo vero passo è stato quello di caricare i brani all'interno di MATLAB attraverso la funzione di libreria \texttt{audioread()}.\\
+
+Successivamente si è passati alla conversione dei brani da formato stereo a mono, in modo da poter lavorare su un singolo canale. Questa effettuare questa operazione ed evitare possibili distorsioni introdotte dalla conversione basata sulla media tra i canali sinistro e destro, si è optato per utilizzare direttamente il solo canale sinistro come segnale di riferimento in quanto attraverso l’operazione \texttt{mean()} si sarebbero potute creare distorsioni nel caso in cui fossero presenti strumenti diversi o, più semplicemente, componenti diversi su canali diversi.\\
+
+In seguito, per ciascun brano, è stato calcolato il numero di campioni per finestra e il numero totale di finestre ottenibili in base alla durata della finestra scelta (pari a M secondi) e, per ogni finestra, è stata calcolata la FFT utilizzando la funzione di libreria fornita da MATLAB.\\
+
+Successivamente è stata calcolata la DFT utilizzando la seguente formula:
+
+\[ X(k) = \sum_{n = 0}^{N-1} x(n) \cdot e^{-j2\pi n \frac{k}{N}} \hspace{20pt} \forall k = 0,1,2, \dots, N-1 \]\
+
+In un primo momento, la formula della DFT è stata implementata utilizzando due cicli for annidati,  approccio che ha subito mostrato la sua inefficienza dovuta al costo $O(N^2)$. Per migliorare l'efficienza, l'implementazione è stata successivamente riscritta in forma vettoriale,  sfruttando le capacità di parallelizzazione intrinseche ai vettori MATLAB. Grazie a queste modifiche, il tempo di computazione di una DFT si è ridotto significativamente, soprattutto per finestre $M$ di dimensioni superiori al secondo. Notiamo comunque come la complessità asintotica dell'algoritmo sia sempre la stessa del caso precedente, in questo caso si è solo più veloci in quanto si utilizzato meglio le risorse hardware disponibili.\\
+
+Giunti a questo punto, ottenute le rispettive FFT e DFT della varie finestre prese in analisi, si è passato al calcolo dello spettro d'energia come richiesto dal testo.
+Ottenuto lo spettro si sono generati i relativi grafici tramite l'utilizzo della funzione \texttt{fftshift()}.
+
+\subsection{Grafici}
+
+Passiamo ora all'analisi dei grafici ottenuti nella sezione precedente.
+Di seguito riportiamo i grafici relativi alla DFT ed FFT dei due brani relativi ad un paio delle finestre prese in considerazione utilizzando un valore di $M$ pari ad 1.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{images/1.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.80\textwidth]{images/3.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{images/2.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.85\textwidth]{images/4.png}
+\end{figure}
+
+\newpage
+
+I grafici riportati sono in scala logaritmica lungo l'asse verticale che è quotato in dB mentre per l'asse orizzontale si utilizza la scala lineare quotando l'asse in kHz.
+Si è deciso di utilizzare la scala logaritmica in quanto più significativa rispetto a quella lineare dato che riesce a mostrare meglio le componenti presenti.
+
+Da evidenziare come gli spettri generati attraverso la FFT e DFT sono estremamente simili tra di loro come confermato da questa semplice operazione \texttt{sum(abs(E\_1\_DFT - E\_2\_DFT))} che ritorna un valore molto piccolo il quale indica una differenza minima tra i due vettori.\\
+
+Possiamo vedere come lo spettro della canzone di genere classico abbia accentuate, e dunque presenti nel brano, solo le componenti in frequenza più basse mentre la canzone hard-techno abbia uno spettro più uniforme dove anche componenti con frequenza più alta contribuiscono in modo significativo. Questa prima analisi può essere giustificata riconoscendo che in una brano di musica classica non sono presenti strumenti che generano suoni ad alta frequenza cosa che non è vera in un brano hard-techno dove diversi suoni presentano frequenze molto elevate.\\
+
+In particolare effettuando un ingrandimento attorno alle frequenze più basse possiamo notare come nel brano hard-techno siano presenti una grande quantità di basse frequenze assenti nel brano di musica classica.
 
 
-%% END SUBFILE %%
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{images/5.png}
+\end{figure}
+
+Infine possiamo notare diversi picchi nel grafico dello spettro del brano di musica classica i quali corrispondono alla frequenze delle note musicali che lo compongono. In ultima aggiunta possiamo giustificare la differenza tra grafici di finestre differenti in quanto considerano momenti nel brano differenti.
+
+
+\subsection{Conclusioni}
+
+Arriviamo ora alle conclusioni dell'analisi svolta in particolare andandoci a concentrare di come variano i risultati al variare del parametro $M$.
+Per capire cosa succede al variare del parametro abbiamo eseguito il codice che genera lo spettro di energia di una finestra diverse volte con valori di $M$ differenti.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=.9\textwidth]{images/6.png}
+\end{figure}
+
+Come possiamo vedere dai grafici riportati sopra più è piccola $M$, ovvero la durata in secondi del segnale che analizziamo, più lo spettro risultante sarà meno risoluto.
+Questo è dovuto alla risoluzione, come riportato in seguioto:
+
+\[ \Delta f = \frac{f_s}{N} = \frac{1}{T}\]\
+
+Come possiamo vedere, più è  grande il supporto, minore sarà la differenza tra le frequenze ottenute.
+
+Ricordiamo infine che i grafici riportati sono solo alcuni di quelli generati in quanto molto simili tra di loro. Inoltre quelli presenti sono tutti stati generati utilizzando DFT e FFT di segnali aventi come supporto $M = 1$.
+
 
 \end{document}
