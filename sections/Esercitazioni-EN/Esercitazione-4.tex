@@ -10,6 +10,7 @@
 
 \subsection{Esercitazione 4 - 4/12/2025}
 
+% TODO INTRO ES-4 ENS
 
 \subsubsection{Esercizio 1 - Risposta all’impulso del filtro numerico}
 
@@ -260,6 +261,74 @@ Si richiede di:
 	\item[\textbf{3)}] Dire se il filtro è a fase minima.
 \end{enumerate}
 
+Andiamo ora ad affrontare la risoluzione dell'esercizio proposto.
+Come prima cosa per ottenere la funzione di trasferimento di cui dovremo studiarne zeri e poli andiamo a trasformare nel dominio della trasformata Z la relazione ingresso uscita del filtro. Otteniamo che:
+
+\[ Y(z) - \frac{1}{4} Y(z)\cdot z^{-1}  = X(z) + X(z) \cdot z^{-1} -2X(z) \cdot z^{-2} \]\
+
+Effettuiamo il raccoglimento:
+
+
+\[ Y(z) \big[1 - \frac{1}{4} z^{-1}\big]  = X(z) \big[1 + z^{-1} -2z^{-1}\big]  \]\
+
+Calcolo ora la funzione $H(z)$:
+
+\[ H(z) = \frac{Y(z)}{X(z)} = \frac{1 + z^{-1} -2z^{-1} }{1 - \frac{1}{4} z^{-1}} \]\
+
+Raccolgo il termine $z^{-2}$ al numeratore e $z^{-1}$ al numeratore per riscrivere la relazione in termini di $z$. Ottengo dunque che:
+
+\[ H(z) = \frac{z^{-2}}{z^{-1}} \cdot \frac{z^2 + z - 2}{z - \frac{1}{4}} = \frac{z^2 + z - 2}{z \cdot (z - \frac{1}{4})} \]\
+
+A questo punto possiamo calcolare gli zeri ed i poli. In particolare gli zeri saranno dati da:
+
+\[z^2 + z - 2 = 0  \hspace{10pt} \rightarrow \hspace{10pt} \begin{cases}
+	z = 1\\
+	z = 2
+\end{cases}\]\
+
+I poli invece saranno dati da:
+
+\[ z \cdot \bigg( z - \frac{1}{4} \bigg)  = 0 \hspace{10pt}  \rightarrow \hspace{10pt} \begin{cases}
+	z = 0\\
+	z = \frac{1}{4}
+\end{cases}\]\
+
+A questo punto possiamo andare a riportare i valori ottenuti sulla circonferenza di raggio unitario.
+In particolare prendiamo in considerazione il polo con il valore maggiore per definire la regione di convergenza ROC.
+Si avrà dunque che $|z| > \tfrac{1}{4}$.
+Riportiamo anche di seguito il grafico generato in MATLAB.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=.75\textwidth]{images/e4.4.png}
+\end{figure}
+
+In aggiunta a quanto detto prima possiamo andare a dire che la relazione ingresso uscita è causale in quanto fa riferimento sempre a valori passati della sequenza.
+
+Ora procediamo con il secondo punto dove dobbiamo dire se il sistema è di tipo FIR o IIR.
+Come possiamo vedere dalla relazione ingresso uscita è presente una retroazione che, seppur moltiplicata per un fattore minore di uno, rende la risposta del filtro infinita.
+Arriviamo dunque alla conclusione che il sistema sia di tipi IIR.
+
+Passiamo all'ultimo punto dove andiamo a verificare se il sistema è a fase minima.
+Per effettuare questa verifica riprendiamo la relazione $H(z)$ andandola ad invertire per trovarne l'opposto ovvero $H^{-1}(z)$.
+Fatto ciò possiamo verificare se quel dato sistema sia stabile nel caso in cui lo sia possiamo dire che il sistema di partenza è a fase minima.
+In particolare abbiamo che:
+
+\[  H(z) = \frac{z^2 + z - 2}{z \cdot (z - \frac{1}{4})}   \]\
+
+
+\[  H^{-1}(z) = \frac{z \cdot (z - \frac{1}{4})}{z^2 + z - 2}   \]\
+
+Effettuando questa operazione notiamo come valori di poli e zeri siano invertiti.
+In particolare notiamo come i valori ricadano al di fuori della circonferenza unitaria e che quindi essendo $|z| > 1$ il sistema non risulta essere stabile.
+Come detto in precedenza se il sistema non è stabile non si ha fase minima.
+Riportiamo per completezza il grafico dei poli e zeri di $H^{-1}(z)$:
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=.75\textwidth]{images/e4.4-1.png}
+\end{figure}
+
 \subsubsection{Esercizio 5 - Analisi filtro FIR II}
 
 Si consideri il filtro di tipo FIR con $H(z)$ come riportata di seguito.
@@ -272,6 +341,22 @@ Si richiede di:
 	\item[\textbf{1)}] Studiare poli e zeri di $H(z)$.
 	\item[\textbf{2)}] Studiare la stabilità del sistema inverso ${H^{-1}(z)}$.
 \end{enumerate}
+
+Cominciamo ora con la risoluzione dell'esercizio proposto. Come prima cosa possiamo notare come ci sia possibile effettuare il raccoglimento del termine $z^{-1}$. Si ottiene che:
+
+\[ H(z) = \frac{1}{z^{4}} \cdot  (1 - 0.9e^{j0.6\pi})(1 - 0.9 e^{-j0.6\pi})(1 - 1.25 e^{j0.8\pi})(1 - 1.25 e^{-j0.8\pi}) \]\  
+
+Portando il termine raccolto al denominatore possiamo subito individuare i poli di $H(z)$, essi sono quattro e tutti pari a zero.
+
+Passando oltre notiamo come i valori dei moduli degli esponenziali complessi contenuti all'interno delle parentesi siano uguali. Possiamo andare a calcolare gli zeri di $H(z)$ a coppie. Otteniamo che gli zeri saranno pari a $0.9e^{\pm j 0.6 \pi}$ ed a $1.25e^{\pm j 0.8 \pi}$. 
+Notiamo infine come le due coppie siano composte da numeri complessi coniugati tra loro.
+Infine riportiamo il grafico come fatto anche in precedenza:
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=.75\textwidth]{images/e4.4-2.png}
+\end{figure}
 
 \subsubsection{Esercizio 6 - Analisi funzione di trasferimento}
 
