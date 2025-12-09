@@ -40,13 +40,6 @@ jobs:
         env:
           GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
 
-      # d. Remove old file versions
-      - name: Delete old PDF versions
-        run: |
-          rm -f TES\ -\ *.pdf || true
-          git rm -f TES\ -\ *.pdf || true
-        continue-on-error: true 
-
       # 2. Run LaTeX using Docker
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
@@ -66,10 +59,8 @@ jobs:
           VERSION=$(grep -oP '\\def\\version\{\K[^\}]+' main.tex || true)
           echo "version = $VERSION" >> $GITHUB_OUTPUT
 
-          rm -f "TES - "*.pdf || true
-
           if [ -f "main.pdf" ]; then
-            mv "main.pdf" "TES - ${VERSION}.pdf"
+            mv "main.pdf" "TES.pdf"
           else
             echo "main.pdf not found!"
             exit 1
@@ -78,7 +69,7 @@ jobs:
           git config user.name "francescoabrami"
           git config user.email "francesco.abrami03@gmail.com"
 
-          git add -f "TES - ${VERSION}.pdf"
+          git add -f "TES.pdf"
 
           git commit -m "AUTO: updated PDF (version: $VERSION)" || exit 0
           git verify-commit $( git rev-parse HEAD )
