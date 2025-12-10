@@ -358,6 +358,9 @@ Infine riportiamo il grafico come fatto anche in precedenza:
 \includegraphics[width=.75\textwidth]{images/e4.4-2.png}
 \end{figure}
 
+Arrivati a questo punto possiamo andare a studiare la funzione inversa, ovvero $H^{-1}(z)$ la quale risulta avere poli e zeri invertiti rispetto alla precedente.
+Come possiamo notare ora gli zeri risulterebbero al di fuori della circonferenza unitaria in quanto aventi modulo maggiore di 1. Questa condizione ci porta a definire il sistema come instabile e dunque non avente fase minima.
+
 \subsubsection{Esercizio 6 - Analisi funzione di trasferimento}
 
 Data la seguente funzione di trasferimento:
@@ -371,6 +374,68 @@ Si richiede di:
 	\item[\textbf{1)}] Studiare zeri e poli e discutere la stabilità.
 	\item[\textbf{2)}] Calcolare il modulo della funzione di trasferimento $\big|H(e^{j2\pi f})\big|$
 \end{enumerate}
+
+Passiamo ora alla risoluzione del penultimo esercizio.
+Come prima cosa per studiare la stabilità della funzione andiamo a riscrivere la relazione in funzione di $z$ nel modo seguente:
+
+\[H(z) = \frac{z^{-1}}{z^{-1}} \cdot \frac{1 - \frac{1}{3} z }{z - \frac{1}{3}} \]\
+
+Ci è ora possibile andare a individuare gli zeri ed i poli.
+In particolare avremo un polo in $z = \frac{1}{3}$ ed uno zero in $z = 3$.
+
+A questo punto per capire se la funzione è stabile andiamo a studiarne la causalità.
+Nello specifico data:
+
+\[H(z) = \frac{Y(z)}{X(z)} = \frac{z^{-1} - \frac{1}{3}}{1 - \frac{1}{3} z^{-1}} \]\
+
+Posso ricavare che:
+
+\[ Y(z) \big[ 1 - \tfrac{1}{3} z^{-1}  \big] =  X(z) \big[ z^{-1} - \tfrac{1}{3}  \big] \]\
+
+Svolgo il prodotto:
+
+\[ Y(z) - \tfrac{1}{3} \cdot Y(z) \cdot  z^{-1} =  X(z) \cdot z^{-1} - \tfrac{1}{3}\cdot  X(z) \]\
+
+Riordino i termini:
+
+\[ Y(z)  =  X(z) \cdot z^{-1} - \tfrac{1}{3}\cdot  X(z) + \tfrac{1}{3} \cdot Y(z) \cdot  z^{-1} \]\
+
+A questo punto antitrasformo:
+
+\[y[n] = x[n-1] - \tfrac{1}{3}x[n] + \tfrac{1}{3}y[n-1]  \]\
+
+Arrivati a questo punto possiamo dire che la relazione trovata è causale in quanto considera solo campioni passati e non futuri.
+In aggiunta alla causalità possiamo dire che il sistema risulta essere stabile.\\
+
+Passiamo ora oltre ed andiamo a calcolare la funzione di trasferimento $\big|H(e^{j2\pi f})\big|$.
+Ripartendo dalla funzione $H(z)$ andiamo a sostituire il valore di $z$ con quello indicato, si ottiene che:
+
+\[  H(z) = \frac{z^{-1} - \frac{1}{3}}{1 - \frac{1}{3} z^{-1}}  \]\
+
+\[ \big|H(e^{j2\pi f})\big| = H(z)\big|_{e^{j2\pi f}}  =  \frac{e^{-j2\pi f} - \frac{1}{3}}{1 - \frac{1}{3} e^{-j2\pi f}}\]\
+
+A questo punto possiamo andare a riscrivere gli esponenziali complessi con le funzioni trigonometriche corrette. Otteniamo che:
+
+\[ H(e^{j2\pi f})  = \frac{\cos(2\pi f) - j \sin(2\pi f) - \tfrac{1}{3}}{1 - \tfrac{1}{3} \big[ \cos(2\pi f) - j \sin(2\pi f) \big]} \]\
+
+Svolgo i prodotti:
+
+
+\[ H(e^{j2\pi f})  = \frac{\cos(2\pi f) - \tfrac{1}{3}  - j \sin(2\pi f) }{1 - \tfrac{1}{3} \cdot \cos(2\pi f) + j \tfrac{1}{3} \cdot \sin(2\pi f)} \]\
+
+Trovata ora $H(e^{j2\pi f})$ ne posso andare a calcolare il modulo quadro:
+
+\[ \big| H(e^{j 2 \pi f}) \big|^2 = \frac{ \left( \cos(2\pi f) - \tfrac{1}{3} \right)^2 + \sin^2(2\pi f) }{ \left( 1 - \tfrac{1}{3} \cos(2\pi f) \right)^2 + \tfrac{1}{3} \, \sin^2(2\pi f) } \]
+
+Svolgiamo le potenze:
+
+\[ \big| H(e^{j 2 \pi f}) \big|^2 = \frac{ \cos^2(2\pi f) - \tfrac{2}{3} \cdot \cos(2\pi f) + \tfrac{1}{9} + \sin^2(2\pi f) }{  1 - \tfrac{2}{3} \cos(2\pi f) + \tfrac{1}{9} \cdot \cos^2(2\pi f)  + \tfrac{1}{9}  \sin^2(2\pi f) } \]
+
+Notiamo come le funzioni trigonometriche seno e coseno al quadrato si semplifichino ad 1, otteniamo che:
+
+\[  H(z) = \frac{1 + \tfrac{1}{9} - \tfrac{2}{3} \cdot \cos(2\pi f) }{1 + \tfrac{1}{9} - \tfrac{2}{3} \cdot \cos(2\pi f)}   =  1\]\
+
+Il modulo quadro e di conseguenza il modulo risulta essere uguale ad 1.
 
 \subsubsection{Esercizio 7 - Funzione di trasferimento dato un segnale}
 
@@ -389,6 +454,61 @@ Si richiede di:
 	\item[\textbf{2)}] Calcolare l’uscita $y[n]$.
 	\item[\textbf{3)}] Dire se il sistema è stabile.
 \end{enumerate}
+
+
+Iniziamo ora la risoluzione di questo ultimo esercizio.
+Come prima cosa, come fatto in precedenza, andiamo a riscrivere la relazione in funzione di $z$ dividendola in frazioni, otteniamo che:
+
+\[ H(z) =  \frac{1}{1 + \tfrac{3}{4}z^{-1}} - z^{-1} \cdot \frac{1}{ 1 + \tfrac{3}{4}z^{-1}}\]\
+
+Possiamo subito notare come ci siano presenti uno zero in $z=0$ e un polo in $z =- \tfrac{3}{4}$.
+
+% TODO
+
+
+
+Passiamo ora al punto \textbf{2)} e calcoliamo la relazione ingresso/uscita.
+In particolare sapendo che:
+
+\[H(z) = \frac{Y(z)}{X(z)}\]\ 
+
+Otteniamo che:
+
+\[ Y(z) \big[ 1 + \tfrac{3}{4} z^{-1} \big] = X(z) \big[ 1 -z^{-1} \big]   \]\
+
+Svolgo i prodotti:
+
+\[ Y(z) + \tfrac{3}{4} \cdot Y(z) \cdot  z^{-1}  = X(z) - X(z) \cdot z^{-1}  \]\
+
+Riordino i termini:
+
+\[ Y(z) = X(z) - X(z) \cdot z^{-1} - \tfrac{3}{4} \cdot Y(z) \cdot  z^{-1} \]\
+
+Infine effettuo l'antitrasformata, ottenendo che:
+
+\[ y[n] = x[n] - x[n-1] - \tfrac{3}{4}\cdot x[n-1]  \]\
+
+
+Concludiamo affrontando ora il punto \textbf{3)} dove dobbiamo stabilire se il sistema è stabile oppure no.
+Come prima cosa notiamo che il segnale $x[n]$ posto in ingresso è per una parte causale mentre per un'altra è anticausale. 
+
+Notata questa caratteristica possiamo andare a moltiplicare $H(z)$ con $X(z)$ per ottenere il risultato voluto.
+
+A questo punto possiamo andare a calcolare $X(z)$ antitrasformando il segnale posto in ingresso, utilizzando le tavole otteniamo che:
+
+\[ X(z) =  \frac{1}{1 - \tfrac{1}{3}z^{-1}} - \frac{1}{ 1 - z^{-1}} \]\
+
+Effettuo il prodotto:
+
+\[ X(z) =  \frac{-\tfrac{2}{3}z^{-1}}{\big(1 - \tfrac{1}{3}z^{-1}\big)\big(1 - z^{-1}\big)} \]\
+
+Calcolo ora $Y(z)$ come prodotto di $X(z)$ e di $H(z)$, ottengo che:
+
+
+\[ Y(z) =  \frac{ -\frac{2}{3} \, z^{-1} } { \left( 1 - \frac{1}{3} z^{-1} \right) \left( 1 - z^{-1} \right) } \cdot \frac{ 1 - z^{-1} }{ 1 + \frac{3}{4} z^{-1} } \]\
+
+
+
 
 \end{document}
 
