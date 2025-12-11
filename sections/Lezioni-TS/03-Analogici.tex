@@ -1,0 +1,200 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\section{Segnali Analogici}
+
+Iniziamo ora a trattare la prima tematica che incontriamo in questo corso di teoria ed elaborazione dei segnali la quale è rappresentata dai segnali analogici.
+
+\subsection{Introduzione ai segnali analogici reali e complessi}
+
+In particolare andremo a trattare i segnali che definiremo segnali analogici a tempo continuo di cui diamo la definizione di seguito. Un segnale analogico reale a tempo continuo è una funzione reale di variabile reale (tempo) - indicata con la lettera t al posto della x - che assume valori significativi per qualunque tempo t. Inoltre il tempo non è discretizzato il che rende il segnale sempre continuo e non risulta essere composizione di una serie o un susseguirsi di tanti valori puntuali ravvicinati.
+
+Notiamo infine come non si pongano restrizioni del segnale nel suo sviluppo - e continuità - lungo l'asse \textit{y}, per quanto ne sappiamo il segnale può essere discontinuo nella sua ampiezza.\\
+
+Introdotti i suddetti segnali analogici reali passiamo a considerare i segnali analogici complessi. Tali tipologie di segnali non sono altro che  funzioni a valori complessi (ma sempre della variabile reale tempo \textit{"continuo"}) che mappano R \unit{\rightarrow} C.
+
+Seppur possa sembrare strano dover utilizzare una funzione a valori complessi, che ricordiamo avere invece variabile reale, per trattare lo studio di un segnale basti sapere che questa trattazione porta diversi vantaggi nello sviluppo di un modello di segnali di tipo sinusoidale o pseudo-sinusoidale ovvero modulati attorno ad una sinusoide.
+In particolare volendo fare un piccole esempio si pensi al seguente segnale, avente $f_0$ costante, introdotto nei corsi passati di Fisica II ed Elettrotecnica:
+
+\[f(t) = a(t) \cdot \cos(2\pi f_0t + \phi (t))\]\
+ 
+Per vari motivi, che vedremo in seguito, ci può essere utile rappresentare questo segnale come un segnale a valori complessi con espressione:
+
+\[f'(t) = a(t) \cdot e^{i\phi (t)}\]\
+
+dalla quale ci è possibile, per sinusoidi pure introdurre il concetto di fasore:
+
+\[f'(t) = a\cdot e^{i\phi}\]\
+
+Vediamo infine delle possibili rappresentazioni di segnali complessi introducendo anche alcune formule di conversione.
+In particolare ci è possibile trattare un segnale complesso come un segnale composto da una parte reale ed una parte immaginaria secondo la seguente espressione:
+
+\[f(t) = f_r(t) + i \cdot f_i(t)\]\
+
+Dove diamo per scontato, secondo la definizione, che la parte reale di $f_r(t)$ e la parte immaginaria siano le seguenti:
+
+\begin{center}
+	\item[] $ \Re[f(t)] \triangleq f_r(t) $ \quad $ \Im[f(t)] \triangleq f_i(t) $
+\end{center}\
+
+
+Infine possiamo scrivere la nostra funzione complessa in forma polare anche detta modulo-fase, la quale risulta essere:
+
+\[f(t) = \big|f(t)\big| \cdot e^{i \cdot \arg(f(t))} \]\
+dove la funzione $\arg(f(t))$ è ottenuta tramite l'arcotangente del rapporto tra $f_i(t)$ e $f_r(t)$.
+Seguono ora per completezza le formule di conversione, calcolo del modulo e della funzione argomento.
+
+\begin{center}
+	\item[] $ \arg(f(t)) = \arctan\big( \frac{f_i(t)}{f_r(t)} \big) $ \quad \quad $ \big|f(t)\big| = \sqrt{f_r^2(t) + f_i^2(t)} $ 
+	\vspace{0.6cm}
+	\item[] $ f_r(t) = \big| f(t) \big| \cos(\arg(f(t))) $ \quad $ f_i(t) = \big| f(t) \big| \sin(\arg(f(t))) $ 
+\end{center}\
+
+
+\subsubsection{Richiami sui numeri complessi}
+
+% TODO Ripasso numeri in C e regole varie
+% TODO Immagini Segnale reale e complesso
+
+\subsection{Classificazione dei segnali analogici}
+
+Fatta questa doverosa introduzione possiamo ora passare ad analizzare e classificare le varie tipologie di segnali analogici in base a delle loro caratteristiche specifiche. Anticipando cosa andremo a vedere tra poco elenchiamo ora i tipi di classificazione che utilizzeremo: a supporto limitato, ad ampiezza limitata, impulsivo ad energia media finita, a potenza media finita e periodico o aperiodico.
+
+\subsubsection{Segnali a supporto temporale limitato}
+
+Iniziamo ora con la prima classificazione che utilizza come criterio la limitatezza del supporto del segnale preso come campione.
+Per supporto temporale o semplicemente supporto, intendiamo l'intervallo di tempo all’esterno del quale il segnale è nullo. Nello specifico un segnale si definisce a supporto limitato quando il suo supporto è finito come rappresentato nella figura seguente:
+
+% TODO SUPPORTO LIMITATO
+
+In particolare il segnale dell'immagine è limitato in quanto assume un valore diverso dallo zero per un intervallo limitato (da $t_1$ a $t_2$) ed ha inoltre una durata pari a  $t_2 - t_1$.
+
+Introdotto ora questa tipologia di segnali andiamo a fare un breve commento sulla loro applicazione in campo fisico/ingegneristico nello specifico un qualsiasi segnale ha tipicamente sempre un inizio ed una fine nel tempo il che li rende a supporto limitato. 
+
+Tuttavia, solitamente per ragioni di semplicità matematica, spesso è comodo considerarli a supporto temporale illimitato. Ci è possibile fare ciò in quanto spesso la porzione di segnale analizzata è irrisoria rispetto alla sua durata complessiva per cui possiamo considerarlo come uno con supporto illimitato. 
+
+Ad esempio: l’oscillatore che dà il clock ad una CPU è \textit{"fisicamente"} attivo solo su un supporto temporale limitato (anche se estremamente lungo) ma lo si rappresenta spesso matematicamente come una onda quadra (o sinusoidale) di durata infinita per i motivi di cui sopra.
+
+\subsubsection{Segnali ad ampiezza limitata}
+
+\subsubsection{Segnali impulsivi}
+
+\subsubsection{Segnale fisico}
+
+\subsection{Energia e potenza di un segnale}
+
+Introdotti le principali tipologie di segnale possiamo ora andare a definire l'energia e la potenza di un segnale come vediamo di seguito.
+
+
+% \newtheorem{theorem}{Definizione}[section] % DEFINIZIONE GIÀ PRESENTE
+
+
+\begin{theorem*}[\textbf{Energia di un segnale}]\
+
+\[E(x) \triangleq \int_{-\infty}^{\infty} \big| x(t) \big|^2 dt\]
+
+\end{theorem*}
+
+In parole si definisce energia di un segnale l’integrale del modulo al quadrato del segnale stesso calcolato sul supporto del segnale.\\
+
+Per quanto riguarda la potenza di un segnale andiamo ad introdurre delle differenze tra potenza istantanea e potenza media. Notiamo inoltre come d'ora in poi faremo riferimento a termine potenza media con il termine potenza mentre dovremo sempre specificare i casi in cui parliamo di potenza istantanea.
+
+\begin{theorem*}[\textbf{Potenza di un segnale}]\
+
+\[ P_{ist} = \big| x(t) \big|^2 \]
+
+\[P_{avg}(x) \triangleq \lim_{a \rightarrow \infty} \frac{1}{2a} \int_{-a}^a  \big| x(t) \big|^2  dt \]\
+
+\end{theorem*}
+
+Date le definizioni possiamo vedere come la potenza istantanea non sia altro che una funzione del tempo che coincide con il modulo al quadrato del segnale mentre la potenza media non è più una funzione del tempo ma è un numero che corrisponde alla media \textit{"temporale"} della potenza istantanea ovvero del quadrato del segnale.
+
+Infine Come vedremo più nel dettaglio più avanti, è spesso utile introdurre la \textit{“media temporale”} di una generica funzione del tempo $y(t)$ con questa definizione:
+
+\[ < y(t)> =  \]\
+
+\subsubsection{Segnali ad energia finita}
+
+\subsubsection{Segnali a potenza finita}
+
+\subsubsection{Segnali periodici}
+
+\subsection{Esempi numerici}
+
+\subsubsection{Energia di un esponenziale decrescente}
+
+Si consideri ora il seguente segnale $x(t) = u(t)e^{- \alpha t}$ dove $u(t)$ è la funzione gradino unitario.
+Si voglia ora calcolare l'energia del segnale.\\
+
+Partiamo facendo delle considerazioni sul supporto del segnale che non è limitato in quanto prima di zero è nullo ma da li in avanti decresce come una coda di esponenziale ma non sarà mai nulla per le proprietà stesse della funzione.
+Detto ciò proseguiamo calcolando l'energia:\\
+
+\[\int_{-\infty}^{\infty} \big| x(t) \big|^2 dt =\int_{0}^{\infty} e^{-2\alpha t} \ dt = - \frac{1}{2\alpha} e^{-2\alpha} \bigg|_{0}^{\infty} = \frac{1}{2\alpha} \]\\
+
+Come abbiamo visto applicando la definizione di energia al segnale ed integrando opportunamente sul suo supporto otteniamo la sua energia.
+
+\subsubsection{Potenza di un segnale sinusoidale}
+
+Passiamo ora al calcolo della potenza del generico segnale $x(t) = \unit{A} \cdot \cos(2\pi f_0 t + \phi)$ con A, $f_0$ e $\phi$ generiche costanti positive diverse da zero.
+
+Iniziamo scrivendo la definizione di potenza di un segnale:\\
+
+\[\lim_{a \rightarrow \infty} \int_{-a}^{a} \big| x(t) \big|^2 dt = \lim_{a \rightarrow \infty} \: \frac{1}{2a} \:\int_{-a}^{a} A^2 \cos^2(2\pi f_0 t + \phi) \]\\
+
+Procediamo ora portando fuori dall'integrale le costanti e spezzando l'integrale sotto il simbolo del limite. Ricordiamo che ci è possibile spezzare questo integrale riscrivendo il seno al quadrato come uno più il seno con l'argomento anch'esso moltiplicato per due tutto fratto due.\\
+ 
+\[\lim_{a \rightarrow \infty} \frac{A^2}{2a}  \bigg[ \int_{-a}^{a} \frac{1}{2} dt + \int_{-a}^{a} \frac{1}{2} \cos(4\pi f_0 t + \phi)dt \bigg]  = \lim_{a \rightarrow \infty} \frac{A^2}{2a} \bigg[ \frac{2a}{2} + \frac{1}{2} \frac{\sin(4\pi f_0 t + 2\phi)}{4\pi f_0} \bigg|_{-a}^a \bigg] 
+\]\\
+
+Svolgendo i calcoli otteniamo che:\\
+
+\[\frac{A^2}{2} + \lim_{a \to \infty} \frac{A^2}{4a} 
+\frac{\sin(4\pi f_0 a + 2\phi) - \sin(-4\pi f_0 a + 2\phi)}{4\pi f_0}
+= \frac{A^2}{2}\]\\
+
+In definitiva possiamo dire che questo calcolo della potenza di un segnale sinusoidale verrà incontrato moltissime volte all'interno del corso motivo per cui è bene ricordarlo in quanto potrebbe ritornare utile in futuro.
+
+
+
+\subsection{Rappresentazione vettoriale di un segnale}
+
+Dopo aver affrontato gli argomenti precedenti passiamo ora all'interpretazione dei segnali a tempo continuo come spazi vettoriali. Prima di tutto ci è necessario aver ben presenti alcuni concetti fondamentali dell'algebra lineare e della geometria. Questi concetti sono riportati nel primo capitolo di questo manuale con lo scopo di essere utilizzati come ripasso al fine di affrontare questa sezione nel modo corretto.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

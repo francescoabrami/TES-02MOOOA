@@ -1,0 +1,117 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+
+\section{Richiami di algebra lineare e geometria - ALG}
+
+All'interno di questa sezione andremo a ripassare i concetti fondamentali dell'algebra e della geometria introdotti nel corso di Algebra Lineare e Geometria.
+
+Questa sezione si colloca all'inizio del documento in quanto dovrebbe contenere nozioni già apprese dallo studente ma alla quale possiamo dare comunque uno sguardo per un veloce ripasso.
+In particolare questa parte si colloca prima della trattazione dei segnali come vettori introdotti alla fine del terzo capitolo sulla trattazione dei segnali analogici. 
+
+\subsection{Metrica}
+
+Iniziamo il nostro ripasso andando a vedere come prima cosa la definizione di metrica riportata di seguito.
+
+\newtheorem{theorem}{Definizione}[section]
+
+\begin{theorem}[\textbf{Metrica}]\
+
+Sia V un insieme (in particolare, uno spazio vettoriale reale o complesso).
+Si dice metrica (o funzione distanza) su  V una funzione
+
+\[ d : V \times V \rightarrow \mathbb{R} \]\
+
+la quale associa a ogni coppia di punti (o vettori) \textbf{x},\textbf{y} $\in$ V un numero reale \textbf{d(x,y)} chiamato distanza tra x e y, tale che siano verificate le proprietà fondamentali.
+
+\end{theorem}
+
+Seguono le proprietà fondamentali della metrica:
+
+\begin{enumerate}
+	\item[\textbf{-}]\textbf{Non negatività:} \[d(\textbf{x},\textbf{y}) \geq 0 \;\; \forall \textbf{x},\textbf{y} \in V \]
+	
+	Questa proprietà conferma la non negatività dell'operazione. In altri termini, considerando la metrica come distanza, possiamo dire che non esistono distanze negative.
+	
+	\item[\textbf{-}]\textbf{Identità dell’indiscernibile:} \[ d(\textbf{x},\textbf{y}) = 0 \hspace{10pt} \Longleftrightarrow  \hspace{10pt} \textbf{x} = \textbf{y} \]
+	
+	Questa proprietà afferma che se la metrica tra due elementi di V è nulla allora i due elementi sono lo stesso. In altri termini, considerando la metrica come distanza, possiamo dire che un punto avente distanza nulla da un altro è il punto stesso.
+	
+	\item[\textbf{-}]\textbf{Simmetria:} \[ d(\textbf{x},\textbf{y}) = d(\textbf{y},\textbf{x}) \hspace{20pt} \forall \textbf{x},\textbf{y} \in V \]
+	
+	Questa proprietà afferma che la metrica è un'operazione simmetrica. Possiamo dire solo in termini informali che essa sia commutativa come le operazioni algebriche. Ragionando sempre in termini di distanza lo spazio che separa due punti è lo stesso che io lo misuri a partire dal primo o dal secondo.
+	
+	
+	\item[\textbf{-}]\textbf{Disuguaglianza triangolare:} \[ d(\textbf{x},\textbf{z}) \;\;\leq \;\;d(\textbf{x},\textbf{y})\; + \;d(\textbf{y},\textbf{z})   \]
+	
+	
+	Questa proprietà afferma che la distanza tra due punti sia sempre minore della somma delle distanze tra i due punti passando per un terzo punto che non si trova sulla direttrice dei primi due. A livello concettuale preserva l’idea che ogni percorso intermedio è almeno lungo quanto quello diretto e assicura la coerenza geometrica dello spazio metrico.
+	
+	
+\end{enumerate}
+
+Notiamo infine come la distanza Euclidea tra vettori soddisfa tutte le precedenti condizioni, ed è dunque una possibile metrica all'interno di uno spazio opportuno.
+
+\subsection{Spazio vettoriale}
+
+Passiamo ora oltre andando a definire uno spazio vettoriale (S.V.) dandone la definizione ed elencando le operazioni che è possibile effettuare su di esso.
+
+\begin{theorem}[\textbf{Spazio vettoriale}]\
+
+Sia $\mathbb{K}$ un campo (ad esempio $\mathbb{R}$ o $\mathbb{C}$). Uno spazio vettoriale su $\mathbb{K}$ è un insieme V i cui elementi si chiamano vettori, su cui sono definite due operazioni: somma vettoriale e moltiplicazione per scalare.
+	
+\end{theorem}
+
+Seguono le operazioni definite su uno spazio vettoriale:
+
+\begin{enumerate}
+	\item[\textbf{-}]\textbf{Somma vettoriale (+) :} \[ V \times V \rightarrow V, \hspace{10pt} (\textbf{u},\textbf{v}) \rightarrow \textbf{u} + \textbf{v}     \]\
+	\item[\textbf{-}]\textbf{Moltiplicazione per scalare ($\cdot$) :} \[ \mathbb{K} \times \rightarrow V, \hspace{10pt} (\alpha,\textbf{v}) \rightarrow \alpha \textbf{v}\]\
+\end{enumerate}
+
+Queste operazioni appena elencate devono soddisfare le seguenti otto proprietà fondamentali per ogni \textbf{u}, \textbf{v}, \textbf{w} $\in$ V e $\alpha$, $\beta$ $\in$ $\mathbb{K}$.
+Sono riportate di seguito le proprietà fondamentali della somma vettoriale e del prodotto per scalare. Le prime quattro fanno riferimento alla somma vettoriale mentre le altre quattro si riferiscono al prodotto per scalare.
+
+\begin{enumerate}
+	\item[\textbf{-}]\textbf{Associatività:}
+	\item[\textbf{-}]\textbf{Commutatività:}
+	\item[\textbf{-}]\textbf{Elemento neutro:}
+	\item[\textbf{-}]\textbf{Elemento opposto:}
+	\item[\textbf{-}]\textbf{Associatività rispetto ai prodotti scalari:}
+	\item[\textbf{-}]\textbf{Elemento neutro dello scalare:}
+	\item[\textbf{-}]\textbf{Distributività rispetto alla somma di vettori:}
+	\item[\textbf{-}]\textbf{Distributività rispetto alla somma di scalari:}
+\end{enumerate}
+
+\subsection{Norma e distanza}
+
+Passiamo oltre ed andiamo ad introdurre ora i concetti di norma 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

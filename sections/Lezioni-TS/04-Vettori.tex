@@ -1,0 +1,168 @@
+\documentclass[../main.tex]{subfiles}
+
+\graphicspath{{\subfix{../images/}}}
+
+\newpage
+
+
+\begin{document}
+
+%% BEGIN WRITING %%
+
+\section{Rappresentazione vettoriale dei segnali}
+
+
+
+\subsection{Esempio di applicazione della rappresentazione geometrica}
+
+Concludiamo questa sezione andando ora a vedere delle particolari applicazioni delle rappresentazioni geometriche andando anche ad introdurre alcune tipologie particolari di segnali.
+
+\subsubsection{La funzione porta nel tempo}
+
+\subsection{Funzione delta di Dirac}
+
+\subsubsection{Proprietà della delta di Dirac}
+
+Andiamo ora a definire delle proprietà utili della funzione delta di Dirac.
+
+
+\newtheorem{prop}{Proprietà}[section]
+
+\begin{prop}[\textbf{Area della delta di Dirac}]\
+
+\[\int_{-\infty}^\infty \delta(t)dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \int_{-\infty}^\infty p_{\Delta t}(t)dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \cdot \Delta t = 1\]\
+
+\end{prop}
+
+Come possiamo vedere dalla definizione appena data la funzione delta di Dirac ha un'area pari ad uno dunque unitaria. Notiamo invece, secondo la proprietà che segue, che l'energia della delta è infinita.
+
+\begin{prop}[\textbf{Energia della delta di Dirac}]\
+
+\[ E(\delta(t)) = \int_{-\infty}^\infty (\delta(t))^2 dt = \lim_{\Delta t\rightarrow 0}  \bigg( \frac{1}{\Delta t}\bigg)^2 \cdot \int_{-\infty}^\infty (p_{\Delta t}(t))^2 dt = \lim_{\Delta t\rightarrow 0} \frac{1}{(\Delta t)^2} \cdot \Delta t = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} = \infty \]\
+
+\end{prop}
+
+
+
+\begin{prop}[\textbf{Segnale continuo moltiplicato per una delta}]\
+
+\[  \int_{-\infty}^\infty x(t)\delta(t)dt = x(0)\]
+
+\end{prop}
+
+Segue la dimostrazione di quanto abbiamo appena detto.
+
+\[ Dim: \int_{-\infty}^\infty x(t)\delta(t)dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \int_{-\infty}^\infty x(t) \cdot p_{\Delta t}(t) dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \cdot x(0) \cdot \Delta t = x(0) \]\
+
+Come abbiamo visto nel momento in cui andiamo a moltiplicare un qualsiasi segnale continuo per una delta di Dirac, opportunamente centrata in $x_0 = 0$, otterremo una delta centrata nello stesso punto ma avente un'altezza pari a quella del segnale continuo in quel dato punto. In particolare la proprietà appena vista sarà fondamentale, all'interno di questo corso, nella sua forma generalizzata mostrata di seguito.
+
+
+\begin{prop}[\textbf{Campionamento tramite delta di Dirac}]\
+
+\[\int_{-\infty}^\infty x(t)\delta(t - t_0) dt = x(t_0)\]
+
+\end{prop}
+
+Segue la dimostrazione di quanto appena detto.
+
+\[ Dim: \int_{-\infty}^\infty x(t)\delta(t - t_0)dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \int_{-\infty}^\infty x(t) \cdot p_{\Delta t}(t - t_0) dt = \lim_{\Delta t\rightarrow 0} \frac{1}{\Delta t} \cdot x(t_0) \cdot \Delta t = x(t_0) \]\
+
+In questo caso più generalizzato possiamo andare a moltiplicare un segnale continuo per una delta di Dirac posizionata in qualsiasi istante di tempo. Come per la proprietà precedente la delta moltiplicata per il segnale resta centrata nel punto originale ma assume il valore del segnale per cui è moltiplicata in quel punto.\\
+
+In particolare interpretando il risultato della slide precedente, si deduce che l’integrale della moltiplicazione tra un generico segnale continuo e la delta \textit{"campiona"} il valore del segnale nella posizione temporale della delta. Notiamo come useremo anche la seguente espressione relativa alla moltiplicazione per una delta:
+
+\[  x(t) \cdot \delta(t-t_0) = x(t_0) \cdot \delta(t-t_0) \]\
+
+
+\begin{prop}[\textbf{Prodotto di convoluzione}]\
+
+\[  x(t) \ast y(t) = \int_{-\infty}^{+\infty} x(\tau) \cdot y(\tau - t)\: d\tau\]
+
+
+\end{prop}
+
+Ricordiamo infine che c'è una differenza enorme tra il moltiplicare un segnale continuo per una delta (ovunque essa sia centrata) e fare l'integrale del loro prodotto. Il primo caso ritorna una funzione delta ma moltiplicata per una costante che dipende dal valore che il segnale assume nell'istante in cui si trova, mentre il secondo caso ritorna un valore numerico che indica il campionamento del segnale in quel dato istante.\\
+
+Infine vediamo ora, anche se lo definiremo meglio più avanti, quello che chiameremo prodotto di convoluzione nel modo seguente:
+
+\[ x(t) \ast y(t) = \int_{-\infty}^\infty x(\tau) y(t-\tau) d\tau\]\
+
+La dicitura a sinistra dell'uguale si legge come: x(t) \textit{"convoluto"} y(t).\\
+
+Infine definita la proprietà del campionamento otteniamo i seguenti risultati:
+
+\[ x(t) \ast \delta(t) = \int_{-\infty}^\infty x(t) \delta(t - \tau)d\tau = x(t) \]
+
+
+\[ x(t) \ast \delta(t - \theta) = \int_{-\infty}^\infty x(t) \delta(t - \theta - \tau)d\tau = x(t - \theta) \]
+
+In particolare notiamo come nel primo caso la convoluzione di un segnale $x(t)$ continuo con una delta fornisce il segnale di partenza $x(t)$. Il secondo caso invece indica che la convoluzione di un segnale $x(t)$ continuo con una delta traslata $\delta(t - \theta)$ fornisce il segnale di partenza traslato $x(t - \theta)$.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
