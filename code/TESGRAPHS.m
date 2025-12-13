@@ -75,5 +75,29 @@ title('(2/3)^n')
 axis([-10 10 -0.5 1.5])
 grid on
 
+%% GAUSSIAN RANDOM WALKS
+
+N = 10^6;      
+numWalks = 200; 
+sigma = 1;
+
+steps = sigma * randn(N, numWalks);  
+walks = cumsum(steps);              
+
+fig = figure;
+plot(walks, 'LineWidth', 0.1);
+grid on;
+
+xlabel('Passi');
+ylabel('Posizioni');
+title(sprintf('Gaussian Random Walks'));
+
+figure_name = sprintf("GRW.png");
+print(fig, figure_name, '-dpng', '-r300');
+
+%%
+
+
+
 
 
