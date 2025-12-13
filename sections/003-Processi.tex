@@ -10,15 +10,127 @@
 
 \section{Processi Casuali}
 
+Presentiamo ora, come ultima sezione, quella sui processi casuali. Nel particolare questa sezione fungerà sia da ripasso ad argomenti visti in corsi precedenti sia da introduzione allo studio vero e proprio dei processi casuali declinati alla teoria dei segnali.  
 
 \subsection{Ripasso di teoria della probabilità e variabili casuali}
 
+Come prima cosa, prima di introdurre i processi casuali, andiamo a fare un veloce ripasso di alcuni concetti di statistica e di probabilità. Facciamo notare infine come queste nozioni non siano incluse della sezione dei concetti preliminari in quanto sono state trattate a lezione in maniera più approfondita.
+
 \subsubsection{Spazio campione}
 
+Iniziamo ora il nostro ripasso andando ad introdurre come primo concetto lo spazio campione di cui vediamo subito la definizione.
+
+\begin{definition*}[\textbf{Spazio campione}]
+
+Lo spazio campione, spesso indicato con $S$ o $\Omega$, è l'insieme di tutti i possibili risultati di un esperimento casuale. In altre parole, contiene tutte le possibilità che possono verificarsi quando si esegue un esperimento.
+	
+\end{definition*}
+
+In particolare dato uno spazio campione il risultato ha associato una certa probabilità $P$ con le seguenti proprietà:
+
+\[P(s) \in [0,1] \]
+
+\[ \sum_{s \in S} P(s) = 1\]\
+
+Ovvero che la probabilità che un evento si realizzi è sempre contenuta nell'intervallo specificato e la somma delle probabilità degli eventi specifici deve essere per forza pari ad uno. Infine ricordiamo che i risultati dell'esperimento casuale sono sempre mutualmente esclusivi.\\
+
+Immaginiamo di lanciare un dado equilibrato. Lo spazio campione è l’insieme di tutti i possibili risultati: i sei numeri sulle facce del dado, da 1 a 6. Ognuno di questi numeri rappresenta un evento possibile. Poiché il dado è equilibrato, ogni numero ha la stessa probabilità di uscire, pari a $\tfrac{1}{6}$. Se consideriamo tutti i possibili eventi insieme, la somma delle loro probabilità è sempre 1, perché uno dei sei numeri deve necessariamente uscire. Inoltre, quando esce un numero, è chiaro che nessun altro numero può uscire nello stesso lancio: gli eventi sono quindi mutualmente esclusivi. In questo modo, lo spazio campione ci permette di organizzare e capire tutte le possibilità che possono verificarsi in un esperimento casuale. Compreso questo concetto basilare possiamo andarlo a declinare a diversi scenari, dal più facile al più difficile per poterli comprendere al meglio.\\
+
+Ricondiamo infine come faremo riferimento a questo evento o all'estrazione di alcune biglie da un sacchetto per fare degli esempi dei concetti presentati.
+
+Prima di passare oltre possiamo vedere come un evento sia un insieme di possibili risultati ed è quindi un sottoinsieme dello spazio campione.
+In termini matematici possiamo dire che:
+
+\[ E = \{ s_i \} \subseteq S \]\
+
+Avremo dunque che l'evento $E$ avrà la seguente probabilità di realizzarsi:
+
+\[P(E) = \sum_i P(s_i) \]\
+
+Possiamo inoltre considerare la probabilità di una unione di eventi la quale sarà sempre uguale alla somma delle probabilità dei singoli eventi. In termini matematici si ha che:
+
+\[ P(E_1 \cap E_2 ) = P(E_1) + P(E_2) - P(E_1 \cup E_2 )  \]\
+
+In ultima istanza possiamo inoltre affermare che la probabilità dell'unione di certi eventi è minore od uguale alla somma delle probabilità dei singoli eventi presi in analisi. Questa proprietà viene anche della limite dell'unione in quanto pone un limite matematico alla probabilità dell'unione di più eventi. In termini matematici si ottiene che:
+
+\[ P \bigg( \bigcup_i \bigg) \leq \sum_i P(E_i) \]\
+
+Nello specifico facciamo notare come la probabilità descritta sopra, ovvero quella relativa all'avvenimento di un'unione di più eventi è detta probabilità congiunta.
+
+
 \subsubsection{Probabilità congiunta}
+
+Come abbiamo appena detto nella sotto-sezione precedente la probabilità dell'unione di due eventi è detta probabilità congiunta. Nello specifico la definiamo nel seguente modo.
+
+\begin{definition*}[\textbf{Probabilità congiunta}]
+
+La probabilità congiunta è la probabilità che due, o più eventi si verifichino contemporaneamente. In particolare dati due eventi A e B, la probabilità congiunta è indicata con 
+
+\[P(A,B) \triangleq P(A \cup B)\]\
+
+e rappresenta la probabilità che si verifichino sia A sia B.
+
+\end{definition*}
+
+Volendo fare subito un'esempio pratico possiamo porre $A$ uguale ad una giornata soleggiata e $B$ pari ad una giornata calda. Avremo che $P(A,B)$ sarà la probabilità che una giornata sia contemporaneamente soleggiata e calda.\\
+
+Introdotto ora questo nuovo concetto possiamo andare a stabilire quando due eventi sono tra di loro statisticamente indipendenti, ovvero che non si influenzano a vicenda cioè che l'avvenire di uno no ha nulla a che vedere con il verificarsi del secondo. In particolare notiamo come il calcolo della probabilità di due eventi statisticamente indipendenti risulta essere il seguente:
+
+\[P(A,B) \triangleq P(A) \cdot P(B) \]\
+
+Riprendendo l'esempio visto prima ovvero quello della giornata calda e soleggiata evidenzia due eventi dipendenti, e quindi non indipendenti tra di loro, in quanto la presenza del sole influisce sulla temperatura della giornata. Volessimo prendere due eventi indipendenti potremmo porre $A$ pari ad una giornata soleggiata e $B$ pari ad una giornata festiva.\\
+
+Possiamo infine evidenziare come il concetto di indipendenza statistica sia molto importante per diverse ragioni tra cui la sua applicazione a problemi pratici dove se si suppone di avere eventi tra loro indipendenti si riesce spesso a semplificare in maniere sostanziale i calcoli.
+
+
 \subsubsection{Probabilità condizionata}
 
+Vista ora la probabilità che due eventi hanno di accadere allo stesso momento proseguiamo il nostro ripasso considerando la probabilità che un evento si verifichi dato il verificarsi di un'altro. Questo concetto è detto proprietà condizionata di cui diamo ora la definizione.
+
+\begin{definition*}[\textbf{Probabilità condizionata}]
+
+La probabilità condizionata misura la probabilità che un evento si verifichi sapendo che un altro evento si è già verificato. Dati due eventi S e B con P(B) > 0, la probabilità di S condizionata a B è definita come:
+
+\[P(S|B) = \frac{P(S \cap B)}{P(B)}\]\
+	
+\end{definition*}
+
+All'atto pratico B diventa il nuovo spazio campione, e le probabilità sono normalizzate a questo spazio campione. Ovvero sapere che B è avvenuto restringe lo spazio campione ai soli casi in cui B si verifica. All’interno di questo nuovo spazio, $P(S|B)$ rappresenta la frazione dei casi in cui si verifica anche S.\\
+
+Inoltre sommando le probabilità di tutti i risultati S in B si ottiene che:
+
+\[\sum_{S \in B} P(S|B) = 1\]\
+
+Infine prima di fare un'esempio pratico notiamo come, con questa notazione, si indica la probabilità dell'evento S sapendo che è vero l'evento B.
+Ricordiamo inoltre che la formula si legge: \textit{"probabilità di $S$ condizionata a $B$"} oppure \textit{"probabilità di $S$ dato $B$"}.\\
+
+Volendo ora fare un esempio pratico consideriamo il lancio di un dado equilibrato considerando la probabilità di ottenere uno come risultato.
+
+\[P(\unit{Lancio\;dado\;pari\;ad\;}  1) = \frac{1}{6}\]\
+
+Ora invece consideriamo la probabilità di ottenere uno condizionandola al fatto di sapere che il risultato sia un numero dispari. In altre parole con quale probabilità si verifica il primo evento dato che il numero estratto è dispari?
+
+\[P(\unit{Lancio\;dado\;pari\;ad\;}  1 | \unit{Risultato\; dispari}) = \frac{1}{3}\]\
+
+Infine poniamo come esempio un coso molto semplice quanto importante. Ipotizziamo di calcolare la probabilità dell'uscita del numero uno condizionandola al fatto di sapere che il risultato sia un numero pari. In altre parole con quale probabilità si verifica il primo evento dato che il numero estratto è pari? Ovviamente si avrà che:
+
+
+\[P(\unit{Lancio\;dado\;pari\;ad\;}  1 | \unit{Risultato\; pari}) = 0\]\
+
 \subsubsection{Teorema di Bayes}
+
+Continuiamo ora il nostro ripasso andando ad analizzare i casi in cui bisogna andare a calcolare la probabilità congiunta di due eventi che non sono tra di loro statisticamente indipendenti. In particolare il teorema di Bayes implementa una formula fondamentale della probabilità che permette di aggiornare la probabilità di un evento alla luce di nuove informazioni.
+
+\begin{definition*}[\textbf{Teorema di Bayes}]
+
+Siano A e B due eventi con probabilità non nulle. La probabilità condizionata di A rispetto ad B è uguale al prodotto tra le probabilità condizionata di B rispetto ad A e le probabilità di A, tutto normalizzato rispetto la probabilità di B. 
+
+\[ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}  \hspace{10pt} \unit{con} \hspace{10pt} P(A),P(B) \neq 0 \]\
+	
+\end{definition*}
+
+
+
 
 \subsubsection{Variabile casuale}
 \subsubsection{Funzione di distribuzione cumulativa}
@@ -50,6 +162,9 @@
 \subsubsection{Processi casuali e sistemi}		
 
 \subsection{Definizione e tipologia di processi casuali}
+
+\newpage
+
 
 \subsubsection{Descrizione probabilistica}
 
