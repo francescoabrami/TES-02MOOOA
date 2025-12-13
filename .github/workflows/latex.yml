@@ -1,11 +1,13 @@
 name: Build LaTeX document
 
-# NEW STRUCT
-
 permissions:
   contents: write
 
-on: [push]
+on:
+  push:
+    paths:
+      - main.tex
+
 jobs:
 
   build_latex:
