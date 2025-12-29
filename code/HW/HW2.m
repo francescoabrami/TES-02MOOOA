@@ -7,7 +7,7 @@ clc;
 %% PARAMETRI SPETTRO
 
 M = 2.5;                                        % Durata in secondi delle finestre da ascoltare 
-Mxn = 1000;                                      % Durata in secondi del ruore bianco
+Mxn = 1000;                                     % Durata in secondi del ruore bianco
 
 finestra = 50;
 lim = 5;    
@@ -31,18 +31,18 @@ x2 = x2(:,1);
 
 %% 1 - DEFINIZIONE PORTA NEL DOMINIO DEL TEMPO
 
-T_1 = 0.001;                                    % Durata porta in secondi PER TAGLIO AD 1 kHz
-N = round(Fs1 * T_1);                           % Numero campioni
+T_1 = 0.001;                                        % Durata porta in secondi PER TAGLIO AD 1 kHz
+N = round(Fs1 * T_1);                               % Numero campioni
 
-dt = 1 / Fs1;                                   % Intervallo di tempo tra campioni
-p = ones(1,N);                                  % Porta di ampiezza 1 compsota da N campioni
+dt = 1 / Fs1;                                       % Intervallo di tempo tra campioni
+p = ones(1,N);                                      % Porta di ampiezza 1 compsota da N campioni
 
-t = 0:dt:(T_1 - dt);                            % Vettore tempo discreto causale
-h1_filtro = p / N;                              % Effettuata normalizzazione la fine di evitare amplificazione del filtro
-
+t = 0:dt:(T_1 - dt);                                % Vettore tempo discreto causale
+h1_filtro = p / N;                                  % Effettuata normalizzazione la fine di evitare amplificazione del filtro
+        
 %% 2 - DEFINIZIONE COS RIALZATO NEL DOMINIO DEL TEMPO
 
-T_2 = 0.0005;                                    
+T_2 = 0.0005;			% Durata di T per avere taglio a 1kHz
 fr = 1/T_2;
 banda = 1/(2*T_2);
 beta = 0.001;
@@ -52,14 +52,14 @@ h2 = @(t) ...
     (pi/(4*T_2)) .* sinc(1/(2*beta)) .* (t ==  T_2/(2*beta)) + ...
     (pi/(4*T_2)) .* sinc(1/(2*beta)) .* (t == -T_2/(2*beta));
 
-tempi = -(10*T_2):dt:(10*T_2);                   
+tempi = -(10*T_2):dt:(10*T_2);			% Vettore tempi
 h2_discreta = h2(tempi);
-h2_filtro = h2_discreta / sum(h2_discreta);
+h2_filtro = h2_discreta / sum(h2_discreta);			% Normalizzazione
 
 %% 3 - DEFINIZIONE 1 - H(f) NEL DOMINIO DEL TEMPO
 
 d_dirac = zeros(size(tempi));
-[~, centro_idx] = max(h2_discreta);             % Trova l'indice del picco della sinc
+[~, centro_idx] = max(h2_discreta);                 % Trova l'indice del picco della sinc
 d_dirac(centro_idx) = 1;
 h3_filtro = d_dirac - h2_filtro;
 
@@ -103,7 +103,7 @@ print(fig3, figure_name, '-dpng', '-r300');
 
 % 1 - PORTA
 
-y1_conv_x1 = conv(x1, h1_filtro, 'same');          % 'same' usato per mantenere la stessa lunghezza del segnale in ingresso
+y1_conv_x1 = conv(x1, h1_filtro, 'same');               % 'same' usato per mantenere la stessa lunghezza del segnale in ingresso
 y1_conv_x2 = conv(x2, h1_filtro, 'same');  
 
 % 2 - COS RIALZATO
@@ -118,10 +118,10 @@ y3_conv_x2 = conv(x2, h3_filtro, 'same');
 
 %% RITAGLIO FINESTRA INDICATA E CALCOLO SPETTRI
 
-L = round(M * Fs1);                                 % Campioni per finestra
+L = round(M * Fs1);                                     % Campioni per finestra
 fin = (finestra - 1) * L + (1:L);
 
-frequenze = (-L/2: L/2 - 1) .* (1/M) ./ 1000;       % Asse delle frequenze
+frequenze = (-L/2: L/2 - 1) .* (1/M) ./ 1000;           % Asse delle frequenze
 
 fin_x1 = x1(fin);
 fin_x2 = x2(fin);
@@ -305,7 +305,7 @@ frequenzexn = (-Lxn/2 : Lxn/2 - 1) .* (1/Mxn) ./ 1000;
 fig6 = figure;
 
 plot(frequenzexn, 20 * log10(abs(fftshift(H1))), 'black', 'LineWidth', 1.5);
-xlim([-10 10]); 
+xlim([-lim lim]); 
 title('Funzione di trasferimento (H1 = Y/X)');
 xlabel('kHz');
 ylabel('dB');

@@ -5,8 +5,8 @@ clc;
 
 %% CARICAMENTO FILE AUDIO E SELEZIONE SINGOLO CANALE
 
-Techno = '../audio/Techno.mp3';
-Classica = '../audio/Classica.mp3';
+Techno = 'audio/Techno.mp3';
+Classica = 'audio/Classica.mp3';
 
 [x_1,Fs_1] = audioread(Techno);
 [x_2,Fs_2] = audioread(Classica);
@@ -17,7 +17,7 @@ x_2 = x_2(:,1);
 %% PARAMETRI
 
 M = 1;
-finestra = 10;
+finestra = 50;
 lim = 1;
 
 finestra = finestra / M;
@@ -101,8 +101,8 @@ xlabel('kHz');
 ylabel('dB');
 grid on;
 
-% figure_name = sprintf('F-%dDFT-M%.2f.png', finestra, M);
-% print(fig1, figure_name, '-dpng', '-r600');
+figure_name = sprintf('F-%dDFT-M%.2f.png', finestra, M);
+print(fig1, figure_name, '-dpng', '-r300');
 
 %% PLOT RISULTATI FFT
 
@@ -125,8 +125,8 @@ xlabel('kHz');
 ylabel('dB');
 grid on;
 
-% figure_name = sprintf('F-%dFFT-M%.2f.png', finestra, M);
-% print(fig2, figure_name, '-dpng', '-r600');
+figure_name = sprintf('F-%dFFT-M%.2f.png', finestra, M);
+print(fig2, figure_name, '-dpng', '-r300');
 
 
 
