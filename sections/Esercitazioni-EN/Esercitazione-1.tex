@@ -50,7 +50,7 @@ Riportiamo di seguito il grafico del segnale ottenuto in MATLAB:
 
 Come al solito segue anche il codice utilizzato per la generazione del grafico appena visto:
 
-\lstinputlisting[language=Matlab, firstline = 6, lastline = 13]{code/ENS-1.m}
+\lstinputlisting[language=Matlab, firstline = 6, lastline = 13]{code/Esercitazioni/EN/EN-1.m}
 
 
 Capito come è fatto il segnale di partenza $x[n]$ possiamo ora analizzare il caso \textbf{a} che altro non è che una traslazione della nostra sequenza verso sinistra di fatto anticipandola.
@@ -69,7 +69,7 @@ Anche senza andare a calcolare un secondo punto possiamo vedere come il nostro s
 
 Il codice ottenuto per generare il grafico è il seguente:
 
-\lstinputlisting[language=Matlab, firstline = 17, lastline = 28]{code/ENS-1.m}
+\lstinputlisting[language=Matlab, firstline = 17, lastline = 28]{code/Esercitazioni/EN/EN-1.m}
 
 Passiamo ora al punto \textbf{b} dove abbiamo lo stesso segnale di partenza che viene anticipato di cinque campioni effettuando però un rilbaltamento della sequenza in quanto la variabile $n$ appare con il segno negativo.
 Di fatto per ottenere il grafico richiesto in questo punto possiamo andare a prendere il grafico già traslato del punto \textbf{a} e ribaltarlo ottenedo il risultato seguente:
@@ -78,7 +78,7 @@ Di fatto per ottenere il grafico richiesto in questo punto possiamo andare a pre
 
 Come di consueto segue anche il codice MATLAB per generare il grafico:
 
-\lstinputlisting[language=Matlab, firstline = 32, lastline = 43]{code/ENS-1.m}
+\lstinputlisting[language=Matlab, firstline = 32, lastline = 43]{code/Esercitazioni/EN/EN-1.m}
 
 Come possiamo notare il codice utilizzato è identico a quello precedente ma con una sola differenza ovvero quella di aver cambiato il segno della variabile $k$ nella seconda parte della quinta riga.\\
 
@@ -97,7 +97,7 @@ In particolare otteniamo in grafico seguente:
 
 Come di consueto segue anche il codice MATLAB usato per generare il grafico:
 
-\lstinputlisting[language=Matlab, firstline = 47, lastline = 58]{code/ENS-1.m}
+\lstinputlisting[language=Matlab, firstline = 47, lastline = 58]{code/Esercitazioni/EN/EN-1.m}
 
 Proseguiamo ancora ad affrontiamo ora il punto \textbf{d} dove il nostro segnale è ora composto da tre parti distinte e sommate tra di loro.
 Come possiamo subito vedere, ricordando i casi \textbf{a} e \textbf{b}, le prime due componenti corrispondono rispettivamente ad una traslazione di dieci campioni del segnale $x[n]$ verso sinistra ed a un successivo ribaltamento.
@@ -115,7 +115,7 @@ Compresa anche questa ultima parte possiamo andare a mettere tutto assieme otten
 
 Come al solito segue anche il codice MATLAB utilizzato:
 
-\lstinputlisting[language=Matlab, firstline = 62, lastline = 85]{code/ENS-1.m}
+\lstinputlisting[language=Matlab, firstline = 62, lastline = 85]{code/Esercitazioni/EN/EN-1.m}
 
 Volendo essere precisi notiamo che nell'origine le tre sequenze si sovrappongono, andiamo dunque a semplificare una delle due delta positive con quella negativa (è sottratta) ed otteniamo il seguente risultato:
 
