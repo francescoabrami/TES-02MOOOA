@@ -1,2 +1,0 @@
-%% ESERCITAZIONE ENS - 2
-
