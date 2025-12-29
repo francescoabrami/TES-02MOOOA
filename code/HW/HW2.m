@@ -74,7 +74,7 @@ ylabel('Ampiezza')
 title('Filtro porta')
 
 figure_name = sprintf('figure1.png');
-print(fig1, figure_name, '-dpng', '-r600');
+print(fig1, figure_name, '-dpng', '-r300');
 
 % 2 - COS RIALZATO
 
@@ -85,7 +85,7 @@ ylabel('Ampiezza')
 title('Filtro a coseno rialzato')
 
 figure_name = sprintf('figure2.png');
-print(fig2, figure_name, '-dpng', '-r600');
+print(fig2, figure_name, '-dpng', '-r300');
 
 % 3 - 1 - H(f)
 
@@ -96,7 +96,7 @@ ylabel('Ampiezza')
 title('Filtro passa alto')
 
 figure_name = sprintf('figure3.png');
-print(fig3, figure_name, '-dpng', '-r600');
+print(fig3, figure_name, '-dpng', '-r300');
 
 
 %% CALCOLO CONVOLUZIONI DEI BRANI CON I FILTRI
@@ -192,7 +192,7 @@ ylabel('dB');
 grid on;
 
 figure_name = sprintf('figure4.png');
-print(fig4, figure_name, '-dpng', '-r600');
+print(fig4, figure_name, '-dpng', '-r300');
 
 %% PLOT SPETTRI IN-OUT BRANO 2
 
@@ -239,7 +239,7 @@ ylabel('dB');
 grid on;
 
 figure_name = sprintf('figure5.png');
-print(fig5, figure_name, '-dpng', '-r600');
+print(fig5, figure_name, '-dpng', '-r300');
 
 %% VERIFICA PRATICA BRANO 1
 
@@ -312,7 +312,7 @@ ylabel('dB');
 grid on;
 
 figure_name = sprintf('figure6.png');
-print(fig6, figure_name, '-dpng', '-r600');
+print(fig6, figure_name, '-dpng', '-r300');
 
 fig7 = figure;
 
@@ -324,7 +324,7 @@ ylabel('dB');
 grid on;
 
 figure_name = sprintf('figure7.png');
-print(fig7, figure_name, '-dpng', '-r600');
+print(fig7, figure_name, '-dpng', '-r300');
 
 fig8 = figure;
 
@@ -336,4 +336,4 @@ ylabel('dB');
 grid on;
 
 figure_name = sprintf('figure8.png');
-print(fig8, figure_name, '-dpng', '-r600');
+print(fig8, figure_name, '-dpng', '-r300');
