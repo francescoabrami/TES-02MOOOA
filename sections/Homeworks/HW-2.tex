@@ -8,40 +8,42 @@
 
 \section{Homework - 2}
 
-Lo scopo di questo homework è stato applicare un filtraggio lineare a due segnali audio reali, analizzando gli effetti dei filtri sui segnali in uscita nel dominio del tempo e della frequenza. Attraverso il confronto tra diverse tecniche di filtraggio, sono stati osservati e interpretati i risultati mediante rappresentazioni spettrali e verifica percettiva tramite ascolto.
+Lo scopo di questo homework era quello di applicare un filtraggio lineare a due segnali audio reali, analizzando gli effetti dei filtri sui segnali in uscita nel dominio del tempo e della frequenza. Attraverso il confronto tra diverse tecniche di filtraggio, sono stati osservati e interpretati i risultati mediante rappresentazioni spettrali e verifica percettiva tramite ascolto.
 
 \subsection{Procedimento}
 
 Come prima cosa, abbiamo caricato i due brani, uno di musica classica e l’altro di musica techno, con le stesse modalità impiegate nell’homework precedente. 
 Successivamente, per ognuno dei tre filtri, abbiamo definito il vettore che ne rappresentava la risposta all’impulso nel dominio del tempo discreto, e ne abbiamo fatto la convoluzione con una finestra di ogni brano.
 
-Il primo filtro è costituito da un una porta di durata $ T = 0.001$ s. Come richiesto da consegna, questo parametro è stato scelto in modo da avere il primo zero a 1 kHz, infatti sostituendo questo valore all’interno della seguente formula, otteniamo il valore esatto di T da utilizzare per avere tale frequenza di taglio: 
+Il primo filtro è costituito da una porta di durata $ T = 0.001$ s. Come richiesto da consegna, questo parametro è stato scelto in modo da avere il primo zero a 1 kHz, infatti sostituendo questo valore all’interno della seguente formula, otteniamo il valore esatto di T da utilizzare per avere tale frequenza di taglio: 
 
 \[ T = \frac{1}{f_{cut} \cdot 1000} \]\
 
 Abbiamo dunque calcolato il numero di campioni ($N$) ottenuti nel tempo scelto, campionando secondo la frequenza dei due brani ($Fs_1$ = $Fs_2$ = 44.1 kHz), e poi abbiamo creato un vettore di tanti uni quanti il valore appena trovato. 
 
-Successivamente per effettuare la convoluzione con i brani, è stato necessario normalizzare la porta, così da evitare che ogni campione del segnale in uscita risultasse uguale alla somma degli $N$ campioni precedenti. Dividendo dunque la porta per $N$, la somma dei coefficienti risulta essere 1, portando un guadagno unitario a 0 Hz.
+Successivamente per effettuare la convoluzione con i brani, è stato necessario normalizzare la porta, così da evitare che ogni campione del segnale in uscita risultasse uguale alla somma degli $N$ campioni precedenti. Dividendo dunque la porta per $N$, la somma dei coefficienti risulta essere 1, portando un guadagno unitario a 0 Hz.\\
 
-Il secondo filtro, invece, è dato da un coseno rialzato, di cui abbiamo definito la funzione nel modo seguente campionandola poi grazie a un vettore dei tempi compreso tra $-10T$ e $+10T$ con elementi distanti $\tfrac{1}{Fs_1}$. Segue il segmento di codice in cui si è definito quanto appena descritto:
+Il secondo filtro, invece, è dato da un coseno rialzato, di cui abbiamo scritto la funzione secondo definizione e l'abbiamo poi campionata grazie a un vettore dei tempi compreso tra $-10T$ e $+10T$ con elementi distanti $\tfrac{1}{Fs_1}$. Segue il segmento di codice relativo a quanto appena descritto:
 
  \lstinputlisting[language=Matlab, firstline = 45, lastline = 57]{code/HW/HW2.m}
 
-In questo caso, per avere nuovamente la frequenza di taglio a 1 kHz, è necessario avere $T = 0.0005$ s, in quanto la funzione sinc ha una risposta in frequenza rettangolare tra $\tfrac{-fr}{2}$ e $\tfrac{+fr}{2}$, pertanto ponendo $\tfrac{fr}{2}$ = 1000 Hz segue che $fr$ = 2000 Hz, che sostituita nella relazione $T = $ $\tfrac{1}{fr}$,  da il risultato ottenuto. 
+In questo caso, per avere nuovamente la frequenza di taglio a 1 kHz, è necessario avere $T = 0.0005$ s, in quanto la funzione sinc ha una risposta in frequenza rettangolare tra $\tfrac{-fr}{2}$ e $\tfrac{+fr}{2}$, pertanto ponendo $\tfrac{fr}{2}$ = 1000 Hz segue che $fr$ = 2000 Hz, che sostituita nella relazione $T = $ $\tfrac{1}{fr}$,  dà il risultato ottenuto. 
 Gli estremi dei valori del vettore tempo sono stati scelti in modo tale da troncare poi il segnale, al momento del campionamento, mantenendo un numero sufficiente di lobi laterali per una rappresentazione accurata.
 
-È poi bene sottolineare come, grazie ai toolbox messi a disposizione da MATLAB, non è stato necessario che definissimo manualmente anche la funzione sinc, la quale avrebbe richiesto delle accortezze maggiori dal momento che MATLab assegna un valore non numerico alla forma indefinita 0/0. Per lo stesso motivo descritto per la funzione porta è stato necessario, anche in questo caso, effettuare la normalizzazione del filtro.\\
+È poi bene sottolineare come, grazie ai toolbox messi a disposizione da MATLAB, non è stato necessario che definissimo manualmente anche la funzione sinc, la quale avrebbe richiesto delle accortezze maggiori dal momento che MATLAB assegna un valore non numerico alla forma indefinita 0/0. Per lo stesso motivo descritto per la funzione porta è stato necessario, anche in questo caso, effettuare la normalizzazione del filtro.\\
 
-Per l’ultimo filtro, definito come $1 - H_2(f)$, abbiamo sfruttato la linearità della trasformata di Fourier per scrivere la risposta all’impulso direttamente nel dominio del tempo. Abbiamo definito una delta di Dirac come un vettore di zero avente un uno nell’elemento di indice uguale a quello in cui abbiamo un massimo in $h(n)$, e successivamente vi abbiamo sottratto il vettore calcolato per il filtro precedente, evitando di passare per la definizione nel dominio delle frequenze.
+Per l’ultimo filtro, definito come $1 - H_2(f)$, abbiamo sfruttato la linearità della trasformata di Fourier per scrivere la risposta all’impulso direttamente nel dominio del tempo. Abbiamo definito una delta di Dirac come un vettore di zero avente un $"1"$ all'indice corrispondente ad un massimo in $h(n)$, a cui successivamente abbiamo sottratto il vettore, corrispondente ad $h_2(n)$, calcolato per il filtro precedente, evitando di passare per la definizione nel dominio
+delle frequenze.\\
 
-Per effettuare la convoluzione tra la risposta all’impulso di un filtro con un brano musicale, è necessario che entrambi i segnali siano causali. Per una ragione puramente stilistica, per il secondo e il terzo filtro abbiamo inizialmente considerato degli assi del tempo simmetrici rispetto all’origine, ma essendo un vettore di per sé concettualmente causale, non è stato necessario alcun intervento dal punto di vista dei calcoli al momento della convoluzione, ma sono stati necessari degli accorgimenti solamente al momento della visualizzazione dei grafici.\\
+Per effettuare la convoluzione tra la risposta all’impulso di un filtro con un brano musicale, è necessario che entrambi i segnali siano causali. Per una ragione di maggio facilità nella rappresentazione, per il secondo e il terzo filtro abbiamo inizialmente considerato degli assi del tempo simmetrici rispetto all’origine, ma essendo un vettore di per sé concettualmente causale, non è stato necessario alcun intervento dal punto di vista dei calcoli al momento della convoluzione, ma sono stati necessari degli accorgimenti solamente al momento della visualizzazione dei grafici.\\
 
 Infine ottenuti gli spettri in ingresso ed uscita dei filtri siamo andati a calcolare le funzioni di trasferimento dei filtri considerati. In particolare notiamo come si sia utilizzato come segnale preso in analisi un rumore bianco gaussiano al fine di risolvere parzialmente il problema numerico dove per frequenze prossime allo zero $X(f) \approx 0$ ci si ritrova in una situazione del tipo $\tfrac{0}{0}$ che può dare risultati numericamente "casuali".
 
+Infine, per ogni filtro, abbiamo preso in esame un segnale di rumore bianco, ne abbiamo calcolato gli spettri dei segnali in ingresso e uscita, per poi ricavare la risposta all’impulso dei filtri in esame. Per questa parte dell'homework non abbiamo utilizzato i segnali audio dati dai due brani al fine di risolvere parzialmente il problema numerico dove per frequenze prossime allo zero $X(f) \approx 0$ ci si ritrova in una situazione del tipo $\tfrac{0}{0}$ che può dare risultati numericamente "casuali".
+
 \subsection{Grafici}
 
-Riportiamo ora in questa sezione i grafici ottenuti dal procedimento riportato sopra.
-Come primo caso riportiamo gli spettri in entrata ed uscita ai vari filtri per una finestra di durata 2.5 secondi per entrambi i brani presi in considerazione.
+Riportiamo ora i grafici ottenuti dal procedimento descritto sopra. Come primo caso riportiamo gli spettri in entrata ed uscita ai vari filtri per una finestra di durata 2.5 secondi per entrambi i brani presi in considerazione.
 In particolare il primo grafico fa riferimento al brano di genere techno mentre il secondo si riferisce al brano di musica classica.
 
 \begin{figure}[h!]
@@ -62,17 +64,17 @@ Notiamo come $H_1$, $H_2$ ed $H_3$ facciano riferimento ai filtri richiesti all'
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{images/HW/HW2/6.png}
+\includegraphics[width=0.9\textwidth]{images/HW/HW2/6.png}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{images/HW/HW2/7.png}
+\includegraphics[width=0.9\textwidth]{images/HW/HW2/7.png}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1.0\textwidth]{images/HW/HW2/8.png}
+\includegraphics[width=0.9\textwidth]{images/HW/HW2/8.png}
 \end{figure}
 
 \newpage
@@ -88,7 +90,7 @@ L’utilizzo di una porta e di un coseno rialzato, consentono di realizzare un f
 
 L’impiego del filtro a coseno rialzato ha invece permesso un maggiore controllo sulla banda passante. Questo, permette di ridurre le discontinuità spettrali e le oscillazioni laterali tipiche dei filtri basati su finestre rettangolari, producendo una risposta in frequenza meglio definita e più regolare.
 Però, come possiamo vedere dai grafici riportati in precedenza, lo spettro dei segnali in uscita dei due filtri è ben differente l’uno dall’altro, nonostante ci si aspetterebbe un comportamento simile. 
-Queste differenze sono dovute principalmente alle forme assunte dai due filtri nel dominio delle frequenze: il primo filtro è dato da una funzione sinc mentre il secondo da un segnale piatto nella banda passante e molto più smorzato all’esterno. Per entrambi abbiamo impostato i parametri in modo tale da avere una frequenza di a taglio a circa 1 kHz, ma appunto viste le differenze tra i due, nel secondo caso è apprezzabile un taglio più netto, pulito.
+Queste differenze sono dovute principalmente alle forme assunte dai due filtri nel dominio delle frequenze: il primo filtro è dato da una funzione sinc mentre il secondo da un segnale piatto nella banda passante e molto più smorzato all’esterno. Per entrambi abbiamo impostato i parametri in modo tale da avere una frequenza di taglio a circa 1 kHz, ma appunto viste le differenze tra i due, nel secondo caso è apprezzabile un taglio più netto, pulito.
 
 Nel primo caso, il filtro è ottenuto tramite una porta nel dominio del tempo; la sua trasformata di Fourier corrisponde a una funzione sinc, caratterizzata da un lobo principale e da lobi laterali oscillanti a supporto infinito. Questo comportamento introduce inevitabilmente oscillazioni nello spettro del segnale filtrato e un taglio in frequenza meno marcato e meno ben delineato.
 
@@ -102,12 +104,13 @@ Il brano di genere techno risulta ovattato dal passaggio nei primi due filtri, m
 
 Per quanto riguarda il brano di musica classica i primi due filtri restituiscono un segnale audio ovattato, come nel caso precedente, ma con un effetto minore dovuto al fatto che questo brano racchiude le sue componenti in frequenza principali all’interno della banda che viene fatta passare dal filtro. Attraverso il terzo filtro otteniamo invece una traccia audio priva delle sue componenti principali lasciando inalterate quelle poche componenti ad alta frequenza prodotte da alcuni strumenti che non erano udibili nel caso precedente.\\
 
-Infine notiamo come i grafici delle funzioni di trasferimento siano molto disturbati e rumorosi in alcune zone dello spettro. Questo comportamento è dovuto al fatto che tali funzioni siano state stimate come il rapporto tra gli spettri di uno stesso segnale filtrato  con uno non filtrato (uscita $Y(f)$ ed ingresso $X(f)$). Come possiamo notare, nonostante si sia utilizzato un rumore bianco gaussiano di svariati campioni,  nelle zone in cui lo spettro viene portato a valori prossimi allo zero dal filtro implementato, il rapporto restituisce valori numerici non accurati che appaiono come rumorosi. Questo effetto è particolarmente visibile negli ultimi due grafici per i valori di frequenze che vengono attenuate dai filtri.
+Infine notiamo come i grafici delle funzioni di trasferimento siano molto disturbati e rumorosi in alcune zone dello spettro. 
+
+Questo comportamento è dovuto al fatto che tali funzioni siano state stimate come il rapporto tra gli spettri di uno stesso segnale, filtrato con uno non filtrato (uscita $Y(f)$ ed ingresso $X(f)$). Come possiamo notare, nonostante si sia utilizzato un rumore bianco gaussiano di svariati campioni,  nelle zone in cui lo spettro viene portato a valori prossimi allo zero dal filtro implementato, il rapporto restituisce valori numerici non accurati che appaiono come rumorosi. Questo effetto è particolarmente visibile negli ultimi due grafici per i valori di frequenze che vengono attenuate dai filtri.
 
 
 
 \end{document}
-
 
 
 
