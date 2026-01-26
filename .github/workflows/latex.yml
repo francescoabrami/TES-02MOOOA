@@ -20,7 +20,7 @@ jobs:
 
       # 1. Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       # Step 2: Compila il documento LaTeX
       - name: Build LaTeX document
