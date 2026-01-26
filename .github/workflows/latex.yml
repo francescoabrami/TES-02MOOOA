@@ -55,6 +55,11 @@ jobs:
         with:
           files: TES.pdf
           tag_name: ${{ steps.get_version.outputs.version }}
-          body: "Release for version ${{ steps.get_version.outputs.version }}"
+          body: |
+          
+            Release for the version ${{ steps.get_version.outputs.version }} of the TES.pdf notes.
+
+            This release includes the latest compiled version of the document to this date.
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
