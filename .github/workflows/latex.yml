@@ -10,7 +10,7 @@ on:
   push:
     paths:
       - main.tex
-
+      
 jobs:
 
   build_latex:
@@ -19,66 +19,41 @@ jobs:
     steps:
 
       # 1. Checkout repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Set up Git repository
+        uses: actions/checkout@v6
 
-      # Step 2: Compila il documento LaTeX
-      - name: Build LaTeX document
-        uses: xu-cheng/latex-action@v3
-        id: compile_latex
-        continue-on-error: true
+      # 2. Run LaTeX using Docker
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-          compiler: latexmk
-          args: -pdf -file-line-error -interaction=nonstopmode -f
+          
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v5
+        with:
+          name: PDF
+          path: main.pdf
 
-      # 3. Extract document version
-      - name: Extract version
+      # 3. Extract version and rename output PDF 
+      - name: Extract version and rename PDF
         id: get_version
         run: |
-          VERSION=$(grep -oP "\\newcommand{\\version}{\\K[^}]+" main.tex)
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          VERSION=$(grep -oP '\\def\\version\{\K[^\}]+' main.tex || echo "v1.0.0")
+          echo "version=v$VERSION" >> $GITHUB_OUTPUT
 
-      # 4. Rename PDF for release
-      - name: Rename PDF
-        run: mv main.pdf TES.pdf
-
-     # 5. Import PGP Key
-      - name: Import PGP Key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.PGP_SIGNING_KEY }}
-          passphrase: ${{ secrets.GPG_KEY_PASSPHRASE }}
-
-      # 6. Create and Push Signed Git Tag
-      - name: Create and Push Signed Git Tag
-
-        env:
-          GIT_AUTHOR_NAME: 'francescoabrami'
-          GIT_AUTHOR_EMAIL: 'francesco.abrami03@gmail.com'
-          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
-          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
-        run: |
-          git config user.signingkey "${{ steps.import_gpg.outputs.keyid }}"        
-          git tag -s -m "Release ${{ steps.get_version.outputs.version }}" "${{ steps.get_version.outputs.version }}"
-          git push origin "${{ steps.get_version.outputs.version }}"
-        
-      # 7. Create GitHub Release
-      - name: Create GitHub Release
+          if [ -f "main.pdf" ]; then
+            mv "main.pdf" "TES.pdf"
+          else
+            echo "main.pdf not found!"
+            exit 1
+          fi
+          
+      # 4. Create Release and Upload PDF
+      - name: Create Release and Upload PDF
         uses: softprops/action-gh-release@v2
         with:
-          name: Release ${{ steps.get_version.outputs.version }}
-          tag_name: ${{ steps.get_version.outputs.version }}
-          body: |
-            Release automatica dell'ultima versione disponibile.
-            Versione: ${{ steps.get_version.outputs.version }}
           files: TES.pdf
-            
+          tag_name: ${{ steps.get_version.outputs.version }}
+          body: "Release for version ${{ steps.get_version.outputs.version }}"
         env:
-          VERSION: ${{ steps.get_version.outputs.version }}
-          GPG_KEY_PASSPHRASE: ${{ secrets.GPG_KEY_PASSPHRASE }}
-          GIT_COMMITTER_NAME: ${{ secrets.GIT_COMMITTER_NAME }}
-          GIT_COMMITTER_EMAIL: ${{ secrets.GIT_COMMITTER_EMAIL }}
-          GIT_AUTHOR_NAME: francescoabrami
-          GIT_AUTHOR_EMAIL: francesco.abrami03@gmail.com
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
