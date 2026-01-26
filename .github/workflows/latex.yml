@@ -22,11 +22,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # 2. Build LaTeX document 
-      - name: Build LaTeX document (Docker)
-        uses: xu-cheng/latex-action@v4
+      # 2. Build LaTeX document
+      - name: Build LaTeX document  (Docker)
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+          compiler: latexmk
+          args: -pdf -file-line-error -interaction=nonstopmode -f
 
       # 3. Extract document version
       - name: Extract version
