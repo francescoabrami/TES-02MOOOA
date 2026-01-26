@@ -21,13 +21,13 @@ Dato il segnale:
 
 dove
 
-\[ x(t) = \begin{cases}
-	
-	1 - \tfrac{3|t|}{4T} \hspace{10pt} \unit{per} \hspace{10pt}  |t| < 2T/3 \\
-	1/2 \hspace{26pt} \unit{per} \hspace{15pt} 2T/3 < |t| < T   \\
-	0  	\hspace{30pt} \unit{altrove}
-	
-\end{cases} \]\
+\[ 
+x(t) = \begin{cases}
+    1 - \frac{3|t|}{4T} & \text{per } |t| < 2T/3 \\
+    1/2                 & \text{per } 2T/3 < |t| < T \\
+    0                   & \text{altrove}
+\end{cases} 
+\]\
 
 Il segnale $y(t)$ viene successivamente filtrato con un filtro passabasso ideale la cui funzione di trasferimento vale 1 per $|f| < B = \tfrac{3}{4T}$ e 0 altrove. Calcolare l'espressione del segnale $z(t)$ in uscita dal filtro.
 
