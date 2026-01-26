@@ -24,7 +24,7 @@ jobs:
 
       # 2. Build LaTeX document 
       - name: Build LaTeX document (Docker)
-        uses: xu-cheng/latex-action@v4
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
           compiler: latexmk
