@@ -36,7 +36,7 @@ jobs:
       - name: Extract version
         id: get_version
         run: |
-          VERSION=$(grep -oP "\\newcommand{\\versione}{\\K[^}]+" main.tex)
+          VERSION=$(grep -oP "\\newcommand{\\version}{\\K[^}]+" main.tex)
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       # 4. Rename PDF for release
