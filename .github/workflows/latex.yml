@@ -29,7 +29,6 @@ jobs:
           root_file: main.tex
           compiler: latexmk
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
-          extra_system_packages: "scheme-basic siunitx"
 
       # 3. Extract document version
       - name: Extract version
