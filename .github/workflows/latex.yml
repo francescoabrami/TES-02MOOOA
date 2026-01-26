@@ -27,7 +27,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: main.tex
-          texlive_version: '2025'
+          texlive_version: '2023'
 
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
