@@ -168,13 +168,11 @@ Si richiede di:
 
 Si consideri il segnale $s(t)$ di tipo passabasso con banda $B = 50$Hz; tale segnale viene campionato senza perdita alla minima frequenza di campionamento $f_{\unit{c,min}}$, dando luogo ad una serie di campioni:
 
-\[ s(nT_c)=  \begin{cases}
-
--1 \hspace{10pt} n = -2,-1 \\
-\hspace{9pt} 1  \hspace{10pt} n = +2,+1 \\
-\hspace{9pt} 0  \hspace{10pt} $altrove$
-	
-\end{cases} \]\
+\[ s(nT_c)=  \begin{cases} 
+-1 & \text{if } n = -2,-1 \\
+\hspace{5.5pt}1 & \text{if } n = +2,+1 \\
+\hspace{5.5pt}0 & \text{altrove}
+\end{cases} \]
 
 
 Si chiede di determinare il valore del segnale nell’istante $t= 0.005$s.
