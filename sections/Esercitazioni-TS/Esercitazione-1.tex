@@ -70,34 +70,38 @@ Per capire come sia stata traslata e riscalata la porta andiamo a normalizzare l
 
 
 
-\[ p_1(t) = \begin{cases}
+\[
+p_1(t) = \begin{cases}
+    1 & \text{se } -1/2 \leq t \leq 1/2 \\
+    0 & \text{se altrove}
+\end{cases}
+\]
 
-	1\:\: -1/2 \leq t \leq 1/2 \\
-	0\:\: \unit{altrove}	
-	
-\end{cases}    \]\
 
-
-\[ p_1(\frac{t-2}{4}) = \begin{cases}
-
-	1\:\: -1/2 \leq \frac{t-2}{4} \leq 1/2\\
-	0\:\: \unit{altrove}	
-	
-\end{cases} \]\
+\[ 
+p_1\left(\frac{t-2}{4}\right) = \begin{cases}
+    1 & \text{se } -1/2 \leq \frac{t-2}{4} \leq 1/2 \\
+    0 & \text{se altrove}
+\end{cases} 
+\]
 
 Moltiplicando per 4 il secondo membro otteniamo che:
 
-\[ p_1(\frac{t-2}{4}) = \begin{cases}
-	1\:\: -2 \leq {t-2} \leq 2\\
-	0\:\: \unit{altrove}	
-\end{cases} \]\
+\[ 
+p_1\left(\frac{t-2}{4}\right) = \begin{cases}
+    1 & \text{se } -2 \leq t-2 \leq 2 \\
+    0 & \text{altrove}
+\end{cases} 
+\]
 
 Infine sommiamo due per ottenere di nuovo $t$:
 
-\[ p_1(\frac{t-2}{4}) = \begin{cases}
-	1\:\: 0 \leq {t} \leq 4\\
-	0\:\: \unit{altrove}	
-\end{cases} \]\
+\[ 
+p_1\left(\frac{t-2}{4}\right) = \begin{cases}
+    1 & \text{se } 0 \leq t \leq 4 \\
+    0 & \text{se altrove}
+\end{cases} 
+\]
 
 Così facendo abbiamo capito che la nostra porta è stata traslata di due unità verso destra ed ha subito un riscalamento pari a 4. Quanto appena detto si poteva capire intuitivamente guardando l'argomento della porta nell'espressione del segnale.
 
