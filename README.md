@@ -4,10 +4,10 @@ This repository is intended to contain all the files necessary for compiling a m
 
 Knowing that not all students might be able to download and compile the file on their own the repository implements some automations to keep the latest version compiled and available to download. In this case the file is released in the repository with a version number that indicates the latest version available. For more information about the process check the sections below.
 
-We also provide a direct download link to the latest version available to this date.
+We also provide a [direct download link](https://github.com/francescoabrami/TES-02MOOOA/releases/latest/download/TES.pdf) to the latest version available to this date.
 This link is static so the user can store it and never return to this page just to the get the latest compiled version.
 
-[DIRECT DOWNLOAD LINK](https://github.com/francescoabrami/TES-02MOOOA/releases/latest/download/TES.pdf)
+
 
 ## 🤔 What about this repository?
 
