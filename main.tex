@@ -2,7 +2,7 @@
 
 \input{sections/preable.tex}
 
-\def\version{1.18.1}
+\def\version{1.19.0}
 
 \begin{document}
 
@@ -20,7 +20,12 @@
 %% DISPLAY TABLE OF CONTENTS ON A NEW PAGE %%
 
 \newpage
+\clearpage
+\thispagestyle{empty}
+\pagenumbering{roman}
 \tableofcontents
+\clearpage
+\pagenumbering{arabic}
 
 %% WRITING AND SUBFILE CALL SECTION %%
 
@@ -38,6 +43,9 @@
 \subfile{sections/Lezioni-TS/09-Correlazione.tex}
 \subfile{sections/Lezioni-TS/10-Spettro.tex}
 \subfile{sections/Lezioni-TS/11-DAC.tex}
+
+\subfile{sections/Lezioni-TS/12-Filtri.tex} % EXTRA MATERIAL
+\subfile{sections/Lezioni-TS/13-Dati.tex} % EXTRA MATERIAL
 
 \subfile{sections/Lezioni-EN/12-Numerici.tex} 
 \subfile{sections/Lezioni-EN/13-Sequenze.tex} % FUTURE USE
