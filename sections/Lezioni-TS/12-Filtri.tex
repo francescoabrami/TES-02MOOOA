@@ -264,7 +264,7 @@ Il diagramma di Bode della funzione di trasferimento standard passa-alto del pri
 \end{center}	
 \end{figure}
 
-Confrontando questa espressione con la funzione di trasferimento ottenuta sopra, si ricava che $f_0$ = $1 / (2\pi R_1C)$ e $H_0$ = $−R_2 / R_1$.
+Confrontando questa espressione con la funzione di trasferimento ottenuta sopra, si ricava che $f_0$ = $1 / (2\pi R_1C)$ e $H_0$ = $-R_2 / R_1$.
 
 \subsubsection{Passa-banda}
 
@@ -308,7 +308,7 @@ L’andamento di $H(jf)$ è riportato in figura \ref{filtri11} nel caso in cui $
 \end{figure}
 
 
-Confrontando l’espressione canonica con la funzione di trasferimento del filtro si ricava: $f_1 = 1 / (2\pi R_1C_1)$, $f_2 = 1 / (2\pi R_2C_2)$ e $H_0 = −R_2/R_1$. Questo tipo di filtro non permette un filtraggio molto selettivo intorno ad una data frequenza (neppure se si pone $f_1 = f_2$). Per ottenere prestazioni più spinte occorrono altre soluzioni che permettono di ottenere funzioni di trasferimento con poli complessi coniugati. Questi circuiti saranno trattati più avanti.
+Confrontando l’espressione canonica con la funzione di trasferimento del filtro si ricava: $f_1 = 1 / (2\pi R_1C_1)$, $f_2 = 1 / (2\pi R_2C_2)$ e $H_0 = -R_2/R_1$. Questo tipo di filtro non permette un filtraggio molto selettivo intorno ad una data frequenza (neppure se si pone $f_1 = f_2$). Per ottenere prestazioni più spinte occorrono altre soluzioni che permettono di ottenere funzioni di trasferimento con poli complessi coniugati. Questi circuiti saranno trattati più avanti.
 
 \subsubsection{Rotatore di fase}
 
@@ -341,7 +341,7 @@ Si possono considerare indipendentemente i termini di guadagno dovuti alle tensi
 Per la funzione di trasferimento si ha che:
 
 \begin{equation}
-		H(jf) = \frac{1 - j\frac{f}{f_0}}{1 + j\frac{f}{f_0}, \; \; f_0 = \frac{1}{2\pi R_1 C}
+		H(jf) = \frac{1 - j\frac{f}{f_0}}{1 + j\frac{f}{f_0}}, \; \; f_0 = \frac{1}{2\pi R_1 C}
 \end{equation}
 
 
@@ -360,7 +360,92 @@ La funzione di trasferimento è riportata in figura \ref{filtri13}. Il modulo di
 
 
 \subsection{Filtri del II ordine}
+
+Per quanto riguarda  studio dei filtri del II ordine verrà affrontato in due fasi: per ogni tipo di filtro si esaminerà la forma standard assunta dalla corrispondente funzione di trasferimento ed il significato dei parametri in gioco. In seguito si studieranno dei circuiti in grado di realizzare il filtro.
+
 \subsubsection{Passa-basso}
+
+Nel dominio della frequenza, un filtro passa basso del secondo ordine ha una funzione di trasferimento data da:
+
+\begin{equation}
+	H(jf) = H_{0_{lp}} H_{lp}
+\end{equation}
+
+dove $H_{0_{lp}}$ è il guadagno in continua e $H_{lp}$ è la funzione di trasferimento standard a guadagno unitario, definita come:
+
+\begin{equation}
+	H_{lp} = \left( j \frac{f}{f_0} \right) = \frac{1}{- \left( j \frac{f}{f_0} \right)^2 + \frac{j}{Q} \frac{f}{f_0} + 1}
+\end{equation}
+
+Questa espressione, nel dominio della frequenza, ha una formulazione equivalente nel dominio della trasformata di Laplace:
+
+\begin{equation}
+	H_{lp}(\omega) = \frac{\omega_0^2}{s^2 + 2 \xi \omega_0 s + \omega_0^2}
+\end{equation}
+
+oppure
+
+\begin{equation}
+	H_{lp}(s) = \frac{\omega_0^2}{s^2 + \frac{\omega_0 }{Q} s + \omega_0^2}
+\end{equation}
+
+Tutte queste espressioni sono funzione di due parametri, in contrasto con quanto visto per i filtri del I ordine. La prima espressione è funzione di $f_0$ e $Q$, la seconda invece di $\omega_0$ e $\xi$. É immediato verificare, esprimendo la seconda espressione in trasformata di Fourier, che le due espressioni sono equivalenti se si pone:
+
+\begin{equation}
+	f_0 = \frac{\omega_0}{2\pi} \;\;\; \unit{e} \;\;\; Q = \frac{1}{2\xi}
+\end{equation}
+
+I parametri $f_0$ e $\omega_0$ sono denominati rispettivamente frequenza e pulsazione caratteristica, $Q$ e $\xi$ prendono invece nome di fattore di merito e smorzamento.
+
+Nel seguito saranno presentati i grafici degli andamenti normalizzati dei filtri.
+Per disegnarli ci si rifà all’espressione in $f/f_0$. Poiché però nei corsi di elettronica si lavora spesso nel dominio delle pulsazioni $\omega$, risulta più agevole ora utilizzare l’ultima espressione vista sopra, riportata nel dominio di Fourier:
+
+\begin{equation}
+	H_{lp} (\omega) = \frac{\omega_0^2}{(-\omega^2) + j \frac{\omega_0}{Q} \omega + \omega_0^2}
+\end{equation}
+
+Analizziamo dunque la funzione $H_{lp}$ in funzione di $\omega$. Il grafico di modulo e fase è riportato in figura \ref{filtri14}.
+
+\begin{figure}
+\begin{center}
+
+
+\label{filtri14}
+\caption{Funzione di trasferimento standard del filtro passa-basso del II ordine in funzione di $Q$}	
+\end{center}	
+\end{figure}
+
+Possiamo dunque dire che:
+
+\begin{enumerate}
+	\item[\textbf{-}] Per $\omega$ che tende a 0, $H_{lp}$ tende a 1, quindi sul diagramma di Bode si ha un comportamento asintotico in bassa frequenza rappresentabile con un segmento orizzontale coincidente con l’asse a 0 dB, fase nulla.
+	
+	\item[\textbf{-}] Per $\omega$ che tende a infinito predomina il termine del secondo ordine; la funzione è approssimabile con $\omega_0^2 / (-\omega^2)$: sul diagramma di Bode (quindi su asse logaritmico) è una retta con pendenza di -40 dB per decade e fase costante pari a -180◦.
+.
+\end{enumerate}
+
+Dunque, se si è molto distanti dal punto $\omega= \omega_0$, abbiamo, per frequenze basse, una trasmissione completa del segnale, per frequenze alte un’attenuazione con pendenza di -40 dB per decade. In questi campi di frequenza il comportamento non è influenzato dal fattore di merito del filtro. I due asintoti si incrociano nel punto $\omega= \omega_0$.
+
+Per studiare l’influenza del parametro $Q$ sulle caratteristiche del filtro si osserva che cosa accade per $\omega= \omega_0$:
+
+\begin{equation}
+	H_{lp}(j\omega_0) = -jQ \hspace{2cm} \big||H_{lp}\big||_{dB} = 20\log_{10} Q  
+\end{equation}
+
+Per $Q$ alti, la funzione ha valore superiore agli asintoti in tale punto. Occorre dunque aspettarsi che la funzione, almeno per un certo campo di valori di $Q$, abbia un massimo nell’intorno di $\omega_0$. Si può verificare questo derivando $H_{lp}$ e studiando gli attraversamenti per lo zero della derivata. Si ottiene che effettivamente la funzione ha un massimo se $Q > \sqrt{2} / 2$. La posizione del picco è in:
+
+\begin{equation}
+	\omega_{pk} = \omega_0 \cdot \sqrt{1 - \frac{1}{2Q^2}}
+\end{equation}
+
+mentre il valore della funzione nel picco è:
+
+\begin{equation}
+	\big|H_{lp}\big||_{max} = \frac{Q}{\sqrt{1 - \frac{1}{4Q^2}}}
+\end{equation}
+
+Per valori alti di $Q$ la posizione del picco tende a coincidere con $\omega_0$ ed il suo valore tende a $Q$. Fra i filtri che non presentano picco, il filtro con $Q = \sqrt{2} / 2$ è quello che passa più rapidamente dall’asintoto a 0 dB all’asintoto a -40 dB/decade. La risposta in frequenza di tale filtro è detta risposta massimamente piatta o risposta alla Butterworth.
+
 \subsubsection{Passa-alto}
 \subsubsection{Passa-banda}
 \subsubsection{Elimina-banda}
