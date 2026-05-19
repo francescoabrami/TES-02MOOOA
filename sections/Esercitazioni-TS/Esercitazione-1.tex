@@ -552,7 +552,6 @@ Arriviamo ora all'ultimo esercizio dove dato il segnale $f(t)$ ad energia finita
 
 % TODO FIGURA ESERCIZIO 6 - 3 PORTE
 
-
 Prima di cominciare a fare calcoli andiamo a fare delle considerazioni che potrebbero aiutarci nella risoluzione dell'esercizio.
 In particolare notiamo come ci sia possibile sviluppare in serie di Fourier la funzione $p_\tau(x)$ - opportunamente traslata e riscalata - per poi inserire lo sviluppo calcolato nell'espressione di $f(t)$.\\
 
@@ -564,6 +563,7 @@ Possiamo dunque riscrivere la funzione $f(t)$ - ovvero come la somma delle tre p
 \subsection{Esercitazione 1 - Extra}
 
 Seguono ora alcuni esercizi non svolti in classe ma comunque riportati di seguito al fine di migliorare la comprensione di quanto svolto e visto a lezione.
+Lo svolgimento dei problemi che segue é stato verificato ma non certifica che la soluzione proposta sia corretta o tantomeno la migliore che si potesse adottare.
 
 \vspace*{1.5cm}
 \subsubsection{Esercizio 1 - Energia di un segnale}
@@ -658,7 +658,34 @@ Inoltre nel caso in cui si fosse osservata la sinusoide centrale si sarebbe nota
 
 Si considerino 6 generici segnali $x_i(t)$ a tempo continuo e ad energia finita e si applichi la procedura di Gram-Schmidt per ottenere una base a cardinalità minima e su cui rappresentare questi segnali in maniera completa. Cosa si può dire della base risultante?
 
-\subsubsection*{Soluzione esercizio \ref{extra12}
+\subsubsection*{Soluzione esercizio \ref{extra12}} 
+
+
+Applicando Gram–Schmidt a 6 segnali continui a energia finita ($x_i(t)$) (quindi ($x_i  L^2$)), si ottiene un insieme di funzioni ortonormali $({\varphi_k(t)}_{k=1}^r)$ che genera lo stesso sottospazio di (${x_i}$, ${i=1}^6$). Della base risultante si può dire che:
+
+\begin{enumerate}[label=\textbf{-}]
+	\item Cardinalità minima: dimensione del sottospazio generato, ovvero, il numero di vettori di base che \textit{"sopravvivono"} è:
+		\begin{equation}
+			r = \unit{dim} (\unit{span\;} x_1,\; \dots \; x_6)
+		\end{equation}
+		È \textit{"minima"} perché qualunque base di quello stesso sottospazio deve avere esattamente ($r$) elementi.
+		
+	\item Dipende dalla dipendenza lineare dei segnali: Se i 6 segnali sono linearmente indipendenti, allora ($r=6$). Se alcuni sono combinazioni lineari degli altri, allora ($r<6$) (Gram–Schmidt produce a un certo punto un residuo nullo e quel vettore non viene aggiunto).
+	\item È una base ortonormale del sottospazio: i ($\varphi_k$) soddisfano
+		\begin{equation}
+			\langle \varphi_k , \varphi_m \rangle = \delta_{km}
+		\end{equation}
+		e ogni segnale ($x_i(t)$) si rappresenta esattamente (nessuna approssimazione) come:
+		
+		\begin{equation}
+			x_i(t) = \sum_{k = 1}^r a_{ki}, \varphi_k(t), \hspace{1.5cm} a_{ki} = \langle x_i, \varphi_k \rangle
+		\end{equation}
+	\item Non è unica: infatti cambiando l’ordine con cui applichi Gram–Schmidt agli $x_i$, in generale ottieni una base ortonormale diversa. Anche a parità di ordine, una qualunque trasformazione ortogonale all’interno del sottospazio (rotazione) dà un’altra base ortonormale equivalente.
+
+
+\end{enumerate}
+
+In sintesi: la procedura produce una base ortonormale di cardinalità ($r\le 6$), con ($r$) pari al rango/numero massimo di segnali linearmente indipendenti tra i 6. Tale base consente rappresentazione completa dei segnali ed è minimale, ma non unica.
 
 
 \vspace*{1.5cm}
@@ -679,6 +706,32 @@ dove A e B sono due constanti positive. Si richiede di calcolare la distanza tra
 
 \subsubsection*{Soluzione esercizio \ref{extra13}}
 
+Iniziamo dicendo che la distanza tra due segnali é data dalla formula:
+
+\begin{equation}
+	d(x(t), y(t)) = \sqrt{\int_{-\infty}^{\infty} |x(t) - y(t)|^2\; dt}
+\end{equation}
+
+Sostituendo con i segnali proposti e integrando solo sull'intervallo in cui i segnali non sono nulli, ovvero [0,1], si ha che:
+
+\begin{equation}
+	d(x(t), y(t)) = \sqrt{\int_{-\infty}^\infty (At - Bt^2)^2 \;dt} = \sqrt{\int_{0}^1  (A^2t^2 + B^2t^4 - 2ABt^3) \;dt}
+\end{equation}
+
+Calcolando l'integrale ottengo che:
+
+\begin{equation}
+	d(x(t), y(t)) = \sqrt{\int_{-\infty}^\infty  (A^2t^2 + B^2t^4 - 2ABt^3) \;dt} = \sqrt{A^2 \frac{t^3}{3} + B^2 \frac{t^5}{5} - 2AB \frac{t^4}{4} \bigg|_0^1}
+\end{equation}
+
+Svolgendo i calcoli si ha che:
+
+\begin{equation}
+	d(x(t), y(t)) = \sqrt{\frac{A^2}{3} + \frac{B^2}{5} -\frac{AB}{2}}
+\end{equation}
+
+
+
 \vspace*{1.5cm}
 \subsubsection{Esercizio 4 - Distanza tra due segnali II}
 \label{extra14}
@@ -687,14 +740,14 @@ Sia data la seguente coppia di segnali:
 
 \begin{equation*}
 x_1(t) = \begin{cases}
-	x_1(t) = \bigg(\dfrac{t}{T}\bigg)^2  \hspace{20pt} \unit{se\;} 0 \leq t \leq T \\
+	\bigg(\dfrac{t}{T}\bigg)^2  \hspace{20pt} \unit{se\;} 0 \leq t \leq T \\
 	0 \hspace{3cm} \unit{altrove}
 \end{cases}
 \end{equation*}
 
 \begin{equation*}
-x_1(t) =\begin{cases}
-	x_2(t) = - \dfrac{t}{T}  \hspace{20pt} \unit{se\;} 0 \leq t \leq T \\
+x_2(t) =\begin{cases}
+	 - \dfrac{t}{T}  \hspace{20pt} \unit{se\;} 0 \leq t \leq T \\
 	0 \hspace{3cm} \unit{altrove}
 \end{cases}
 \end{equation*}
@@ -704,19 +757,41 @@ Calcolare la distanza Euclidea tra $x_1(t)$ e $x_2(t)$.
 
 \subsubsection*{Soluzione esercizio \ref{extra14}}
 
+Cominciamo andando a dare la definizione di distanza Euclidea:
 
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{\int_{-\infty}^{\infty} |x_1(t) - x_2(t)|^2\; dt}
+\end{equation}
 
+Andiamo a sostituire alla definizione i segnali presi in esempio, ricordando di integrare solo dove i segnali sono non nulli, ottengo che:
 
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{\int_{0}^{T} \left|\left(\frac{t}{T}\right)^2  - \frac{t}{T}\right|^2\; dt}
+\end{equation}
 
+Svolgo il quadrato:
 
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{\int_{0}^{T}  \frac{t^4}{T^4} + \frac{t^2}{T^2} - 2 \frac{t^3}{T^2}  \; dt}
+\end{equation}
 
+Spezzo l'integrale della somma come somma di integrali, ed escludo le costanti rispetto alla variabile di integrazione:
 
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{ \frac{1}{T^4} \int_{0}^{T}  t^4 \;dt + \frac{1}{T^2}\int_{0}^{T} t^2 \;dt - \frac{2}{T^2} \int_{0}^{T}  t^3  \; dt}
+\end{equation}
 
+Calcolo gli integrali:
 
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{ \frac{1}{T^4} \frac{t^5}{5} \bigg|_0^1 + \frac{1}{T^2} \frac{t^3}{3} \bigg|_0^1 - \frac{2}{T^2} \frac{t^4}{4} \bigg|_0^1}
+\end{equation}
 
+Si ottiene infine che:
 
-
-
+\begin{equation}
+	d(x_1(t), x_2(t)) = \sqrt{ \frac{T^5}{ 5 T^4}  + \frac{T^3}{3 T^2} -2 \frac{T^4}{4 T^3}} = \sqrt{\frac{31}{30}T}
+\end{equation}
 
 
 
