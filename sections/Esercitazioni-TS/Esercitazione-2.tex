@@ -18,7 +18,7 @@ In questa esercitazione andremo ad affrontare alcuni esercizi sul calcolo della 
 \subsubsection{Esercizio 1 - Trasformata di Fourier di segnali}
 \label{ss21}
 
-Iniziamo ora con il primo esercizio dove ci viene chiesto di calcolare la trasformata di Fourier dei seguenti segnali:
+Calcolare la trasformata di Fourier dei seguenti segnali:
 
 
 \[ s_1(t) = e^{-\alpha t} u(t),\;\; \alpha > 0 \] 
@@ -27,15 +27,28 @@ Iniziamo ora con il primo esercizio dove ci viene chiesto di calcolare la trasfo
 \[ s_4(t) = 10\unit{sinc}^2(t) \cos(300\pi t + \frac{\pi}{6})\]
 \[ s_5(t) = \unit{tri}(\tfrac{t-1}{2}) e^{-j200\pi t}  \]
 
-Iniziamo dal primo segnale alla quale andremo ad applicare la definizione di trasformata di Fourier svolgendo il calcolo dell'integrale.
-Seguendo la definizione della trasformata vista sopra possiamo procedere:
 
-\[S_1(f) = \int_{-\infty}^{+\infty} s_1(t) e^{-j2\pi f t} \:dt = \int_0^{+\infty} e^{-\alpha t} e^{-j2\pi f t} \:dt  = \int_0^{+\infty} e^{-t(\alpha + j2\pi f)} \:dt \]\
+\subsubsection*{Soluzione esercizio \ref{ss21}}
+
+Iniziamo dal primo segnale alla quale andremo ad applicare la definizione di trasformata di Fourier riportata di seguito:
+
+\begin{equation}
+	X(f) = \int_{-\infty}^{+\infty} x(t)e^{-i\pi ft  dt}\end{equation}
+\end{equation}
+
+Seguendo la definizione della trasformata appena vista possiamo procedere:
+
+\begin{equation}
+	S_1(f) = \int_{-\infty}^{+\infty} s_1(t) e^{-j2\pi f t} \:dt = \int_0^{+\infty} e^{-\alpha t} e^{-j2\pi f t} \:dt  = \int_0^{+\infty} e^{-t(\alpha + j2\pi f)} \:dt 
+\end{equation}
+
 
 Risolviamo ora l'integrale notando come l'intervallo di integrazione sia limitato da zero ad infinito dato che la funzione risulta essere nulla al di fuori di esso.
 Calcoliamo la trasformata:
 
-\[ \int_0^{+\infty} e^{-t(\alpha + j2\pi f)} \:dt  = - \frac{1}{\alpha + j2\pi f} e^{-t(\alpha + j2\pi f)} \bigg|_0^{+\infty} = \frac{1}{\alpha + j2\pi f}\]\
+\begin{equation}
+	\int_0^{+\infty} e^{-t(\alpha + j2\pi f)} \:dt  = - \frac{1}{\alpha + j2\pi f} e^{-t(\alpha + j2\pi f)} \bigg|_0^{+\infty} = \frac{1}{\alpha + j2\pi f}
+\end{equation}
 
 In particolare notiamo come l'integrale dunque la trasformata esiste solo nel caso il cui il valore di $\alpha$ sia strettamente maggiore di zero facendo convergere l'integrale. Inoltre il termine che che andiamo a calcolare in zero e $+\infty$ possiamo scomporlo con due esponenziali - modulo e fase - notando come quando si sostituisce infinito il modulo tenda a zero mentre la fase oscilli ad frequenza infinita. Quando invece sostituiamo il valore 0 otteniamo 1 come semplificazione dei due esponenziali cambiati di segno.
 
@@ -44,52 +57,125 @@ D'ora in poi non andremo quasi mai ad utilizzare la definizione di trasformata d
 \[s_2(t) = e^{-2t +4}u(t-2) \]\
 
 Come possiamo vedere il segnale è formato da un'esponenziale decrescente moltiplicato per un gradino traslato verso destra di due unità.
-Il segnale risulta avere il seguente grafico:
+Il segnale risulta avere un grafico non nullo (dunque un supporto) pari a $[2,\; +\infty)$.
 
-% TODO GRAFICO
+In particolare possiamo notare come l'esponenziale possa essere riscritto come $e^{2(t-2)}$ e sostituendo il valore $t-2$ con t si ottiene una nuova funzione equivalente, segue quanto detto:
 
-In particolare possiamo notare come l'esponenziale possa essere riscritto come $e^{2(t-2)}$ e sostituendo il valore $t-2$ con t si ottiene una nuova funzione equivalente
+\begin{equation}
+	s_2(t) = e^{-2t + 4} \cdot u(t-2) = e^{-2(t-2)} \cdot u(t-2)
+\end{equation}
 
-% TODO CAPIRE SVOGIMENTO
+Sostituendo $t-2$ con $t$ si ottiene il segnale ($y(t-2)$):
 
-Infine possiamo comunque mostrare come si potesse arrivare allo stesso risultato attraverso il calcolo integrale e la definizione di trasformata di Fourier.
+\begin{equation}
+	y(t) = e^{-2t} \cdot u(t)
+\end{equation}
 
-\[ \int_{-\infty}^{+\infty} s_2(t) e^{-j2\pi ft} \;dt = \int_{2}^{+\infty} e^{-2t+4} e^{-j2\pi ft} \;dt =  e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt   \]\
+Ci é ora possibile trasformare questo segnale in modo elementare ricordando le trasformare notevoli:
 
-Imponendo che $ a = 2 + j2/\pi f $ si ottiene il seguente integrale:
+\begin{equation}
+	s(t) = e^{-\alpha t} \cdot u(t) \unit{\;con\;} \alpha > 0 \longrightarrow X(f) = \frac{1}{\alpha + j2\pi f}
+\end{equation}
+
+Si ottiene che:
+
+\begin{equation}
+	Y(f) = \int_{2}^{+\infty} e^{-2t} \;dt = \frac{1}{2 + j2\pi f}
+\end{equation}
+
+A questo punto possiamo applicare l'anticipo (o ritardo) come descritto sulle tavole per tornare al nostro segnale originale ($t \rightarrow t - 2$).
+Seguendo la proprietà:
+
+\begin{equation}
+	x(t \pm \theta) \longrightarrow X(f) e^{\pm j 2\pi f \theta}
+\end{equation}
+
+Otteniamo infine che:
+
+\begin{equation}
+	S_2(f) = Y(f) \cdot e^{-j 2 \theta \pi f} = \frac{1}{2 + j 2\pi f } \cdot e^{-j 4 \pi f} 
+\end{equation}
+
+Possiamo comunque mostrare come si potesse arrivare allo stesso risultato attraverso il calcolo integrale e la definizione di trasformata di Fourier.
+
+\begin{equation}
+	\int_{-\infty}^{+\infty} s_2(t) e^{-j2\pi ft} \;dt = \int_{2}^{+\infty} e^{-2t+4} e^{-j2\pi ft} \;dt =  e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt
+\end{equation}
+
+
+
+Imponendo che $ a = 2 + 2 j \pi f $ si ottiene il seguente integrale:
  
 \[ \int_{2}^{+\infty} e^{-at} \;dt = \frac{e^{-2a}}{a}\]\
 
 Sostituendo si ottiene che:
 
-\[ e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt  = e^4 \frac{e^{-2(2+j2\pi f)}}{2+j2\pi f}  = \frac{e^{4-4} e^{-j2\pi f}}{2+j2\pi f} = \frac{e^{-j2\pi f}}{2+j2\pi f} \]\
+\begin{equation}
+	e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt  = e^4 \frac{e^{-2(2+j2\pi f)}}{2+j2\pi f}  = \frac{e^{4-4} e^{-j2\pi f}}{2+j2\pi f} = \frac{e^{-j2\pi f}}{2+j2\pi f}
+\end{equation}
 
-Passiamo ora al segnale successivo
+Passiamo ora al segnale successivo:
 
 \[s_3(t) = e^{-\frac{t}{2}} \cos(100\pi t) u(t) \]\
 
-Proseguiamo con il prossimo segnale:
+Passiamo ora al penultimo segnale:
 
 \[s_4(t) = 10\unit{sinc}^2(t)\cos(300\pi + \frac{\pi}{6}) \]\
 
 Iniziamo analizzando il segnale proposto composto da un segnale sinc() moltiplicato per un segnale sinusoidale cos() avente una fase diversa da zero la quale implica che non si possa utilizzare la modulazione come nell'esempio visto in precedenza.
 
+Concludiamo analizzando l'ultimo segnale:
+
+\[ s_5(t) = \unit{tri}(\tfrac{t-1}{2}) e^{-j200\pi t}  \]
 
 
 
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 2 - Trasformata e serie di Fourier di un segnale triangolare}
+\label{ss22}
+
+\subsubsection*{Soluzione esercizio \ref{ss22}}
 
 Passiamo ora al secondo esercizio andando a calcolare la trasformata di Fourier del segnale onda triangolare riportato di seguito calcolando anche i coefficienti delle serie di Fourier del segnale stesso.
 
 
 
 
+\vspace*{1.5cm}
 \subsubsection{Esercizio 3 - Passaggio da tempo a frequenza}
+\label{ss23}
+
+\subsubsection*{Soluzione esercizio \ref{ss23}}
 
 
+\vspace*{1.5cm}
 \subsubsection{Esercizio 4 - Energia di un segnale} 
+\label{ss24}
+
+\subsubsection*{Soluzione esercizio \ref{ss24}}
 
 
+
+\vspace*{1.5cm}
+\subsection{Esercitazione 2 - Extra}
+
+Seguono ora alcuni esercizi non svolti in classe ma comunque riportati di seguito al fine di migliorare la comprensione di quanto svolto e visto a lezione.
+Lo svolgimento dei problemi che segue é stato verificato ma non certifica che la soluzione proposta sia corretta o tantomeno la migliore che si potesse adottare.
+
+\vspace*{1.5cm}
+\subsubsection{Esercizio 1 - }
+\label{extra21}
+
+
+\subsubsection*{Soluzione esercizio \ref{extra21}}
+
+\vspace*{1.5cm}
+\subsubsection{Esercizio 2 - }
+\label{extra22}
+
+
+\subsubsection*{Soluzione esercizio \ref{extra22}}
 
 
 
