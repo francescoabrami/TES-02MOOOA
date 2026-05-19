@@ -33,7 +33,7 @@ Calcolare la trasformata di Fourier dei seguenti segnali:
 Iniziamo dal primo segnale alla quale andremo ad applicare la definizione di trasformata di Fourier riportata di seguito:
 
 \begin{equation}
-	X(f) = \int_{-\infty}^{+\infty} x(t)e^{-i\pi ft  dt}\end{equation}
+	X(f) = \int_{-\infty}^{+\infty} x(t)e^{-i\pi ft  dt}
 \end{equation}
 
 Seguendo la definizione della trasformata appena vista possiamo procedere:
@@ -43,21 +43,25 @@ Seguendo la definizione della trasformata appena vista possiamo procedere:
 \end{equation}
 
 
-Risolviamo ora l'integrale notando come l'intervallo di integrazione sia limitato da zero ad infinito dato che la funzione risulta essere nulla al di fuori di esso.
+Risolviamo ora l'integrale notando come l'intervallo di integrazione sia limitato da zero ad infinito dato che la funzione risulta essere nulla al di fuori di esso.\\
+
+
 Calcoliamo la trasformata:
 
 \begin{equation}
 	\int_0^{+\infty} e^{-t(\alpha + j2\pi f)} \:dt  = - \frac{1}{\alpha + j2\pi f} e^{-t(\alpha + j2\pi f)} \bigg|_0^{+\infty} = \frac{1}{\alpha + j2\pi f}
 \end{equation}
 
-In particolare notiamo come l'integrale dunque la trasformata esiste solo nel caso il cui il valore di $\alpha$ sia strettamente maggiore di zero facendo convergere l'integrale. Inoltre il termine che che andiamo a calcolare in zero e $+\infty$ possiamo scomporlo con due esponenziali - modulo e fase - notando come quando si sostituisce infinito il modulo tenda a zero mentre la fase oscilli ad frequenza infinita. Quando invece sostituiamo il valore 0 otteniamo 1 come semplificazione dei due esponenziali cambiati di segno.
+In particolare notiamo come l'integrale dunque la trasformata esiste solo nel caso il cui il valore di $\alpha$ sia strettamente maggiore di zero facendo convergere l'integrale. \\
+
+Inoltre il termine che che andiamo a calcolare in zero e $+\infty$ possiamo scomporlo con due esponenziali - modulo e fase - notando come quando si sostituisce infinito il modulo tenda a zero mentre la fase oscilli ad frequenza infinita. Quando invece sostituiamo il valore 0 otteniamo 1 come semplificazione dei due esponenziali cambiati di segno.\\
 
 D'ora in poi non andremo quasi mai ad utilizzare la definizione di trasformata di Fourier attraverso il calcolo integrale ma utilizzando trasformate di funzioni già note unite tra loro attraverso opportune proprietà. Detto ciò passiamo al calcolo delle altre trasformate.
 
 \[s_2(t) = e^{-2t +4}u(t-2) \]\
 
 Come possiamo vedere il segnale è formato da un'esponenziale decrescente moltiplicato per un gradino traslato verso destra di due unità.
-Il segnale risulta avere un grafico non nullo (dunque un supporto) pari a $[2,\; +\infty)$.
+Il segnale risulta avere un grafico non nullo (dunque un supporto) pari a $[2,\; +\infty)$.\\
 
 In particolare possiamo notare come l'esponenziale possa essere riscritto come $e^{2(t-2)}$ e sostituendo il valore $t-2$ con t si ottiene una nuova funzione equivalente, segue quanto detto:
 
@@ -93,42 +97,167 @@ Seguendo la proprietà:
 Otteniamo infine che:
 
 \begin{equation}
-	S_2(f) = Y(f) \cdot e^{-j 2 \theta \pi f} = \frac{1}{2 + j 2\pi f } \cdot e^{-j 4 \pi f} 
+	S_2(f) = Y(f) \cdot e^{-j 2 \theta \pi f} = \frac{1}{2 + j 2\pi f } \cdot e^{-j 4 \pi f} = \frac{e^{-4j\pi f}}{2 + j2 \pi f}
 \end{equation}
 
 Possiamo comunque mostrare come si potesse arrivare allo stesso risultato attraverso il calcolo integrale e la definizione di trasformata di Fourier.
 
 \begin{equation}
-	\int_{-\infty}^{+\infty} s_2(t) e^{-j2\pi ft} \;dt = \int_{2}^{+\infty} e^{-2t+4} e^{-j2\pi ft} \;dt =  e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt
+	\int_{-\infty}^{+\infty} s_2(t) e^{-j2\pi ft} \;dt = \int_{2}^{+\infty} e^{-2t+4} e^{-j2\pi ft} \;dt =  \int_{2}^{+\infty} e^{-2t+4} e^{-j \omega t} \;dt
+\end{equation}
+
+Raccolgo la costante $e^4$:
+
+\begin{equation}
+	e^4 \cdot \int_{2}^{+\infty} e^{-(2 + j \omega)t} \;dt
 \end{equation}
 
 
 
-Imponendo che $ a = 2 + 2 j \pi f $ si ottiene il seguente integrale:
- 
-\[ \int_{2}^{+\infty} e^{-at} \;dt = \frac{e^{-2a}}{a}\]\
-
-Sostituendo si ottiene che:
+Imponendo che $ a = 2 + j \omega t $ si ottiene il seguente integrale:
 
 \begin{equation}
-	e^4 \cdot \int_{2}^{+\infty} e^{-t(2+j2\pi f)}\; dt  = e^4 \frac{e^{-2(2+j2\pi f)}}{2+j2\pi f}  = \frac{e^{4-4} e^{-j2\pi f}}{2+j2\pi f} = \frac{e^{-j2\pi f}}{2+j2\pi f}
+	e^4 \cdot \int_{2}^{+\infty} e^{-at} \;dt 
+\end{equation}
+
+Risolvo ora l'integrale:
+
+\begin{equation}
+	e^4 \cdot \int_{2}^{+\infty} e^{-at} \;dt  = \frac{-1}{2 + j\omega} e^{-(2+j\omega)t}\bigg|_0^{+\infty} = 0 + \frac{1}{2 + j\omega} e ^{-2(2 + j\omega)}
+\end{equation}
+
+Svolgendo i calcoli, moltiplicando per $e^4$, ottengo che:
+
+\begin{equation}
+	e^4 \cdot \frac{e^{-2(2 + j\omega)}}{2 + j\omega} = \frac{e^{-4+4} \cdot e^{-2j\omega}}{2 + j\omega} = \frac{e^{-2j\omega}}{2 + j\omega}
+\end{equation}
+
+
+Sostituendo $a = 2 + j\omega = 2 + j2\pi f $ si ottiene che:
+
+\begin{equation}
+	S_2(f) = \frac{e^{-4j\pi f}}{2 + j2 \pi f}
 \end{equation}
 
 Passiamo ora al segnale successivo:
 
 \[s_3(t) = e^{-\frac{t}{2}} \cos(100\pi t) u(t) \]\
 
+Come prima cosa notiamo che il segnale é composto sda tre parti: un'esponenziale una coseno avente $f_0 = 50$ (si ricava mettendo $100\pi t = 2\pi f_0 t $) ed un gradino. \\
+
+Come prima cosa trasformiamo in frequenza l'esponenziale e poi applichiamo la proprietà della modulazione come indicata di seguito:
+
+\begin{equation}
+	x(t)\cos(2\pi f_0 t) \xrightarrow{\mathcal{F}} \frac{1}{2} \left[ X(f - f_0) + X(f-f_0) \right]
+\end{equation}
+
+Sapendo che la trasformata di Fourier della parte esponenziale è:
+
+\begin{equation}
+	e^{-\frac{t}{2}} \xrightarrow{\mathcal{F}} \frac{1}{\frac{1}{2} + j2\pi f}
+\end{equation}
+
+Sostituiamo ora come visto nella formula della modulazione:
+
+\begin{equation}
+	S_3(f) = \frac{1}{2} \cdot \left[ \frac{1}{\frac{1}{2} + j2\pi (f - f_0)} + \frac{1}{\frac{1}{2} + j2\pi (f + f_0) }
+ \right]
+\end{equation}
+
+%% FINIRE E CAPIRE
+
 Passiamo ora al penultimo segnale:
 
 \[s_4(t) = 10\unit{sinc}^2(t)\cos(300\pi + \frac{\pi}{6}) \]\
 
-Iniziamo analizzando il segnale proposto composto da un segnale sinc() moltiplicato per un segnale sinusoidale cos() avente una fase diversa da zero la quale implica che non si possa utilizzare la modulazione come nell'esempio visto in precedenza.
+Iniziamo analizzando il segnale proposto composto da un segnale sinc() moltiplicato per un segnale sinusoidale cos() avente una fase diversa da zero la quale implica che non si possa utilizzare la modulazione come nell'esempio visto in precedenza. \\
 
-Concludiamo analizzando l'ultimo segnale:
+Possiamo operare andando a riscrivere il coseno nelle sue componenti:
 
-\[ s_5(t) = \unit{tri}(\tfrac{t-1}{2}) e^{-j200\pi t}  \]
+\begin{equation}
+	x_4(t) = 10\unit{sinc}^2(t) \cdot \frac{1}{2} \left[ e^{j(300\pi t + \frac{\pi}{6})} + e^{-j(300\pi t + \frac{\pi}{6})} \right]
+\end{equation}
+
+Effettuo ora la moltiplicazione:
+
+\begin{equation}
+	x_4(t) = 5\unit{sinc}^2(t) \cdot e^{j(300\pi t)} \cdot e^{j \frac{\pi}{6}} + 5\unit{sinc}^2(t) \cdot e^{-j(300\pi t)} \cdot e^{- \frac{\pi}{6}}
+\end{equation}
 
 
+A questo punto notiamo come dei segnali nel tempo siano moltiplicati per dei segnali esponenziali complessi il che indica una traslazione in frequenza secondo la formula:
+
+\begin{equation}
+	x(t)\cdot e^{\pm 2 \pi f_0 t} \xrightarrow{\mathcal{F}}  X(f \mp f_0)
+\end{equation}
+
+Ricaviamo ora, anche se poteva essere fatto in precedenza il valore di $f_0$:
+
+\begin{equation}
+	300 \pi t = 2\pi f_0 t \rightarrow f_0 = 150
+\end{equation}
+
+A questo punto con le tavole possiamo utilizzare la trasformata notevole della sinc() per ottenere una funzione trig() in freqeunza a cui applicheremo una traslazione come indicato:
+
+\begin{equation}
+	S_4(f) = 5e^{j\frac{\pi}{6}} \unit{tri}(f - 150) + 5e^{-j\frac{\pi}{6}} \unit{tri}(f - 150)
+\end{equation}
+
+Possiamo infine dire che lo spettro del segnale sarà composto da due triangoli (ottenuti dalla sinc() elevata al quadrato tramite la convoluzione) simmetrici rispetto l'origine e centrati in $f = \pm 150 $\\
+
+
+Concludiamo ora analizzando l'ultimo segnale:
+
+\[ s_5(t) = \unit{tri}(\tfrac{t-1}{2}) e^{-j200\pi t} \]
+
+Come prima cosa notiamo che il segnale é composto da un segnale triangolare moltiplicato per un segnale esponenziale.\\
+
+
+Come prima cosa notiamo come il segnale triangolare sia stato traslato e scalato.\\
+
+
+In particolare é scalato di metà, ovvero il suo supporto raddoppia, da [-1, 1] a [-2, 2]. Infine é traslato verso destra di uno portando così ad assumere un supporto pari a [-1, 3] ed ampiezza unitaria.\\
+
+Come ultima cosa, guardando il segnale esponenziale, andiamo a calcolare il valore di $f_0$:
+
+\begin{equation}
+	200 \pi t = 2 \pi f_0 \rightarrow f_0 = 100
+\end{equation}
+
+Possiamo ora procedere andando a considerare le proprietà di scalamento, ritardo e traslazione in frequenza.\\
+
+
+Come prima cosa trasformiamo il segale triangolare solo dopo averlo scalato, si ottiene utilizzato la seguente proprietà:
+
+\begin{equation}
+	x(kt) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm} \frac{1}{|k|} X(\frac{f}{k})
+\end{equation} 
+
+Abbiamo dunque che, secondo le tavole:
+
+\begin{equation}
+	\unit{tri}\left( \frac{t}{2}\right) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm}  2\unit{sinc}^2(2f)
+\end{equation}
+
+Applichiamo ora il ritardo (segnale traslato nei tempi) utilizzando la proprietà seguente:
+
+\begin{equation}
+	x(t \pm \theta)  \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm} X(f) e^{\pm 2 j \pi f_0 \theta}
+\end{equation}
+
+Otteniamo che (sostituendo $\theta = 1$):
+
+\begin{equation}
+	\unit{tri}\left( \frac{t}{2} - 1 \right) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm}  2\unit{sinc}^2(2f) \cdot e^{- 2 j \pi f}
+\end{equation}
+
+Infine consideriamo l'esponenziale ed applichiamo la traslazione in frequenza:
+
+\begin{equation}
+	S_2(f) =  2\unit{sinc}^2(2f) \cdot e^{- 2 j \pi f} \cdot e^{-j2 \pi 100 }
+\end{equation}
+
+Notiamo infine come l'ultimo appena aggiunto termine si semplifichi in una costante unitaria concludendo di fatto l'esercizio.
 
 
 \vspace*{1.5cm}
@@ -137,23 +266,227 @@ Concludiamo analizzando l'ultimo segnale:
 
 \subsubsection*{Soluzione esercizio \ref{ss22}}
 
-Passiamo ora al secondo esercizio andando a calcolare la trasformata di Fourier del segnale onda triangolare riportato di seguito calcolando anche i coefficienti delle serie di Fourier del segnale stesso.
+Dato il segnale  $s(t)$ $onda$ $triangolare$ rappresentato in \autoref{figss22}:
+
+\begin{enumerate}
+	\item Calcolare la trasformata di Fourier
+	\item Calcolare i coefficienti della serie di Fourier
+\end{enumerate}
+
+\begin{figure}[h!]
+\begin{center}
+
+\begin{tikzpicture}[scale = 0.80, transform shape]
+	\draw[-latex] (3, 3) -- (11, 3);
+	\draw[-latex] (7, 3) -- (7, 8);
+	\draw (6.25, 3) to[short] (7, 7);
+	\draw (7, 7) to[short] (7.75, 3);
+	\draw (9, 7) to[short] (9.75, 3);
+	\draw (8.25, 3) to[short] (9, 7);
+	\draw (5, 7) to[short] (5.75, 3);
+	\draw (4.25, 3) to[short] (5, 7);
+	\draw (5, 7) to[short] (5.75, 3);
+	\draw (4.25, 3) to[short] (5, 7);
+	\draw (5, 7) to[short] (5.75, 3);
+	\draw (4.25, 3) to[short] (5, 7);
+	\draw[-latex] (7, 2.5) -- (7.75, 2.5);
+	\draw[-latex] (7, 2.5) -- (6.25, 2.5);
+	\draw[-latex] (7, 2) -- (8, 2);
+	\draw[-latex] (7, 2) -- (6, 2);
+	\draw (6.75, 7) to[short] (7.25, 7);
+	\draw (3.375, 5) to[short] (3.75, 3);
+	\draw (10.25, 3) to[short] (10.625, 5);
+	\draw (3.375, 5) to[short] (3, 7);
+	\draw (10.625, 5) to[short] (11, 7);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (7.75, 7){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (7.75, 7){$A$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (6.313, 7.687){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (6.313, 7.687){$s(t)$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (7, 2.75){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (7, 2.75){$\tau$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (7, 1.688){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (7, 1.688){$T$};
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (6.25, 3) -| (6.25, 2.5);
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (6, 2) -| (6, 3);
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (7.75, 3) -| (7.75, 2.5);
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (8, 2) -| (8, 3);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (10.75, 2.688){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (10.75, 2.688){$t$};
+	\node[shape=rectangle, minimum width=0.902cm, minimum height=0.34cm] at (11.5, 5){} node[anchor=center, align=center, text width=0.514cm, inner sep=6pt] at (11.5, 5){$\dots$};
+	\node[shape=rectangle, minimum width=0.902cm, minimum height=0.34cm] at (2.531, 5){} node[anchor=center, align=center, text width=0.514cm, inner sep=6pt] at (2.531, 5){$\dots$};
+\end{tikzpicture}
 
 
+\label{figss22}
+\caption{Segnale triangolare}	
+\end{center}	
+\end{figure}
+
+
+Iniziamo risolvendo il primo punto. Come prima cosa andiamo a notare come il segnale proposto sia periodico (continua all'infinito) il che indica che possiamo scriverlo come sommatoria delle sue singole parti che indichiamo come $g(t)$ traslate un numero $n$ infinite di volte.
+
+\begin{equation}
+	\sum_{n = 0}^{+\infty} g(t - nT)
+\end{equation}
+
+In particolare notiamo come il segnale $g(t)$ sia pari a:
+
+\begin{equation}
+	A \cdot \unit{tri} \left( \frac{2t}{\tau} \right)
+\end{equation}
+
+A questo punto applichiamo la trasformata notevole vista sulle tavole:
+
+\begin{equation}
+	\sum_{n = 0}^{+\infty} g(t - nT) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm}  \frac{1}{T} \sum_{n = - \infty}^{+\infty} G\left(\frac{n}{T}\right) \cdot \delta \left(f -  \frac{n}{T}\right)
+\end{equation}
+
+Applicando la proprietà otteniamo che:
+
+\begin{equation}
+	S(f) = \frac{1}{T} \sum_n G \left(\frac{n}{\tau}\right) \cdot \delta \left(f -  \frac{n}{T}\right)
+\end{equation}
+
+Calcoliamo allora $G(f) = G \left(\frac{n}{T}\right)$:
+
+\begin{equation}
+	g(t) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm} G(f) = A \cdot \frac{\tau}{2} \unit{sinc}^2 \left(f \frac{\tau}{2}\right)
+\end{equation}
+
+Otteniamo che:
+
+\begin{equation}
+	S(f) = \frac{1}{T} \sum_n A \cdot \frac{\tau}{2} \unit{sinc}^2 \left(\frac{n}{T} \frac{\tau}{2}\right) \cdot \delta \left(f -  \frac{n}{T}\right)
+\end{equation}
+
+Possiamo riscrivere il risultato ottenuto come:
+
+\begin{equation}
+	S(f) = \sum_n  \frac{A \tau}{2T} \unit{sinc}^2 \left( \frac{\tau}{2T} \cdot n \right) \cdot \delta \left(f -  \frac{n}{T}\right)
+\end{equation}
+
+Passiamo ora al secondo punto.
+
+
+
+%% DA FINIRE E CAPIRE
 
 
 \vspace*{1.5cm}
 \subsubsection{Esercizio 3 - Passaggio da tempo a frequenza}
 \label{ss23}
 
+Determinare i valori di $A$ ed $F_A$ che rendono sempre valida la seguente ugualianza:
+
+\begin{equation*}
+	\frac{\sin(2\pi F_1 t)}{2\pi F_1 t} \ast \frac{\sin(2\pi F_2 t)}{2\pi F_2 t} = A \cdot \frac{\sin(2\pi F_A t)}{2\pi F_A t} 
+\end{equation*}
+
 \subsubsection*{Soluzione esercizio \ref{ss23}}
+
+Come prima cosa notiamo che la scrittura proposta può essere vista come:
+
+\begin{equation}
+	\unit{sinc}(2 F_1 t) \ast \unit{sinc}(2 F_2 t) = A \cdot \unit{sinc}(2 F_A t)
+\end{equation}
+
+Passando otre siamo \textit{"costretti"} a passare nel dominio della frequenza per poter trasformare l'operatore convoluzione $\ast$ in un moltiplicazione.
+Utilizzando le trasformate notevoli (tavole) si ottiene che una sinc() nel tempo diventa una porta in frequenza, si ha dunque che:
+
+\begin{equation}
+	\frac{1}{2F_1} P_{2F_1}(f) \cdot \frac{1}{2F_2} P_{2F_2}(f) = A \cdot \frac{1}{2F_A} P_{2F_A} (f)
+\end{equation}
+
+Possiamo ora raccogliere i coefficienti delle porte ed moltiplicando le due porte ottenere una singola avente stessa ampiezza ma supporto uguale al valore minimo tra $F_1$ e $F_2$.
+
+\begin{equation}
+	\frac{1}{4F_1F_2} P_{min\{ F_1, \; F_2 \}} (f)  = \frac{A}{2F_A} P_{2F_A}(f)
+\end{equation}
+
+A questo punto dato che l'unico segnale in azione é una porta dobbiamo uguagliarne i vari parametri, si ottiene che:
+
+\begin{equation}
+\frac{1}{4 F_1F_2} = \frac{A}{2F_A} \hspace{1cm} \unit{e} \hspace{1cm} \min\{ F_1,\; F_2 \} = 2F_A
+\end{equation}
+
+Svolgo il calcolo:
+
+\begin{equation}
+	\frac{1}{4 F_1F_2} = \frac{A}{2F_A} \rightarrow A = \frac{2F_A}{4F_1F_2} = \frac{\min\{ F_1,\; F_2 \}}{2F_1F_2} = \frac{1}{ 2 \max\{ F_1,\; F_2 \}} 
+\end{equation}
+
+
 
 
 \vspace*{1.5cm}
 \subsubsection{Esercizio 4 - Energia di un segnale} 
 \label{ss24}
 
+Calcolare l'energia dei seguenti segnali:
+
+\begin{equation*}
+	x_1(t) = 5 \unit{sinc}(2t) 
+\end{equation*}
+\begin{equation*}
+	x_2(t) = 2 \unit{sinc}^2(t/2) 
+\end{equation*}
+\begin{equation*}
+	x_3(t) = \unit{sinc}(2t)\unit{sinc}(3t)
+\end{equation*}
+	
+
 \subsubsection*{Soluzione esercizio \ref{ss24}}
+
+Iniziamo provando a calcolare l'energia del primo segnale nel tempo utilizzando la formula vista in precedenza:
+
+\begin{equation}
+	E(x_1) = \int_{ - \infty}^{ + \infty} |x_1(t)|^2 \;dt = \int_{ - \infty}^{ + \infty} 25 \unit{sinc}^2(2t)\;dt
+\end{equation} 
+
+Possiamo riscriverlo come:
+
+
+\begin{equation}
+	E(x_1) = \int_{ - \infty}^{ + \infty} 25 \unit{sinc}^2(2t)\;dt = 25 \int_{ - \infty}^{ + \infty} \frac{\sin^2(2t)}{(2\pi t)^2} = \dots
+\end{equation} 
+
+Come possiamo vedere il calcolo risulterebbe essere fin troppo difficile e poco pratico. Preso atto di questo scoglio ci possiamo spostare in frequenza e vedere come agire in quel dominio.\\
+
+Possiamo passare subito in frequenza grazie e Fourier:
+
+\begin{equation}
+	X_1(f) = 5 \cdot \frac{1}{2} P_{2}(f)
+\end{equation}
+
+Otteniamo dunque il seguente segnale:
+
+\begin{figure}[h!]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+	\draw[-latex] (4, 3) -- (10, 3);
+	\draw[-latex] (7, 3) -- (7, 7);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (5.75, 6.688){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (5.75, 6.688){$X_1(f)$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (10.375, 2.625){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (10.375, 2.625){$f$};
+	\draw[line width=1.2pt] (4, 3) -| (5, 5) -- (9, 5) -| (9, 3) -- (9.875, 3);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (6.563, 5.438){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (6.563, 5.438){$\frac{5}{2}$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (4.938, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (4.938, 2.563){$-1$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (9, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (9, 2.563){$1$};
+\end{tikzpicture}
+
+\label{figss24}
+\caption{Segnale porta ottenuto}	
+\end{center}	
+\end{figure}
+
+Ora tramite il teorema di Parseval:
+
+\begin{equation}
+	E(x) = \int_{-\infty}^{+ \infty} |x(t)|^2 \; dt = \int_{-\infty}^{+ \infty} |X(f)|^2 \; df
+\end{equation}
+
+Possiamo dunque dire che:
+
+\begin{equation}
+	E(x_1) = \int_{-1}^{1} \left|\frac{5}{2}\right|^2 \; df = \frac{25}{4} \cdot 2 = \frac{25}{2}
+\end{equation}
+
+Passiamo ora al secondo punto.
 
 
 
