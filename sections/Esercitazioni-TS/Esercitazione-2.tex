@@ -486,7 +486,149 @@ Possiamo dunque dire che:
 	E(x_1) = \int_{-1}^{1} \left|\frac{5}{2}\right|^2 \; df = \frac{25}{4} \cdot 2 = \frac{25}{2}
 \end{equation}
 
-Passiamo ora al secondo punto.
+Passiamo ora al secondo punto dove, come fatto in precedenza, andremo a calcolare l'energia nel dominio della frequenza.
+
+\begin{equation}
+	x_(t) = 2 \unit{sinc}^2\left(\frac{t}{2}\right) \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm} X_2(f) = 2 \unit{tri} (2f)
+\end{equation}
+
+Si ottiene che:
+
+\begin{equation}
+	E(x_2) = \int_{-\infty}^{+\infty} |x(t)|^2 \; dt = \int_{-\infty}^{+\infty} |X(f)|^2 \; df = 4 \cdot \int_{-\infty}^{+\infty} [ 2 \unit{tri}(2f)]^2 \;df
+\end{equation}
+
+Si ottiene dunque, nella frequenza, un segnale a supporto compatto [$-\frac{1}{2}$,$\frac{1}{2}$].
+Possiamo infine calcolare l'energia solo su  metà del segnale e poi raddoppiare il valor ottenuto si ha dunque che:
+
+\begin{equation}
+	16 \cdot \int_{-\frac{1}{2}}^{\frac{1}{2}} (1 - 2|f|)^2 \; df = 2 \cdot 16 \cdot \int_{0}^{\frac{1}{2}} (1 - 2f)^2 \; df 
+\end{equation} 
+
+Svolgo i calcoli:
+
+\begin{equation}
+	32 \cdot \int_{0}^{\frac{1}{2}} 1 + 4f^2 -4f \; df = f + 3 \frac{f^3}{3} - 4 \frac{f^2}{2} \bigg|_0^{\frac{1}{2}} \cdot 32 = 32 \cdot \left( \frac{1}{2} +  \frac{4}{24} - \frac{4}{8} \right) = \frac{16}{3}
+\end{equation}
+
+Passiamo ora al terzo esercizio.
+Come fatto in precedenza passiamo nel dominio della frequenza:
+
+\begin{equation}
+	x_3(t) = \unit{sinc}(3t) \cdot \unit{sinc}(2t) \cdot \hspace{1cm} \xrightarrow{\mathcal{F}}  \hspace{1cm} X_3(f) = \frac{1}{2}P_2(f) \ast \frac{1}{3}P_3(f)
+\end{equation}
+
+Raccolgo le costanti:
+
+\begin{equation}
+	X_3(f) = \frac{1}{6} P_2(f) \ast P_3(f)
+\end{equation}
+
+Applico la regola della convoluzione, si ottiene che:
+
+\begin{equation}
+	\frac{1}{6} \int_{-\infty}^{+\infty} P_3(\varphi)P_2(f - \varphi)\; d\varphi
+\end{equation}
+
+
+Per effettuare il prodotto di convoluzione dobbiamo immaginare di far \textit{"scorrere"} i due segnali nelle frequenze e moltiplicarli quando si sovrappongono, in altri casi uno dei due sarà nullo annullando il prodotto.
+Immaginiamo di tenere fermo il segnale $P_3(\varphi)$ e facciamo scorrere $P_2(f - \varphi)$, Ricordiamo che il primo segnale ha supporto [-3/2, 3/2] mentre il secondo [$f$ -1, $f$ + 1] in base a dove é messo.
+Il primo punto di sovrapposizione si ha a -3/2 indicando che l'ultimo pezzo di segnale é a -5/2. Ovviamente l'ultima sovrapposizione si avrà a 5/2 per simmetria. Abbiamo dunque che:
+
+\begin{equation}
+	f < - \frac{5}{2} \hspace{10pt} \unit{o} \hspace{10pt} f > \frac{5}{2}  \rightarrow S_2(f) = 0
+\end{equation}
+
+Ora, notato dove il prodotto é nullo evidenziamo dove c'è una sovrapposizione parziale o totale, iniziamo dalla prima sovrapposizione a sinistra data da:
+
+\begin{equation}
+	- \frac{5}{2} < f < - \frac{1}{2}
+\end{equation}
+
+Si ha che:
+
+\begin{equation}
+	X_3(f) = \frac{1}{6} \int_{- \frac{3}{2}}^{f + 1} 1 \; d\varphi = \frac{1}{6} \left( f + 1 + \frac{3}{2} \right) = \frac{f}{6} + \frac{5}{12}
+\end{equation}
+
+Passiamo ora all sovrapposizione di destra che si ha quando:
+
+\begin{equation}
+	\frac{1}{2} < f <  \frac{5}{2}
+\end{equation}
+
+Si ha che:
+
+\begin{equation}
+	X_3(f) = \frac{1}{6} \int^{\frac{3}{2}}_{f - 1} 1 \; d\varphi = \frac{1}{6} \left( - f + 1 + \frac{3}{2} \right) = - \frac{f}{6} + \frac{5}{12}
+\end{equation}
+
+Infine analizziamo quando le due porte sono sovrapposte del tutto, ovvero quando:
+
+\begin{equation}
+	- \frac{1}{2} < f < \frac{1}{2}
+\end{equation}
+
+Si ha che:
+
+\begin{equation}
+	X_3(f) = \frac{1}{6} \int^{f+1}_{f - 1} 1 \; d\varphi = \frac{1}{3}
+\end{equation}
+
+In definitiva avremo che:
+
+\begin{equation}
+X_3(f) = \frac{1}{6}
+\begin{cases}
+	0 \hspace{2cm} |f| > \frac{5}{2}\\
+	f + \frac{5}{2} \hspace{2cm} -\frac{5}{2} < f < - \frac{1}{2}\\
+	2 \hspace{2cm} -\frac{1}{2} < f < - \frac{1}{2}\\
+	-f + \frac{5}{2}  \hspace{2cm}     \frac{1}{2} < f < \frac{5}{2}\\	
+\end{cases}	
+\end{equation}
+
+Avremo un segnale pari a:
+
+\begin{figure}[h!]
+\begin{center}
+
+\begin{tikzpicture}[transform shape]
+	\draw[-latex] (3, 3) |- (11, 3);
+	\draw[-latex] (7, 3) -- (7, 7);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (5.75, 6.688){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (5.75, 6.688){$X_3(f)$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (11.563, 3){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (11.563, 3){$f$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (10, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (10, 2.563){$+\frac{5}{2}$};
+	\draw[line width=1.2pt] (6, 5) -- (8, 5);
+	\draw[line width=1.2pt] (6, 5) -- (4, 3);
+	\draw[line width=1.2pt] (8, 4.989) -- (10, 2.989);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (3.938, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (3.938, 2.563){$-\frac{5}{2}$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (6.563, 5.5){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (6.563, 5.5){$\frac{1}{3}$};
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (6, 5) -- (6, 3);
+	\draw[dash pattern={on 0.4pt off 0.8pt}] (8, 4.989) -- (8, 2.989);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (8, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (8, 2.563){$+\frac{1}{2}$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (5.938, 2.563){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (5.938, 2.563){$-\frac{1}{2}$};
+\end{tikzpicture}
+
+
+
+\label{figss13}
+\caption{Segnale $X_3(f)$}	
+\end{center}	
+\end{figure}
+
+
+Calcoliamo infine l'energia:
+
+\begin{equation}
+	E(X_3) = \int_{-\infty}^{+\infty} |X_3(f)|^2\;df  =  2 \cdot \frac{1}{6} \int_{\frac{1}{2}}^{\frac{5}{2}} \left(-f + \frac{5}{2}\right)^2 \; df + 2 \cdot \frac{1}{6} \int_{0}^{\frac{1}{2}} 4 \; df
+\end{equation}
+
+Ottengo che:
+
+\begin{equation}
+	\frac{1}{18} \int_0^2 \varphi^2  \; d\varphi + \frac{1}{9} = \frac{1}{18} \frac{\varphi^3}{3} \bigg|_0^2 + \frac{1}{9} = \frac{1}{9} \frac{4}{3} + \frac{1}{9} = \frac{7}{27} 
+\end{equation}
+
 
 
 
