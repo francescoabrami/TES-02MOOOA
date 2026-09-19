@@ -28,7 +28,8 @@
 \usepackage{caption}
 \usepackage{chngcntr}
 \counterwithin{figure}{section}
-\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
+\counterwithin{table}{section}
 
 \usepackage{circuitikz}
 
@@ -71,11 +72,12 @@
 }
 
 
-%% CUSTOM CODE STYLES DISPLAY %%
+%% CUSTOM CODE STYLES DISPLAY MATLAB %%
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{codepurple}{rgb}{1,1,1}
 \definecolor{backcolour}{rgb}{1,1,1} % BACKCOLOUR WHITE
 
 \lstdefinestyle{matstyle}{
@@ -99,6 +101,39 @@
 }
 
 \lstset{style=matstyle} % STYLE FRO MATLAB CODE
+
+
+%% CUSTOM CODE STYLES DISPLAY C %%
+
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codegreen}{rgb}{0,0.55,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{cstyle}{
+    backgroundcolor   = \color{codebg},
+    commentstyle      = \color{codegreen}\itshape,
+    keywordstyle      = \color{blue}\bfseries,
+    numberstyle       = \tiny\color{codegray},
+    stringstyle       = \color{codepurple},
+    basicstyle        = \ttfamily\small,
+    breakatwhitespace = false,
+    breaklines        = true,
+    captionpos        = b,
+    keepspaces        = true,
+    numbers           = left,
+    numbersep         = 8pt,
+    showspaces        = false,
+    showstringspaces  = false,
+    showtabs          = false,
+    tabsize           = 4,
+    language          = C,
+    frame             = single,
+    framerule         = 0.4pt,
+    rulecolor         = \color{gray},
+}
+\lstset{style=cstyle}
+
 
 
 %% THEOREM STYLE SECTION %%
@@ -134,6 +169,7 @@
 \title{\textbf{Teoria ed Elaborazione dei Segnali \\  02MOOOA \\ Prof.ssa Gabriella Bosco \\ Prof. Fabio Dovis}}
 \author{Francesco Abrami - s310570}
 \date{Anno Accademico 2025 - 2026 \\ \vspace{10pt} \small {Versione: \version \;- \today}}
+
 
 
 

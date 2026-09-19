@@ -4,9 +4,6 @@
 
 \begin{document}
 
-\newpage
-
-%% BEGIN WRITING %%
 
 \clearpage
 \thispagestyle{empty}
@@ -16,11 +13,17 @@
 
 In questa sezione vengono riportate gli esercizi ed i relativi svolgimenti delle esercitazioni svolte in aula durante le lezioni del corso. Ad ogni sottosezione corrisponde una diversa esercitazione. Le esercitazioni sono contrassegnate dalla data di svolgimento e dagli argomenti trattati all'interno di essa. Ogni esercitazione è ulteriormente divisa nel numero di esercizi svolti compresivi di titolo e spiegazione.
 
-\vspace*{1cm}
+\vspace*{1.5cm}
 \subsection{Esercitazione 1 - 01/10/2025}
 
 
-In questa prima esercitazione si vanno ad affrontare esercizi di base sulla teoria dei segnali come il calcolo dell'energia e della potenza. Seguono esercizi sulla distanza tra due segnali per terminare con lo sviluppo di un segnale a partire dagli elementi di una base per terminare con gli sviluppi in serie di Fourier.
+Questa prima esercitazione introduce i concetti base di energia e potenza dei segnali e come i segnali si possono interpretare come \textit{"vettori"} nello spazio dei segnali.
+Nella prima parte si calcola l’energia di segnali a durata finita o \textit{"finestrati"} con il rettangolo ($P_a(t)$), applicando la definizione $(E = \int_{-\infty}^{+\infty}|x(t)|^2\;dt)$.
+Si passa poi alla potenza media di segnali periodici o ottenuti per ripetizione nel tempo, usando $(P=\frac{1}{T_0}\int_{T_0}|x(t)|^2\;dt)$ su un periodo.
+Un altro obiettivo è capire la distanza euclidea tra due segnali, cioè quanto sono \textit{"diversi"} in termini energetici, tramite la norma e l’integrale di $(|x_1(t)-x_2(t)|^2)$.
+Con gli esercizi successivi si entra nello spazio dei segnali: basi ortonormali, prodotti scalari e rappresentazioni come combinazioni di funzioni base.
+Infine si studia lo sviluppo in Serie di Fourier di segnali a energia finita su un intervallo assegnato, calcolando i coefficienti $(\mu_n)$ tramite integrazione.
+In sintesi, l’esercitazione serve a consolidare strumenti matematici fondamentali (energia, potenza, distanza, ortogonalità e Fourier) che verranno riutilizzati in tutte le esercitazioni successive.
 
 \vspace*{1cm}
 \subsubsection{Esercizio 1 - Energia di un segnale}

@@ -4,25 +4,165 @@
 
 \begin{document}
 
-\newpage
-
-%% BEGIN WRITING %%
-
+\clearpage
+\thispagestyle{empty}
+\vspace*{7cm}
 \subsection{Esercitazione 3 - 15/10/2025}
+\vspace*{1.5cm}
 
+Questa esercitazione sui sistemi lineari serve a capire come un sistema trasforma un segnale di ingresso $(x(t))$ in un segnale di uscita $(y(t))$. Nella prima parte si verifica se i sistemi proposti sono lineari (vale la sovrapposizione) e tempo-invarianti (un ritardo in ingresso produce lo stesso ritardo in uscita).
 
+Successivamente si lavora con sistemi LTI, per i quali la descrizione completa è data dalla risposta impulsiva $(h(t))$
+.
+Quando il sistema è LTI, l’uscita si ottiene tramite convoluzione tra $(x(t))$ e $(h(t))$, oppure usando proprietà note di segnali elementari.
+
+Gli esercizi propongono ingressi tipici (rettangoli $(P_T(t))$, coseni, esponenziali, impulsi ($\delta(t)$) per allenare calcolo e interpretazione.
+
+Una parte importante è anche la rappresentazione grafica: capire dove i segnali sono diversi da zero e come cambiano con traslazioni e finestre temporali.
+
+In sintesi, l’obiettivo è collegare le proprietà teoriche (linearità, tempo-invarianza, risposta impulsiva) con la capacità pratica di calcolare e disegnare l’uscita del sistema.
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 1 - Linearità e tempo-invarianza di un sistema}
+\label{ss31}
+
+Studiare la linearit`a e tempo-invarianza dei seguenti sistemi:
+
+\begin{equation*}
+	y_1(t) = x(t) \cos(2\pi f_0 t)
+\end{equation*}
+\begin{equation*}
+	y_2(t) = kx(t)u(t - 2)
+\end{equation*}
+\begin{equation*}
+	y_3(t) = x(t) \delta(t-1) + k
+\end{equation*}
+
+\subsubsection*{Soluzione esercizio \ref{ss31}}
 
 
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 2 - Studio sistema LTI}
+\label{ss32}
 
+Dato il seistema:
+
+\begin{equation*}
+	y(t) = \int_{t-3}^{t+3} x(\tau) \; d\tau + x(t-5)
+\end{equation*}
+
+Determinare:
+
+\begin{enumerate}
+	\item che il sistema è lineare e tempo-invariante.
+	\item la sua risposta impulsiva.
+	\item la risposta impulsiva e calcolare rappresentando graficamente le risposte al sistema quando al suo ingresso viene posto $x_1(t) = P_4(t)$ e $x_2(t) = \cos(\pi t)$
+\end{enumerate}
+
+\subsubsection*{Soluzione esercizio \ref{ss32}}
+
+
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 3 - Uscita di un sistema data la sua risposta impulsiva}
+\label{ss33}
 
+Calcolare il segnale $y(t)$ all’uscita del sistema con risposta all’impulso $h(t) = P_T(t - \frac{T}{2})$, quando all'ingresso viene posto il segnale $x(t) = e^{-\alpha t } u(t)$ con $\alpha > 0)$. 
+
+
+\subsubsection*{Soluzione esercizio \ref{ss33}}
+
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 4 - Uscita di un sistema data la sua risposta impulsiva I}
+\label{ss34}
 
+Dai due segnali:
+
+\begin{equation*}
+	x(t) = e^{-(t/T)^2} \hspace{2cm} y(t) = \delta(t) + \delta(t-T)
+\end{equation*}
+
+si ottiene il segnale:
+
+\begin{equation*}
+	z(t) = x(t) y(t)
+\end{equation*}
+
+che viene posto come ingresso del sistema LTI con risposta all’impulso:
+
+\begin{equation*}
+h(t) = \begin{cases} 
+      t/T &  t \in [0,T] \\
+      2 - t/T  & t \in [T,2T]\\
+      0 & \text{altrove} 
+   \end{cases}
+\end{equation*}
+
+Si calcoli l’uscita $w(t)$ del sistema LTI e se ne disegni il grafico.
+
+\subsubsection*{Soluzione esercizio \ref{ss34}}
+
+
+
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 5 - Risposta impulsiva di un sistema con onda quadra in ingresso}
+\label{ss35}
 
+Un’onda quadra $x(t)$ come quella mostrata in \href{figss35} viene inviata in un sistema lineare con risposta all’impulso $h(t)$, mostrata in figura. Calcolare la risposta nel tempo $y(t)$ nei due casi $a = T$ e $a = 2T$.
+
+\begin{figure}[h!]
+\begin{center}
+
+\begin{tikzpicture}[scale = 0.75, transform shape]
+	\draw[-latex] (1, 3) -- (13, 3);
+	\draw[-latex] (7, 3) -- (7, 7);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (5.938, 6.688){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (5.938, 6.688){$x(t)$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (13.437, 3){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (13.437, 3){$t$};
+	\draw[line width=1.2pt] (6, 3) -- (6, 5) -- (8, 5) -- (8, 3);
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (6, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (6, 2.5){$-T$};
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (8, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (8, 2.5){$+T$};
+	\draw[line width=1.2pt] (10, 3) -- (10, 5) -- (12, 5) -- (12, 3);
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (10, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (10, 2.5){$+3T$};
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (12, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (12, 2.5){$+5T$};
+	\draw[line width=1.2pt] (2, 3) -- (2, 5) -- (4, 5) -- (4, 3);
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (1.875, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (1.875, 2.5){$-5T$};
+	\node[shape=rectangle, minimum width=0.465cm, minimum height=0.465cm] at (3.875, 2.5){} node[anchor=center, align=center, text width=0.077cm, inner sep=6pt] at (3.875, 2.5){$-3T$};
+	\draw[-latex] (7, -1) -- (7, 2);
+	\draw[-latex] (7, -1) -- (11, -1);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (11.438, -1){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (11.438, -1){$t$};
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (5.938, 1.5){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (5.938, 1.5){$h(t)$};
+	\draw[line width=1.2pt] (7, 1) -- (9, 1) -- (9, -1);
+	\node[shape=rectangle, minimum width=0.34cm, minimum height=0.34cm] at (9, -1.375){} node[anchor=center, align=center, text width=-0.048cm, inner sep=6pt] at (9, -1.375){$a$};
+\end{tikzpicture}
+
+
+\caption{Segnale preso in analisi}
+\label{figss35}	
+\end{center}	
+\end{figure}
+
+
+\subsubsection*{Soluzione esercizio \ref{ss35}}
+
+
+\vspace*{1.5cm}
 \subsubsection{Esercizio 6 - Uscita di un sistema data la sua risposta impulsiva II}
+\label{ss36}
+
+Si calcoli l’uscita $y(t)$ del sistema con risposta all’impulso $h(t) = P_T t-
+T/2$ quando l’ingresso è $x(t) = A\cos (2\pi f_0 t+ \theta)$. Per quali valori di $f_0$ il segnale $y(t)$ è nullo?
+
+
+\subsubsection*{Soluzione esercizio \ref{ss36}}
+
+
+\subsection{Esercitazione 3 - Extra}
+
+\subsubsection{Esercizio - 1 }
+\subsubsection{Esercizio - 2 }
 
 
 \end{document}

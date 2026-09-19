@@ -4,15 +4,20 @@
 
 \begin{document}
 
-\newpage
-
-%% BEGIN WRITING %%
-
+\clearpage
+\thispagestyle{empty}
+\vspace*{7cm}
 \subsection{Esercitazione 2 - 07/10/2025}
+\vspace*{1.5cm}
 
 
-In questa esercitazione andremo ad affrontare alcuni esercizi sul calcolo della trasformata di Fourier prima applicandone la definizione e poi utilizzando trasformate a noi già note a cui applicheremo le giuste proprietà per ottenere il risultato voluto. Infine vedremo anche come in alcuni casi il calcolo di potenza ed energia possa essere svolto anche nello spazio delle frequenze e non in quello dei tempi.
-
+Questa esercitazione è dedicata alla Trasformata di Fourier e al suo uso per analizzare i segnali nel dominio delle frequenze.  
+L’obiettivo principale è imparare a riconoscere i segnali \textit{"standard"} e applicare le proprietà della TF (linearità, traslazione nel tempo, modulazione, scaling) per ricavare lo spettro in modo rapido. 
+Negli esercizi iniziali si calcola la TF di esponenziali moltiplicati per gradino $u(t)$, di segnali modulati da coseni e di forme note come sinc(), tri() e prodotti di segnali.  
+Una parte importante riguarda il collegamento tra segnali periodici e analisi in frequenza: si richiede sia la TF del segnale sia i coefficienti della Serie di Fourier, evidenziando la relazione tra spettro discreto e continuo. 
+ Viene poi affrontata la convoluzione tra segnali e la sua interpretazione in frequenza, per determinare costanti che rendano valide certe uguaglianze. 
+ Infine si studia il concetto di energia del segnale, spesso usando Parseval e le proprietà della sinc() per calcolare integrali in modo più semplice.  
+In sintesi, l’esercitazione serve a passare dalla descrizione nel tempo alla descrizione in frequenza, e a usare la Fourier come strumento pratico per calcolo e interpretazione dei segnali.
 
 \vspace*{1.5cm}
 \subsubsection{Esercizio 1 - Trasformata di Fourier di segnali}
